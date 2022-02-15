@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "player": "",
+        "lvl": "",
+        "timer": "",
+        "timer-check": true,
+        "offline": true,
+        "crossplataform": false
+    },
+    {
+        "game": "God of War",
+        "year": "2002",
+        "genre": "action",
+        "multiplayer": true,
+        "offline": false,
+        "crossplataform": true,
+        "id": 2
+    },
+    {
+        "game": "adasdd",
+        "year": "3434",
+        "genre": "sadadsd",
+        "multiplayer": true,
+        "offline": false,
+        "crossplataform": true,
+        "id": 4
+    },
+    {
+        "game": "sadasdd",
+        "year": "34343",
+        "genre": "sadad",
+        "multiplayer": true,
+        "offline": false,
+        "crossplataform": true,
+        "id": 5
+    },
+    {
+        "game": "asdasd",
+        "year": "43443",
+        "genre": "sadasd",
+        "multiplayer": true,
+        "offline": false,
+        "crossplataform": true,
+        "id": 6
+    },
+    {
+        "game": "asdad",
+        "year": "344",
+        "genre": "asdasd",
+        "multiplayer": false,
+        "offline": false,
+        "crossplataform": false,
+        "id": 8
+    },
+    {
+        "game": "metal gear",
+        "year": "1998",
+        "genre": "Action",
+        "multiplayer": true,
+        "offline": true,
+        "crossplataform": true,
+        "id": 27
+    },
+    {
+        "game": "sadads",
+        "year": "323",
+        "genre": "dads",
+        "multiplayer": true,
+        "offline": true,
+        "crossplataform": true,
+        "id": 28
+    }
+]
