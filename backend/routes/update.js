@@ -1,29 +1,30 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const jsonGames = require('./games.json');
+const currentPlayerJson = require('../data/current-player.json');
+const rankingJson = require('../data/ranking.json');
+
 const fs = require('fs');
 
-router.put('/updatedata', function (req, res) {
-    const gameFromClient = req.body;
-    console.log(gameFromClient);
+router.put('/updateData', function (req, res) {
+    const dataFromClient = req.body;
 
-    if (gameFromClient) {
-        const games = JSON.parse(fs.readFileSync('games.json', 'utf8'));
-        const gameToBeUpdated = games.find((el) => el.id === parseInt(gameFromClient.id));
+    if (dataFromClient) {
+        const players = JSON.parse(fs.readFileSync('current-player.json', 'utf8'));
+        const playerToBeUpdated = players.find((el) => el.id === dataFromClient.id);
 
-        if (gameToBeUpdated) {
-            const gameToBeUpdatedIndex = games.indexOf(gameToBeUpdated);
-            games[gameToBeUpdatedIndex].game = gameFromClient.game;
-            games[gameToBeUpdatedIndex].year = gameFromClient.year;
-            games[gameToBeUpdatedIndex].genre = gameFromClient.genre;
-            games[gameToBeUpdatedIndex].multiplayer = gameFromClient.multiplayer;
-            games[gameToBeUpdatedIndex].offline = gameFromClient.offline;
-            games[gameToBeUpdatedIndex].crossplataform = gameFromClient.crossplataform;
+        if (playerToBeUpdated) {
+            const gameToBeUpdatedIndex = players.indexOf(playerToBeUpdated);
+            players[gameToBeUpdatedIndex].game = dataFromClient.game;
+            players[gameToBeUpdatedIndex].year = dataFromClient.year;
+            players[gameToBeUpdatedIndex].genre = dataFromClient.genre;
+            players[gameToBeUpdatedIndex].multiplayer = dataFromClient.multiplayer;
+            players[gameToBeUpdatedIndex].offline = dataFromClient.offline;
+            players[gameToBeUpdatedIndex].crossplataform = dataFromClient.crossplataform;
 
-            fs.writeFile('games.json', JSON.stringify(games), function (err) {
+            fs.writeFile('current-player.json', JSON.stringify(players), function (err) {
                 if (!err) {
-                    res.json(gameToBeUpdated.id);
+                    res.json(playerToBeUpdated.id);
                 } else {
                     console.log('Error: ' + err);
                     res.send(err);
