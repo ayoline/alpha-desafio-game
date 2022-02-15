@@ -5,9 +5,11 @@ const app = express();
 const cors = require('cors');
 const saveUserData = require('./routes/save');
 const rankingData = require('./routes/ranking');
+const updateData = require('./routes/update');
 
 app.use(cors());
 
+app.use('/update', updateData);
 app.use('/ranking', rankingData);
 app.use('/save', saveUserData);
 

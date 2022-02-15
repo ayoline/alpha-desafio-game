@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const jsonRanking = require('../data/ranking.json');
+const rankingJson = require('../data/ranking.json');
 
 router.get('/rankingData', function (req, res) {
     const value = req.query.value;
-    const orderedRanking = jsonRanking;
+    const orderedRanking = rankingJson;
 
     if (value === 'ranking') {
         orderedRanking.sort(
