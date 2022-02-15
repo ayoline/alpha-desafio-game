@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const jsonGames = require('./games.json');
-const lastGameId = require('./lastId.json');
+const currentPlayerJson = require('../current-player.json');
 const fs = require('fs');
 
-router.post('/savedata', function (req, res) {
+router.post('/saveUserData', function (req, res) {
     let dataFromClient = req.body;
     console.log(dataFromClient);
 

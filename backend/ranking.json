@@ -3,5 +3,15 @@
         "nome": "fulano",
         "lvl": 8,
         "pts": 4564
+    },
+    {
+        "nome": "ciclano",
+        "lvl": 5,
+        "pts": 1234
+    },
+    {
+        "nome": "beltrano",
+        "lvl": 2,
+        "pts": 125
     }
 ]

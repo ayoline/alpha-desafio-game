@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const jsonGames = require('./games.json');
+const jsonGames = require('../games.json');
 const fs = require('fs');
 
 router.delete('/deletedata', function (req, res) {
