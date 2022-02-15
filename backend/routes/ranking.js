@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const jsonRanking = require('../ranking.json');
+const jsonRanking = require('../data/ranking.json');
 
 router.get('/rankingData', function (req, res) {
     const value = req.query.value;

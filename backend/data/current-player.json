@@ -4,9 +4,9 @@
         "player": "",
         "lvl": 1,
         "timer": 12345,
-        "history-timer": 123456,
-        "timer-check": true,
-        "current-problem": 3,
+        "historyTimer": 123456,
+        "timerCheck": true,
+        "currentProblem": 3,
         "life": 3,
         "score": 1231465
     }
