@@ -1,21 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const jsonRanking = require('./ranking.json');
+const jsonRanking = require('../ranking.json');
 
 router.get('/rankingData', function (req, res) {
     const value = req.query.value;
-    const orderedGames = jsonGames;
+    const orderedRanking = jsonRanking;
 
-    if (value === 'order') {
-        orderedGames.sort(
-            (a, b) => Number(a.id) > Number(b.id) ? 1 : -1
+    if (value === 'ranking') {
+        orderedRanking.sort(
+            (a, b) => Number(a.pts) > Number(b.pts) ? 1 : -1
         );
-        filteredResponse(orderedGames, res);
-    } else {
-        const filtered = jsonGames.filter((element) => {
-            return element.id === Number(value);
-        });
-        filteredResponse(filtered, res);
+        filteredResponse(orderedRanking, res);
     }
 });
 

@@ -3,13 +3,13 @@ const config = require('./config');
 const express = require('express');
 const app = express();
 const cors = require('cors');
-
+const saveUserData = require('./routes/save');
 const rankingData = require('./routes/ranking');
 
 app.use(cors());
 
 app.use('/ranking', rankingData);
-
+app.use('/save', saveUserData);
 
 app.listen(config.port, () => console.log(`listening on port: ${config.port}`));
 
