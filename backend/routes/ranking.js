@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+router.use(express.json());
 const rankingJson = require('../data/ranking.json');
 
 router.get('/rankingData', function (req, res) {
