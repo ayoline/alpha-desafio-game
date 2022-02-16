@@ -2,16 +2,16 @@
     {
         "nome": "fulano",
         "lvl": 8,
-        "pts": 4564
+        "score": 4564
     },
     {
         "nome": "ciclano",
         "lvl": 5,
-        "pts": 1234
+        "score": 1234
     },
     {
         "nome": "beltrano",
         "lvl": 2,
-        "pts": 125
+        "score": 125
     }
 ]
