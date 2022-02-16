@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const currentPlayerJson = require('../data/current-player.json');
+const currentPlayersJson = require('../data/current-players.json');
 const fs = require('fs');
 
 router.post('/saveNewUser', function (req, res) {
@@ -29,9 +29,9 @@ router.post('/saveNewUser', function (req, res) {
         return result;
     }
 
-    currentPlayerJson.push(newUser);
+    currentPlayersJson.push(newUser);
 
-    fs.writeFile('current-player.json', JSON.stringify(currentPlayerJson), function (err) {
+    fs.writeFile('current-players.json', JSON.stringify(currentPlayersJson), function (err) {
         if (!err) {
             res.json(newUser);
         } else {

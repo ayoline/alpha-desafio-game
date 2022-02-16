@@ -7,9 +7,7 @@ router.get('/rankingData', function (req, res) {
     const orderedRanking = rankingJson;
 
     if (value === 'ranking') {
-        orderedRanking.sort(
-            (a, b) => Number(a.pts) > Number(b.pts) ? 1 : -1
-        );
+        orderedRanking.sort((a, b) => Number(a.pts) > Number(b.pts) ? 1 : -1);
         filteredResponse(orderedRanking, res);
     }
 });
