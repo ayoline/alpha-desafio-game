@@ -9,12 +9,12 @@ router.delete('/deleteData', function (req, res) {
     const dataFromClient = req.body;
     const orderedRanking = rankingJson;
 
-    if (dataFromClient.id && dataFromClient.pts && dataFromClient.lvl) {
+    if (dataFromClient.id && dataFromClient.score && dataFromClient.lvl) {
         const playersJson = JSON.parse(fs.readFileSync('current-players.json', 'utf8'));
         const playerToBeDeleted = playersJson.find((el) => el.id === dataFromClient.id);
 
         orderedRanking.push(dataFromClient);
-        orderedRanking.sort((a, b) => Number(a.pts) > Number(b.pts) ? 1 : -1);
+        orderedRanking.sort((a, b) => Number(a.score) > Number(b.score) ? 1 : -1);
         orderedRanking.reverse();
         removeLowerPositions(orderedRanking);
 

@@ -5,7 +5,7 @@ const currentPlayersJson = require('../data/current-players.json');
 const fs = require('fs');
 
 router.post('/saveNewUser', function (req, res) {
-    let dataFromClient = req.body;
+    const dataFromClient = req.body;
     let newUser = {};
 
     if (dataFromClient.name) {

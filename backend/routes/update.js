@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 router.use(express.json());
 const currentPlayersJson = require('../data/current-players.json');
-
+const allProblemsJson = require('../data/all-problems.json');
 const fs = require('fs');
 
 router.put('/updateData', function (req, res) {
