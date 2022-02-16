@@ -1,30 +1,51 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const jsonGames = require('../games.json');
+const currentPlayersJson = require('../data/current-players.json');
+const rankingJson = require('../data/ranking.json');
 const fs = require('fs');
 
-router.delete('/deletedata', function (req, res) {
-    const idFromGame = Number(req.body.id);
+router.delete('/deleteData', function (req, res) {
+    const dataFromClient = req.body;
+    const orderedRanking = rankingJson;
 
-    if (idFromGame) {
-        const games = JSON.parse(fs.readFileSync('games.json', 'utf8'));
-        const gameToBeDeleted = games.find((el) => el.id === idFromGame);
+    if (dataFromClient.id && dataFromClient.pts && dataFromClient.lvl) {
+        const playersJson = JSON.parse(fs.readFileSync('current-players.json', 'utf8'));
+        const playerToBeDeleted = playersJson.find((el) => el.id === dataFromClient.id);
 
-        if (gameToBeDeleted) {
-            const gameToBeDeletedIndex = games.indexOf(gameToBeDeleted);
-            games.splice(gameToBeDeletedIndex, 1);
+        orderedRanking.push(dataFromClient);
+        orderedRanking.sort((a, b) => Number(a.pts) > Number(b.pts) ? 1 : -1);
+        orderedRanking.reverse();
+        removeLowerPositions(orderedRanking);
 
-            fs.writeFile('games.json', JSON.stringify(games), function (err) {
+        fs.writeFile('ranking.json', JSON.stringify(orderedRanking), function (err) {
+            if (!err) {
+                res.json(orderedRanking);
+            } else {
+                console.log('Error: ' + err);
+                res.send(err);
+            }
+        });
+
+        if (playerToBeDeleted) {
+            const playerToBeDeletedIndex = playersJson.indexOf(playerToBeDeleted);
+            playersJson.splice(playerToBeDeletedIndex, 1);
+
+            fs.writeFile('current-players.json', JSON.stringify(playersJson), function (err) {
                 if (!err) {
-                    res.json(gameToBeDeleted);
+                    console.log('Player ' + playerToBeDeleted.player + ' has been Deleleted');
                 } else {
                     console.log('Error: ' + err);
-                    res.send(err);
                 }
             });
         }
     }
 });
+
+function removeLowerPositions(_array) {
+    while (_array.length > 10) {
+        _array.pop();
+    }
+}
 
 module.exports = router;
