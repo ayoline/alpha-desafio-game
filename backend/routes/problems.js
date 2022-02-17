@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const allProblemsJson = require('../data/all-problems.json');
+const fs = require('fs');
 
 router.get('/problemsData', function (req, res) {
     const dataFromClient = req.body;
+    const allProblemsJson = JSON.parse(fs.readFileSync('data/all-problems.json', 'utf8'));
 
     if (dataFromClient.lvl) {
         let currentLvlProblems = allProblemsJson[dataFromClient.lvl - 1];

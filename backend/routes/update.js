@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const currentPlayersJson = require('../data/current-players.json');
-const allProblemsJson = require('../data/all-problems.json');
 const fs = require('fs');
 
 router.put('/updateData', function (req, res) {
     const dataFromClient = req.body;
-    const playersJson = JSON.parse(fs.readFileSync('current-players.json', 'utf8'));
+    const playersJson = JSON.parse(fs.readFileSync('data/current-players.json', 'utf8'));
     let playerToBeUpdated;
 
     if (dataFromClient.id) {
@@ -27,7 +25,7 @@ router.put('/updateData', function (req, res) {
             playersJson[playerToBeUpdatedIndex].score = dataFromClient.score;
         }
 
-        fs.writeFile('current-players.json', JSON.stringify(playersJson), function (err) {
+        fs.writeFile('data/current-players.json', JSON.stringify(playersJson), function (err) {
             if (!err) {
                 res.json(playerToBeUpdated);
             } else {
