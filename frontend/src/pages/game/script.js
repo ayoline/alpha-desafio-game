@@ -78,7 +78,7 @@ function start(){
 }
 
 function loadGame(){
-    const url = `http://localhost:3000/problemsData`;
+    const url = `http://localhost:3000/problems/problemsData`;
     fetch(url).then(res=>res.json())
         .then(dataElements=>console.log(dataElements));
     // for(let i of data-elements){
