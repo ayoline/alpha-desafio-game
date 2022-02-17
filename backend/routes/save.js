@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const currentPlayersJson = require('../data/current-players.json');
 const fs = require('fs');
 
 router.post('/saveNewUser', function (req, res) {
     const dataFromClient = req.body;
+    const currentPlayersJson = JSON.parse(fs.readFileSync('data/current-players.json', 'utf8'));
     let newUser = {};
 
     if (dataFromClient.name) {
@@ -31,7 +31,7 @@ router.post('/saveNewUser', function (req, res) {
 
     currentPlayersJson.push(newUser);
 
-    fs.writeFile('current-players.json', JSON.stringify(currentPlayersJson), function (err) {
+    fs.writeFile('data/current-players.json', JSON.stringify(currentPlayersJson), function (err) {
         if (!err) {
             res.json(newUser);
         } else {

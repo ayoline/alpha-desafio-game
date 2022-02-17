@@ -1,16 +1,14 @@
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const currentPlayersJson = require('../data/current-players.json');
-const rankingJson = require('../data/ranking.json');
 const fs = require('fs');
 
 router.delete('/deleteData', function (req, res) {
     const dataFromClient = req.body;
-    const orderedRanking = rankingJson;
+    const orderedRanking = JSON.parse(fs.readFileSync('data/ranking.json', 'utf8'));
 
     if (dataFromClient.id && dataFromClient.score && dataFromClient.lvl) {
-        const playersJson = JSON.parse(fs.readFileSync('current-players.json', 'utf8'));
+        const playersJson = JSON.parse(fs.readFileSync('data/current-players.json', 'utf8'));
         const playerToBeDeleted = playersJson.find((el) => el.id === dataFromClient.id);
 
         orderedRanking.push(dataFromClient);
@@ -18,7 +16,7 @@ router.delete('/deleteData', function (req, res) {
         orderedRanking.reverse();
         removeLowerPositions(orderedRanking);
 
-        fs.writeFile('ranking.json', JSON.stringify(orderedRanking), function (err) {
+        fs.writeFile('data/ranking.json', JSON.stringify(orderedRanking), function (err) {
             if (!err) {
                 res.json(orderedRanking);
             } else {
@@ -31,7 +29,7 @@ router.delete('/deleteData', function (req, res) {
             const playerToBeDeletedIndex = playersJson.indexOf(playerToBeDeleted);
             playersJson.splice(playerToBeDeletedIndex, 1);
 
-            fs.writeFile('current-players.json', JSON.stringify(playersJson), function (err) {
+            fs.writeFile('data/current-players.json', JSON.stringify(playersJson), function (err) {
                 if (!err) {
                     console.log('Player ' + playerToBeDeleted.player + ' has been Deleleted');
                 } else {
