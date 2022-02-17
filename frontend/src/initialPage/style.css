@@ -181,4 +181,8 @@ main {
         height: 40px;
         width: 240px;
     }
+    
+    #highscores-container {
+        margin: 0 40px;
+    }
 }
