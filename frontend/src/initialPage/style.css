@@ -1,37 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap");
 :root {
-    --zcool: 'ZCOOL QingKe HuangYou', cursive;
+    --zcool: "ZCOOL QingKe HuangYou", cursive;
 }
 
 body {
     margin: 0;
-    background-color: #2E356F;
+    background-color: #2e356f;
     color: white;
     font-family: var(--zcool);
-
 }
 
-header {
-    width: 600px;
+#top-container {
+    width: 500px;
     text-align: center;
-    margin: 40px auto 10px;
+    margin: 0 auto 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-header h1 {
+#top-container h1 {
     font-size: 90px;
+    margin-top: 10px;
     margin-bottom: 30px;
-    text-shadow: -2px -2px 0 rgb(32, 32, 32), 2px -2px 0 rgb(32, 32, 32), -2px 2px 0 rgb(32, 32, 32), 2px 2px 0 rgb(32, 32, 32);
+    text-shadow: -2px -2px 0 rgb(32, 32, 32), 2px -2px 0 rgb(32, 32, 32),
+        -2px 2px 0 rgb(32, 32, 32), 2px 2px 0 rgb(32, 32, 32);
 }
 
-header span:nth-child(1) {
-    color: #D55A5A;
-    text-shadow: 0 4px 0 #F49138;
+#top-container span:nth-child(1) {
+    color: #d55a5a;
+    text-shadow: 0 4px 0 #f49138;
 }
 
-header span:nth-child(2) {
-    color: #F49138;
-    text-shadow: 0 4px 0 #D55A5A;
-
+#top-container span:nth-child(2) {
+    color: #f49138;
+    text-shadow: 0 4px 0 #d55a5a;
 }
 
 main {
@@ -54,7 +58,7 @@ main {
 
 #play-button {
     margin: 20px;
-    background-color: #9693D0;
+    background-color: #9693d0;
     border: 0;
     font-family: var(--zcool);
     color: white;
@@ -63,7 +67,7 @@ main {
     height: 60px;
     width: 300px;
     border-radius: 16px;
-    box-shadow: 0 8px 0 0 #5C6391;
+    box-shadow: 0 8px 0 0 #5c6391;
     cursor: pointer;
     transition: 100ms;
 }
@@ -85,15 +89,15 @@ main {
 }
 
 #highscores-container {
-    margin: 20px;
-    background-color: #5C6391;
+    margin-top: 20px;
+    background-color: #5c6391;
     border-radius: 10px;
     padding: 10px;
     width: 400px;
 }
 
 #highscores-container h2 {
-    margin-top: 4px;
+    margin-top: 2px;
     text-align: center;
     font-size: 28px;
 }
@@ -122,4 +126,59 @@ main {
 
 #highscores-tbody tr td:nth-child(3) {
     text-align: end;
+}
+
+@media (max-width: 1500px) {
+    #top-container {
+        margin: 0 auto;
+    }
+
+    #top-container h1 {
+        margin: 0;
+    }
+
+    #highscores-tbody td {
+        width: 33%;
+        font-size: 22px;
+        padding: 2px 14px;
+    }
+}
+
+@media (max-width: 1300px) {
+    main {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    #top-container {
+        margin: 0;
+    }
+
+    #top-container h1 {
+        margin: 0;
+        font-size: 80px;
+    }
+
+    #highscores-tbody td {
+        width: 33%;
+        font-size: 20px;
+        padding: 2px 14px;
+    }
+
+    #name-input {
+        margin-top: 14px;
+        height: 2.5rem;
+        padding: 0 12px;
+        font-size: 20px;
+    }
+
+    #play-button {
+        font-size: 28px;
+        padding: 0px 14px;
+        height: 40px;
+        width: 240px;
+    }
 }
