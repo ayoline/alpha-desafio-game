@@ -19,16 +19,6 @@ router.post('/saveNewUser', function (req, res) {
         newUser.score = 0;
     }
 
-    function makeid(length) {
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        const charactersLength = characters.length;
-        let result = '';
-        for (let i = 0; i < length; i++) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        return result;
-    }
-
     currentPlayersJson.push(newUser);
 
     fs.writeFile('data/current-players.json', JSON.stringify(currentPlayersJson), function (err) {
@@ -39,5 +29,15 @@ router.post('/saveNewUser', function (req, res) {
         }
     });
 });
+
+function makeid(length) {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
 
 module.exports = router;
