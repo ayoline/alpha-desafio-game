@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css"/>
+    <title>Document</title>
+</head>
+<body>
+    
+    <main>
+        <section id="sec-one">
+            <div id="div-score">
+                <span>PONTUAÇÃO</span>
+                <div id="score">0.000</div>
+            </div>
+            <div id="time">
+                <span>TEMPO RESTANTE</span>
+                <h2>0</h2>
+            </div>
+            <div id="info-match">
+                <div>
+                    <span style="color:#00B47A;margin-bottom: 6px;">VIDAS</span>
+                    <span>
+                        <img class="heart-icon" src="assets/img/full-heart.svg" />
+                        <img class="heart-icon" src="assets/img/full-heart.svg" />
+                        <img class="heart-icon" src="assets/img/full-heart.svg" />
+                    </span>
+                </div>
+                <div>
+                    <span>LEVEL</span>
+                    <div id="lvl-number">15</div>
+                </div>
+                <div>
+                    <span>DESAFIO</span>
+                    <div id="match-current">1/3</div>
+                </div>
+            </div>
+        </section>
+        <div id="ajust-size">
+            <section id="sec-two">
+                <div id='numbers'>
+                    <span>VALORES</span>
+                    <div>
+                        <div class="block-num block-model">01</div>
+                        <div class="block-num block-model">02</div>
+                        <div class="block-num block-model">03</div>
+                        <div class="block-num block-model">04</div>
+                        <div class="block-num block-model">05</div>
+                        <div class="block-num block-model">06</div>
+                        <div class="block-num block-model">07</div>
+                        <div class="block-num block-model">08</div>
+                        <div class="block-num block-model">19</div>
+                        <!-- <div class="block-num">10</div> -->
+                    </div>
+                </div>
+                <div id="ajust-result">
+                    <div id="div-result">
+                        <div id='1' class="snip input-num block-model"></div>
+                        <div id='2' class="snip input-op block-model"></div>
+                        <div id='3' class="snip input-num block-model"></div>
+                    </div>
+                    <i>=</i>
+                    <span>45</span>
+                </div>
+            </section>
+            <section id="sec-three">
+                <div id="operations-id">
+                    <div>
+                        <div class="operations block-model">/</div>
+                        <div class="operations block-model">x</div>
+                        <div class="operations block-model">-</div>
+                        <div class="operations block-model">+</div>
+                    </div>
+                    <h3>OPERAÇÕES</h3>
+                </div>
+                <div>
+                    <button id='math-div'>
+                        MATH!
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src=app.js></script>
+
+</body>
+</html>
