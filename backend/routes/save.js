@@ -13,7 +13,7 @@ router.post('/saveNewUser', function (req, res) {
         newUser.player = dataFromClient.name;
         newUser.lvl = 1;
         newUser.subLevel = 1;
-        newUser.currentProblem = null;
+        newUser.currentProblemResult = null;
         newUser.timer = 0;
         newUser.timerCheck = true;
         newUser.life = 3;
