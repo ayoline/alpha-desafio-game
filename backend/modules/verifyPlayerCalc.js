@@ -1,28 +1,34 @@
-function verifyPlayerInput (playerString, result) {
-    
-    function validatePlayerInput (string) {
-        const stringArr = string.split(' ')
+function verifyPlayerInput(playerString, result) {
+    const parsedPlayerString = playerString.replaceAll("x", "*")
+    console.log(parsedPlayerString)
+    function validatePlayerInput(string) {
+        const stringArr = string.split(" ");
         let isValid = true;
         stringArr.forEach((currElement, index) => {
             if (index % 2 == 0) {
                 if (!Number.isInteger(parseInt(currElement))) {
-                    isValid = false
-                };
+                    isValid = false;
+                }
             } else {
-                if (!currElement == "+" ||! currElement == "-" ||! currElement == "*" ||! currElement == "/") {
-                    isValid = false
-                };
+                if (
+                    !currElement == "+" ||
+                    !currElement == "-" ||
+                    !currElement == "*" ||
+                    !currElement == "/"
+                ) {
+                    isValid = false;
+                }
             }
-        })
-        return isValid
+        });
+        return isValid;
     }
 
-    if (validatePlayerInput(playerString)) {
-        const calculate = Function("return " + playerString)
-        const playerResult = calculate()
-        return playerResult == result
+    if (validatePlayerInput(parsedPlayerString)) {
+        const calculate = Function("return " + parsedPlayerString);
+        const playerResult = calculate();
+        return playerResult == result;
     } else {
-        return "Invalid String"
+        return "Invalid String";
     }
 }
 
