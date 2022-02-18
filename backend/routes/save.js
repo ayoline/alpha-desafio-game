@@ -12,9 +12,10 @@ router.post('/saveNewUser', function (req, res) {
         newUser.id = makeid(5);
         newUser.player = dataFromClient.name;
         newUser.lvl = 1;
+        newUser.subLevel = 1;
+        newUser.currentProblem = null;
         newUser.timer = 0;
         newUser.timerCheck = true;
-        newUser.currentProblem = 1;
         newUser.life = 3;
         newUser.score = 0;
     }

@@ -1,8 +1,14 @@
-const arrCalculate = new Array(...$('.snip').addClass());
+// const arrCalculate = new Array(...$('.snip').addClass());
 
 $(function(){
-    loadGame();
-    start();
+    const arrCalculate = new Array(...$('.snip').addClass());
+    const game_id = window.location.search.replace('?id=','');
+    if(game_id){
+        loadGame(game_id,arrCalculate);
+        // start(arrCalculate);
+    }else{
+        window.location.href = 'http://localhost:3001/';
+    }
 });
 
 $('#math-div').on('click', function(){
@@ -44,19 +50,21 @@ function timeRun(defaultTime){
         ,1000)
 }
 
-function start(){
+function start(arrCalculate){
     const arrDrag = ['.operations','.block-num'];
-    const arrDrop = ['#numbers', '#operations-id'];
-    const arrResDrop = ['.input-num', '.input-op'];
+    const arrDrop = [['#numbers','.block-num'], ['#operations-id','.operations']];
+    const arrResDrop = [['.input-num','.block-num'], ['.input-op','.operations']];
     for(let i of arrDrag)$(i).draggable({revert:"invalid", scroll:false /*,snap:'.snip'*/});
-    for(let i of arrDrop)$(i).droppable({
+    for(let i of arrDrop)$(i[0]).droppable({
+        accept: i[1],
         classes:{
             "ui-droppable-active": "ui-state-active",
             "ui-droppable-hover": "ui-state-hover"
         },
         // drop: function()
     });
-    for(let i of arrResDrop)$(i).droppable({
+    for(let i of arrResDrop)$(i[0]).droppable({
+        accept: i[1],
         classes:{
             "ui-droppable-active": "ui-state-active",
             "ui-droppable-hover": "ui-state-hover"
@@ -77,14 +85,25 @@ function start(){
     });
 }
 
-function loadGame(){
-    const url = `http://localhost:3000/problemsData`;
-    fetch(url).then(res=>res.json())
-        .then(dataElements=>console.log(dataElements));
-    // for(let i of data-elements){
-    //     const numPieces = $('div').addClass('block-num', 'block-model').text(data-elements);
-    //     $('#numbers>div').append(numPieces);
-    // }
+async function loadGame(id, arrCalculate){
+    const url = `http://localhost:3000/problems/problemsData/${id}`;
+    fetch(url).then(res=>{
+        if(res.status !== 200 ){
+            //add-message-error
+            window.location.href = 'http://localhost:3001/';
+            return;
+        }else{
+            return res.json();
+        }
+    }).then(data=>{
+            const dataElements = data[0][0];
+            for(let i of dataElements){
+                const numPieces = $('<div>').addClass('block-num block-model').text(i);
+                $('#numbers>div').append(numPieces);
+            }
+            $('#question').text(data[0][1]);
+            start(arrCalculate);
+        });
 }
 
 timeRun(180);

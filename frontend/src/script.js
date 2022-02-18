@@ -20,3 +20,22 @@ function renderRanking(data) {
         `);
     });
 }
+
+$("#play-button").on("click", function () {
+    const newUsername = $("#name-input").val();
+    if (/^\w\w\w+$/.test(newUsername)) {
+        $.post({
+            url: apiURL + "save/saveNewUser",
+            headers: {Accepts: "application/json"},
+            contentType : 'application/json',
+            dataType: "json",
+            data: JSON.stringify({
+                name: newUsername,
+            }),
+        }).done((data) => {
+            window.location.href = `http://localhost:3001/pages/game/?id=${data.id}`
+        });
+    } else {
+        console.log("falso");
+    }
+});
