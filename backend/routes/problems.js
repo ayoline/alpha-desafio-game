@@ -3,12 +3,12 @@ const router = express.Router();
 router.use(express.json());
 const fs = require('fs');
 
-router.get('/problemsData/:player_id', function (req, res) {
-    const dataFromClient = req.params.player_id;
+router.get('/problemsData', function (req, res) {
+    const dataFromClient = req.query.value;
     const currentPlayers = JSON.parse(fs.readFileSync('data/current-players.json'));
     const allProblemsJson = JSON.parse(fs.readFileSync('data/all-problems.json'));
 
-    const verifyPlayer = currentPlayers.filter(k=> dataFromClient === k.id)[0];
+    const verifyPlayer = currentPlayers.filter(el => dataFromClient === el.id)[0];
     //se houver mais?
 
     if (verifyPlayer.lvl) {
@@ -29,9 +29,9 @@ router.get('/problemsData/:player_id', function (req, res) {
         randomProblemsJSON[0].q03 = randomProblems[2];
 
         randomProblems = randomProblems.map(item => {
-            const split = item.replace(/\s/g,'').split('=');
-            const arr = split[0].replace(/[+-/x]/g,'SPACE').split('SPACE');
-            return [[...arr,'01','02','03','04','05','06'],[split[1]]];
+            const split = item.replace(/\s/g, '').split('=');
+            const arr = split[0].replace(/[+-/x]/g, 'SPACE').split('SPACE');
+            return [[...arr, '01', '02', '03', '04', '05', '06'], [split[1]]];
         });
         console.log(randomProblems);
         console.log(randomProblemsJSON);
