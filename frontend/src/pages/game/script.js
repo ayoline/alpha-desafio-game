@@ -85,7 +85,7 @@ function start(arrCalculate){
     });
 }
 
-async function loadGame(id, arrCalculate){
+function loadGame(id, arrCalculate){
     const url = `http://localhost:3000/problems/problemsData/${id}`;
     fetch(url).then(res=>{
         if(res.status !== 200 ){

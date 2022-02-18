@@ -5,7 +5,7 @@ $(document).ready(function () {
         url: apiURL + `ranking/rankingData?value=ranking`,
     }).done((data) => {
         console.log(data);
-        renderRanking(data)
+        renderRanking(data);
     });
 });
 
