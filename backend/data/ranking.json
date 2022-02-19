@@ -1,17 +1,6 @@
 [
-    {
-        "nome": "fulano",
-        "lvl": 8,
-        "score": 4564
-    },
-    {
-        "nome": "ciclano",
-        "lvl": 5,
-        "score": 1234
-    },
-    {
-        "nome": "beltrano",
-        "lvl": 2,
-        "score": 125
-    }
+    { "player": "fulano", "lvl": 8, "score": 4564 },
+    { "player": "ciclano", "lvl": 5, "score": 1234 },
+    { "player": "beltrano", "lvl": 2, "score": 125 },
+    { "player": "Felype", "score": 0, "lvl": 1 }
 ]

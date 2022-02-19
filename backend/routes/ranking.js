@@ -14,6 +14,8 @@ router.get('/rankingData', function (req, res) {
     }
 });
 
+// FAZER ROTA DE UPDATE RANKING
+
 function filteredResponse(filteredJSON, res) {
     if (filteredJSON.length > 0) {
         res.json(filteredJSON);

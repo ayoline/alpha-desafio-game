@@ -7,7 +7,7 @@ router.post('/saveNewUser', function (req, res) {
     const dataFromClient = req.body;
     const currentPlayersJson = JSON.parse(fs.readFileSync('data/current-players.json', 'utf8'));
     let newUser = {};
-
+    
     if (dataFromClient.name) {
         newUser.id = makeid(5);
         newUser.player = dataFromClient.name;

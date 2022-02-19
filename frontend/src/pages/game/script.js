@@ -32,7 +32,10 @@ $("#math-div").on("click", function () {
                 problemResult: currentProblemResult,
             }),
         }).done((data) => {
-            console.log(data);
+            // verifyWinOrLose(data);
+            // FAZER ROTA DE UPDATE RANKING
+
+            alert(JSON.stringify(data));
         });
     } else {
         //not-fetch
@@ -152,6 +155,14 @@ function loadGame(id, arrCalculate) {
 
             fetch(apiUrl + "update/updateData", requestOptions);
         });
+}
+
+function verifyWinOrLose(playerData) {
+    if (playerData.lose) {
+        alert("VOCÊ PERDEU!");
+    } else {
+        alert("VOCÊ ERROU!");
+    }
 }
 
 timeRun(180);

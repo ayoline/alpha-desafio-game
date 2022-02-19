@@ -33,8 +33,8 @@ router.get('/problemsData/:player_id', function (req, res) {
             const arr = split[0].replace(/[+-/x]/g,'SPACE').split('SPACE');
             return [[...arr,'01','02','03','04','05','06'],[split[1]]];
         });
-        console.log(randomProblems);
-        console.log(randomProblemsJSON);
+        // console.log(randomProblems);
+        // console.log(randomProblemsJSON);
 
         res.json(randomProblems);
     }
