@@ -3,9 +3,8 @@ const apiURL = "http://localhost:3000/";
 $(document).ready(function () {
     $.ajax({
         url: apiURL + `ranking/rankingData?value=ranking`,
-    }).done((data) => {
-        console.log(data);
-        renderRanking(data);
+    }).done((rankingData) => {
+        renderRanking(rankingData);
     });
 });
 
@@ -14,7 +13,7 @@ function renderRanking(data) {
         $("#highscores-tbody").append(`
             <tr>
                 <td>lvl${element.lvl}</td>
-                <td>${element.nome}</td>
+                <td>${element.player}</td>
                 <td>${element.score}</td>
             </tr>
         `);
@@ -36,6 +35,6 @@ $("#play-button").on("click", function () {
             window.location.href = `http://localhost:3001/pages/game/?id=${data.id}`
         });
     } else {
-        console.log("falso");
+        console.log("NOME INVALIDO");
     }
 });

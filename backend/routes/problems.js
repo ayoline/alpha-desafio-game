@@ -3,13 +3,22 @@ const router = express.Router();
 router.use(express.json());
 const fs = require('fs');
 
-router.get('/problemsData/:player_id', function (req, res) {
-    const dataFromClient = req.params.player_id;
+// modules 
+
+const updateData = require("../modules/updateData"); // updateData({id: "", ...})
+// const timerFunction = require("../modules/timer.js"); // timerFunction(playerId, time, fs);
+
+router.get('/problemsData', function (req, res) {
+    const dataFromClient = req.query.value;
     const currentPlayers = JSON.parse(fs.readFileSync('data/current-players.json'));
     const allProblemsJson = JSON.parse(fs.readFileSync('data/all-problems.json'));
 
-    const verifyPlayer = currentPlayers.filter(k=> dataFromClient === k.id)[0];
+    const verifyPlayer = currentPlayers.filter(el => dataFromClient === el.id)[0];
     //se houver mais?
+
+    const playerId = verifyPlayer.id;
+    const time = verifyPlayer.timer/10**3;
+    // timerFunction(playerId, time, fs);
 
     if (verifyPlayer.lvl) {
         let currentLvlProblems = allProblemsJson[verifyPlayer.lvl - 1];
@@ -29,13 +38,14 @@ router.get('/problemsData/:player_id', function (req, res) {
         randomProblemsJSON[0].q03 = randomProblems[2];
 
         randomProblems = randomProblems.map(item => {
-            const split = item.replace(/\s/g,'').split('=');
-            const arr = split[0].replace(/[+-/x]/g,'SPACE').split('SPACE');
-            return [[...arr,'01','02','03','04','05','06'],[split[1]]];
+            const split = item.replace(/\s/g, '').split('=');
+            const arr = split[0].replace(/[+-/x]/g, 'SPACE').split('SPACE');
+            return [[...arr, '01', '02', '03', '04', '05', '06'], [split[1]]];
         });
-        // console.log(randomProblems);
-        // console.log(randomProblemsJSON);
-
+        
+        // const firstProblemResult = arr[0][1];
+        // console.log(firstProblemResult)
+        updateData({})
         res.json(randomProblems);
     }
 

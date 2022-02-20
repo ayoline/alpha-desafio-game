@@ -1,83 +1,115 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" type="text/css"/>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
     <title>Document</title>
 </head>
+
 <body>
-    
+    <header>
+
+    </header>
     <main>
+        <!-- PRIMEIRA PARTE -->
         <section id="sec-one">
-            <div id="div-score">
-                <span>PONTUAÇÃO</span>
-                <div id="score">0.000</div>
+            <div id="score">
+                <ul>
+                    <li class="time-score">
+                        <span>SCORE DO JOGADOR</span>
+                        <h2 class="lvl-number">00.00</h2>
+                    </li>    
+                </ul>
             </div>
+
             <div id="time">
-                <span>TEMPO RESTANTE</span>
-                <h2>0</h2>
+                <ul>
+                    <li class="time-score">
+                        <span>TEMPO RESTANTE</span>
+                        <h2 class="lvl-number">15</h2>
+                    </li>
+                </ul>
             </div>
-            <div id="info-match">
-                <div>
-                    <span style="color:#00B47A;margin-bottom: 6px;">VIDAS</span>
-                    <span>
-                        <img class="heart-icon" src="assets/img/full-heart.svg" />
-                        <img class="heart-icon" src="assets/img/full-heart.svg" />
-                        <img class="heart-icon" src="assets/img/full-heart.svg" />
-                    </span>
-                </div>
-                <div>
-                    <span>LEVEL</span>
-                    <div id="lvl-number">15</div>
-                </div>
-                <div>
-                    <span>DESAFIO</span>
-                    <div id="match-current">1/3</div>
-                </div>
+
+            <div id="life-info">
+                <ul>
+                    <li id="life">
+                        <span>VIDAS</span>
+                        <span id="heart">
+                            <img class="heart-icon" src="img/coracao.svg" />
+                            <img class="heart-icon" src="img/coracao-red.svg"style="display: none;"  />
+                            <img class="heart-icon" src="img/coracao-red.svg" />
+                            <img class="heart-icon" src="img/coracao-red.svg" />
+                            <img class="heart-icon" src="img/coracao.svg" style="display: none;"/>
+                            <img class="heart-icon" src="img/coracao.svg" style="display: none;" />
+                        </span>
+                    </li> 
+                    <li id="lvl-number-externo">
+                        <span>LEVEL</span>
+                        <h2 class="lvl-number">15</h2>
+                    </li>
+                    <li id="match-current-externo">
+                        <span>DESAFIO</span>
+                        <h2 id="match-current">1/3</h2>
+                    </li>
+                </ul>
             </div>
         </section>
-        <div id="ajust-size">
-            <section id="sec-two">
-                <div id='numbers'>
-                    <span>VALORES</span>
-                    <div>
-                        <!-- <div class="block-num">10</div> -->
+
+        <!-- SEGUNDA PARTE -->
+        <section id="sec-two">
+            <section id="buttons">
+                <h4>DESAFIO 1</h4>
+                <div></div>
+                <h4>DESAFIO 2</h4>
+                <div></div>
+                <h4>DESAFIO 3</h4>
+                <div></div>
+            </section>
+            <section id="number">
+                <div id="number-div-one">
+                    <div id="number-div-two">
+                        <button><span>01</span></button>
+                        <button><span>02</span></button>
+                        <button><span>03</span></button>
+                        <button><span>04</span></button>
+                        <button><span>05</span></button>
+                        <button><span>06</span></button>
+                        <button><span>07</span></button>
+                        <button><span>08</span></button>
+                        <button><span>09</span></button>
                     </div>
-                </div>
-                <div id="ajust-result">
-                    <div id="div-result">
-                        <div id='1' class="snip input-num block-model"></div>
-                        <div id='2' class="snip input-op block-model"></div>
-                        <div id='3' class="snip input-num block-model"></div>
-                    </div>
-                    <i>=</i>
-                    <span id="question"></span>
                 </div>
             </section>
-            <section id="sec-three">
-                <div id="operations-id">
-                    <div>
-                        <div class="operations block-model">/</div>
-                        <div class="operations block-model">x</div>
-                        <div class="operations block-model">-</div>
-                        <div class="operations block-model">+</div>
-                    </div>
-                    <h3>OPERAÇÕES</h3>
-                </div>
-                <div>
-                    <button id='math-div'>
-                        MATH!
-                    </button>
-                </div>
+            <section id="operetions">
+                <button id="firt"><span>+</span></button>
+                <button><span>-</span></button>
+                <button><span>x</span></button>
+                <button><span>÷</span></button>
             </section>
-        </div>
+            <section id="operation-name">
+                <h2>OPERAÇÕES</h2>
+            </section>
+        </section>
+        <!-- TERCEIRA PARTE -->
+        <section id="sec-three">
+            <div id="calc">
+                <ul>
+                    <li class="num"></li>
+                    <li class="ope"></li>
+                    <li class="num"></li>
+                    <li class="ope"></li>
+                    <li class="num"></li>
+                </ul>
+            </div>
+            <i>=</i>
+            <span id="result">82</span>
+            <button><div>MATH!</div></button>
+        </section>
     </main>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-    <script src="script.js"></script>
-
 </body>
+
 </html>
