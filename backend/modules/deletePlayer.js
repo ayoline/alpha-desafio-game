@@ -12,7 +12,7 @@ function deleteCurrentPlayer (playerID) {
             if (!err) {
                 console.log('Player ' + playerToBeDeleted.player + ' has been Deleted');
             } else {
-                console.log('Error: ' + err);
+                console.log(err);
             }
         });
     }
