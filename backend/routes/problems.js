@@ -11,6 +11,10 @@ router.get('/problemsData', function (req, res) {
     const verifyPlayer = currentPlayers.filter(el => dataFromClient === el.id)[0];
     //se houver mais?
 
+    const playerId = verifyPlayer.id;
+    const time = verifyPlayer.timer/10**3;
+    require('../modules/timer.js')(playerId, time, fs);
+
     if (verifyPlayer.lvl) {
         let currentLvlProblems = allProblemsJson[verifyPlayer.lvl - 1];
         let randomProblems = [];
@@ -33,8 +37,6 @@ router.get('/problemsData', function (req, res) {
             const arr = split[0].replace(/[+-/x]/g, 'SPACE').split('SPACE');
             return [[...arr, '01', '02', '03', '04', '05', '06'], [split[1]]];
         });
-        console.log(randomProblems);
-        console.log(randomProblemsJSON);
 
         res.json(randomProblems);
     }
