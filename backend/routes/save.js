@@ -13,8 +13,8 @@ router.post('/saveNewUser', function (req, res) {
         newUser.player = dataFromClient.name;
         newUser.lvl = 1;
         newUser.subLevel = 1;
-        newUser.currentProblemResult = null;
-        newUser.timer = 0;
+        newUser.currentProblem = null;
+        newUser.timer = process.env.ROUND_TIME;
         newUser.timerCheck = true;
         newUser.life = 3;
         newUser.score = 0;
