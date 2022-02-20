@@ -10,9 +10,6 @@
 </head>
 
 <body>
-    <header>
-
-    </header>
     <main>
         <!-- PRIMEIRA PARTE -->
         <section id="sec-one">
@@ -29,7 +26,7 @@
                 <ul>
                     <li class="time-score">
                         <span>TEMPO RESTANTE</span>
-                        <h2 class="lvl-number">15</h2>
+                        <h2 class="lvl-number">00:00</h2>
                     </li>
                 </ul>
             </div>
@@ -39,12 +36,9 @@
                     <li id="life">
                         <span>VIDAS</span>
                         <span id="heart">
-                            <img class="heart-icon" src="img/coracao.svg" />
-                            <img class="heart-icon" src="img/coracao-red.svg"style="display: none;"  />
-                            <img class="heart-icon" src="img/coracao-red.svg" />
-                            <img class="heart-icon" src="img/coracao-red.svg" />
-                            <img class="heart-icon" src="img/coracao.svg" style="display: none;"/>
-                            <img class="heart-icon" src="img/coracao.svg" style="display: none;" />
+                            <img class="heart-icon" src="assets/img/full-heart.svg" />
+                            <img class="heart-icon" src="assets/img/full-heart.svg" />
+                            <img class="heart-icon" src="assets/img/full-heart.svg" />
                         </span>
                     </li> 
                     <li id="lvl-number-externo">
@@ -72,44 +66,43 @@
             <section id="number">
                 <div id="number-div-one">
                     <div id="number-div-two">
-                        <button><span>01</span></button>
-                        <button><span>02</span></button>
-                        <button><span>03</span></button>
-                        <button><span>04</span></button>
-                        <button><span>05</span></button>
-                        <button><span>06</span></button>
-                        <button><span>07</span></button>
-                        <button><span>08</span></button>
-                        <button><span>09</span></button>
+                        
                     </div>
                 </div>
             </section>
-            <section id="operetions">
-                <button id="firt"><span>+</span></button>
-                <button><span>-</span></button>
-                <button><span>x</span></button>
-                <button><span>÷</span></button>
-            </section>
-            <section id="operation-name">
-                <h2>OPERAÇÕES</h2>
-            </section>
+            <div id="ajust-block">
+                <section id="operations">
+                    <div id="firt" class="noselect operations-item"><span>+</span></div>
+                    <div class="noselect operations-item"><span>-</span></div>
+                    <div class="noselect operations-item"><span>x</span></div>
+                    <div class="noselect operations-item"><span>÷</span></div>
+                </section>
+                <section id="operation-name">
+                    <h2>OPERAÇÕES</h2>
+                </section>
+            </div>
         </section>
         <!-- TERCEIRA PARTE -->
         <section id="sec-three">
             <div id="calc">
                 <ul>
-                    <li class="num"></li>
-                    <li class="ope"></li>
-                    <li class="num"></li>
-                    <li class="ope"></li>
-                    <li class="num"></li>
+                    <div id="1" class="req-item num"></div>
+                    <div id="2" class="req-item ope"></div>
+                    <div id="3" class="req-item num"></div>
+                    <div id="4" class="req-item ope"></div>
+                    <div id="5" class="req-item num"></div>
                 </ul>
             </div>
             <i>=</i>
-            <span id="result">82</span>
-            <button><div>MATH!</div></button>
+            <span id="result"></span>
+            <button id="math-div"><div>MATH!</div></button>
         </section>
     </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="script.js"></script>
+    
 </body>
 
 </html>
