@@ -5,7 +5,7 @@
 
 body {
     margin: 0;
-    background-color: #2e356f;
+    background-color: #034abc;
     color: white;
     font-family: var(--zcool);
 }
@@ -58,7 +58,7 @@ main {
 
 #play-button {
     margin: 20px;
-    background-color: #9693d0;
+    background-color: #4190ff;
     border: 0;
     font-family: var(--zcool);
     color: white;
@@ -75,7 +75,7 @@ main {
 #play-button:hover {
     margin-top: 21px;
     margin-bottom: 19px;
-    background-color: #aba7db;
+    background-color: #257ffe;
     box-shadow: 0 7px 0 0 #797faf;
     transition: 100ms;
 }
@@ -90,7 +90,7 @@ main {
 
 #highscores-container {
     margin-top: 20px;
-    background-color: #5c6391;
+    background-color: #257ffe;
     border-radius: 10px;
     padding: 10px;
     width: 400px;

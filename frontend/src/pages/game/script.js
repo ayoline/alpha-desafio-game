@@ -26,8 +26,7 @@ $("#math-div").on("click", function () {
             dataType: "json",
             data: JSON.stringify({
                 id: game_id,
-                problemString: playerProblemString,
-                problemResult: currentProblemResult,
+                problemString: playerProblemString
             }),
         }).done((data) => {
             // verifyWinOrLose(data);
