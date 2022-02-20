@@ -7,11 +7,16 @@ const updateRanking = require("../modules/updateRanking"); // updateRanking(play
 const deleteCurrentPlayer = require("../modules/deletePlayer"); // deleteCurrentPlayer (playerID)
 
 router.delete('/deleteData', function (req, res) {
-    const dataFromClient = req.body;
+    const reqData = req.body;
 
-    if (dataFromClient.id && dataFromClient.score && dataFromClient.lvl) {
-        deleteCurrentPlayer(dataFromClient.id);
-        updateRanking(dataFromClient.player, dataFromClient.score, dataFromClient.lvl);
+    if (reqData.id && reqData.score && reqData.lvl) {
+        const updateReturn = updateRanking(reqData.player, reqData.score, reqData.lvl);
+        deleteCurrentPlayer(reqData.id);
+        try {
+            res.json(updateReturn);
+        } catch (error) {
+            res.send(error);
+        }
     }
 });
 
