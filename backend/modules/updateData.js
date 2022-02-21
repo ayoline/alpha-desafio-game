@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 function updateData(_playerData) {
     const playersJson = JSON.parse(
         fs.readFileSync("data/current-players.json", "utf8")

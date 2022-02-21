@@ -1,20 +1,17 @@
 const arrCalculate = new Array(...$(".req-item").addClass());
+const actualLife = 3;
+let problemsLevel;
 
 $(function () {
     const game_id = window.location.search.replace("?id=", "");
-    if (game_id) {
-        loadGame(game_id, arrCalculate);
-        // start(arrCalculate);
-    } else {
-        window.location.href = "http://localhost:3001/";
-    }
+    if (game_id)loadGame(game_id);
+    else window.location.href = "http://localhost:3001/";
 });
 
 $("#math-div").on("click", function () {
     const check = arrCalculate.every((item) => /^[+-x/]$|^\d+$/.test(item));
     const playerProblemString = arrCalculate.join(" ");
-    const currentProblemResult = $("#result").html();
-    console.log(playerProblemString, currentProblemResult);
+    
     if (check) {
         const apiUrl = "http://localhost:3000/";
         const game_id = window.location.search.replace("?id=", "");
@@ -28,10 +25,18 @@ $("#math-div").on("click", function () {
                 id: game_id,
                 problemString: playerProblemString
             }),
+            error: function(){
+                alert('id invalid');
+                window.location.href = "http://localhost:3001/";
+            }
         }).done((data) => {
-            // verifyWinOrLose(data);
-            // FAZER ROTA DE UPDATE RANKING
-
+            if(parseInt(data.life)!==actualLife)life();
+            // $('#match-current').text('');
+            $('#match-current').text(data.subLevel + '/3');
+            if(data.correctAnswer)$('.desafio-number').eq(parseInt(data.subLevel)-2).css('backgroundColor','#68FF74');
+            $('#lvl-number-externo h2').text(data.lvl);
+            // $('#score h2').textContent(data.score);
+            resetProblem(data.subLevel-1);
             alert(JSON.stringify(data));
         });
     } else {
@@ -41,6 +46,19 @@ $("#math-div").on("click", function () {
 });
 
 //---------------
+
+function resetProblem(problemIndex){
+    $("#number-div-two").html('');
+    for (let i of problemsLevel[problemIndex][0]) {
+        const spanInfo = $('<span>').text(i);
+        const numPieces = $("<button>")
+            .addClass("block-num")
+            .append(spanInfo);
+        $("#number-div-two").append(numPieces);
+    }
+    $("#result").text(problemsLevel[problemIndex][1]);
+    start();
+}
 
 const life = (() => {
     const hearts = [...$(".heart-icon")];
@@ -69,7 +87,97 @@ function timeRun(defaultTime) {
     }, 1000);
 }
 
-function start(arrCalculate) {
+// function start(arrCalculate) {
+//     const arrDrag = [".operations-item", ".block-num"];
+//     const arrDrop = [
+//         ["#number", ".block-num"],
+//         ["#operations", ".operations-item"],
+//     ];
+//     const arrResDrop = [
+//         [".num", ".block-num"],
+//         [".ope", ".operations-item"],
+//     ];
+//     for (let i of arrDrag)
+//         $(i).draggable({ cancel:false,revert: "invalid", scroll: false, snap:'.req-item' });
+//     for (let i of arrDrop)
+//         $(i[0]).droppable({
+//             accept: i[1],
+//             classes: {
+//                 "ui-droppable-active": "ui-state-active",
+//                 "ui-droppable-hover": "ui-state-hover",
+//             },
+//             // drop: function()
+//         });
+//     for (let i of arrResDrop)
+//         $(i[0]).droppable({
+//             accept: i[1],
+//             classes: {
+//                 "ui-droppable-active": "ui-state-active",
+//                 "ui-droppable-hover": "ui-state-hover",
+//             },
+//             drop: function (event, ui) {
+//                 console.log(123);
+//                 const dragItem = ui.draggable[0].firstChild;
+//                 const dropItem = event.target;
+//                 console.log(dragItem);
+//                 if (
+//                     dropItem.className.includes("ope") &&
+//                     dragItem.className.includes("block-num")
+//                 ) {
+//                     console.log(false);
+//                 } else if (
+//                     dropItem.className.includes("num") &&
+//                     dragItem.className.includes("operations-item")
+//                 ) {
+//                     console.log(false);
+//                 } else {
+//                     arrCalculate[parseInt(dropItem.id) - 1] =
+//                         dragItem.textContent;
+//                 }
+//             },
+//         });
+// }
+
+function loadGame(id) {
+    const apiUrl = "http://localhost:3000/";
+    fetch(apiUrl + `update/updateData/?id=${id}`)
+        .then((res) => {
+            if (res.status !== 200) {
+                window.alert('id invalido');
+                window.location.href = "http://localhost:3001/";
+                return;
+            } else {
+                return res.json();
+            }
+        })
+        .then((data) => {
+            const dataElements = data[0][0];
+            problemsLevel = data;
+            for (let i of dataElements) {
+                const spanInfo = $('<span>').text(i);
+                const numPieces = $("<button>")
+                    .addClass("block-num")
+                    .append(spanInfo);
+                $("#number-div-two").append(numPieces);
+            }
+            $("#result").text(data[0][1]);
+            start();
+        });
+}
+
+// function resetProblem(problemIndex){
+//     $("#number-div-two").html('');
+//     for (let i of problemsLevel[problemIndex][0]) {
+//         const spanInfo = $('<span>').text(i);
+//         const numPieces = $("<button>")
+//             .addClass("block-num")
+//             .append(spanInfo);
+//         $("#number-div-two").append(numPieces);
+//     }
+//     $("#result").text(problemsLevel[problemIndex][1]);
+// }
+
+function start() {
     const arrDrag = [".operations-item", ".block-num"];
     const arrDrop = [
         ["#number", ".block-num"],
@@ -118,51 +226,6 @@ function start(arrCalculate) {
                 }
             },
         });
-}
-
-function loadGame(id, arrCalculate) {
-    const apiUrl = "http://localhost:3000/";
-    fetch(apiUrl + `problems/problemsData/?value=${id}`)
-        .then((res) => {
-            if (res.status !== 200) {
-                //add-message-error
-                window.location.href = "http://localhost:3001/";
-                return;
-            } else {
-                return res.json();
-            }
-        })
-        .then((data) => {
-            const dataElements = data[0][0];
-            for (let i of dataElements) {
-                const spanInfo = $('<span>').text(i);
-                const numPieces = $("<button>")
-                    .addClass("block-num")
-                    .append(spanInfo);
-                $("#number-div-two").append(numPieces);
-            }
-            $("#result").text(data[0][1]);
-            start(arrCalculate);
-
-            const requestOptions = {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    id: id,
-                    currentProblemResult: data[0][1],
-                }),
-            };
-
-            fetch(apiUrl + "update/updateData", requestOptions);
-        });
-}
-
-function verifyWinOrLose(playerData) {
-    if (playerData.lose) {
-        alert("VOCÊ PERDEU!");
-    } else {
-        alert("VOCÊ ERROU!");
-    }
 }
 
 timeRun(180);

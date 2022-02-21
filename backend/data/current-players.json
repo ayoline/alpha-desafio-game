@@ -5,8 +5,23 @@
         "lvl": 1,
         "subLevel": 1,
         "currentProblemResult": null,
-        "subLevelResults": [12, 5, 55],
-        "subLevelPieces": [20, 15, 20, 34, 23, 14, 2, 43, 4, 5],
+        "subLevelResults": [
+            12,
+            5,
+            55
+        ],
+        "subLevelPieces": [
+            20,
+            15,
+            20,
+            34,
+            23,
+            14,
+            2,
+            43,
+            4,
+            5
+        ],
         "timer": 0,
         "timerCheck": true,
         "life": 3,

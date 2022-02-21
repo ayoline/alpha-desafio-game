@@ -20,42 +20,47 @@ router.put("/updateData", function (req, res) {
     if (reqData.problemString) {
         let playerCurrentObject = playersJson.find((el) => el.id === reqData.id);
         const playerNewObject = reqData;
-        if (playerCurrentObject.timerCheck) {
+        // if (playerCurrentObject.timerCheck) {
             
-        }
-        if (verifyPlayerCalc(reqData.problemString, playerCurrentObject.problemResult)) { // player acertou
+        // }
+        if (verifyPlayerCalc(reqData.problemString, playerCurrentObject.currentProblemResult)) { // player acertou
             if (playerCurrentObject.subLevel === 3) {
                 playerNewObject.lvl = playerCurrentObject.lvl + 1;
                 playerNewObject.subLevel = 1;
                 playerNewObject.levelProblems = generateProblems(playerNewObject.lvl)
-            } else {             
+            } else {
+                playerNewObject.lvl = playerCurrentObject.lvl;
                 playerNewObject.subLevel = playerCurrentObject.subLevel + 1;
             }
+            playerNewObject.life = playerCurrentObject.life;
             playerNewObject.currentProblemResult = playerCurrentObject.levelProblems[playerCurrentObject.subLevel-1].split(" ")[-1];
             updateData(playerNewObject);
             playerNewObject.correctAnswer = true;
             res.json(playerNewObject)
         } else {                                                                          // player errou
             playerNewObject.life = playerCurrentObject.life - 1;
+            playerNewObject.subLevel = playerCurrentObject.subLevel;
+            playerNewObject.lvl = playerCurrentObject.lvl;
             // console.log(`tem ${playerNewObject.life} vida(s)`);
             if (playerNewObject.life < 1) {
-                updateRanking(playerNewObject)
-                deleteCurrentPlayer(playerNewObject.id)
+                updateRanking(playerNewObject);
+                playerNewObject.correctAnswer = false;
+                deleteCurrentPlayer(playerNewObject.id);
             } else {
                 updateData(playerNewObject);
                 playerNewObject.correctAnswer = false
-                res.json(playerNewObject)
-
             }
+            res.json(playerNewObject)
         }
     }
 });
 
 router.get("/updateData", function (req, res) {
     const currentPlayers = JSON.parse(fs.readFileSync("data/current-players.json"));
-    const currentPlayer = currentPlayers.filter(el => playerID === el.id)[0];
     const playerID = req.query.id;
-    
+    const currentPlayer = currentPlayers.filter(el => playerID === el.id)[0];
+    const problems = generateProblemsByLevel(currentPlayer.lvl);
+    res.json(problems);
     // res.json(currentPlayer.)
 })
 

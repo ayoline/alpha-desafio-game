@@ -7,11 +7,9 @@ const saveUserData = require('./routes/save');
 const rankingData = require('./routes/ranking');
 const updateData = require('./routes/update');
 const deleteData = require('./routes/delete');
-const problemsData = require('./routes/problems');
 
 app.use(cors());
 
-app.use('/problems', problemsData);
 app.use('/delete', deleteData);
 app.use('/update', updateData);
 app.use('/ranking', rankingData);
