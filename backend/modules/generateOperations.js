@@ -1,6 +1,4 @@
 function generateOperations(_qtt, _lvl) {
-	console.time();
-
 	const difficultyByLevel = [
 		{
 			op: '+',
@@ -90,32 +88,25 @@ function generateOperations(_qtt, _lvl) {
 	let level = {};
 
 	//Populating the entries array
-	console.timeLog();
 	while(entries.length < qtt) {
+    // console.log('entrou no problema');
 		entries.push(validateEntry(entries, 0));
 	};
-	console.log(entries);
-	console.timeLog();
+	// console.log(entries);
 
 	//Populating the operators array
-	console.timeLog();
 	populateOperators(difficultyByLevel[lvl].qtt);
   
-	console.log(args.firstOperator);
-	console.log(args.secondOperator);
-	console.log(args.thirdOperator);
-  console.log(args);
-	console.timeLog();
+	// console.log(args.firstOperator);
+	// console.log(args.secondOperator);
+	// console.log(args.thirdOperator);
+  // console.log(args);
 
 	//Populating the results array
-	console.timeLog();
 	getResult(args/*firstOperator,firstOperands,secondOperator,secondOperands,thirdOperator*/);
-	console.timeLog();
 
 	//Populating the operations array
-	console.timeLog();
 	getFinalOperations(difficultyByLevel[lvl].qtt, difficultyByLevel[lvl].questions);
-	console.timeLog();
 
   //Populating the level object
 	level = {
@@ -175,7 +166,7 @@ function generateOperations(_qtt, _lvl) {
 		let tmpRes;
 		let res;
 
-    console.log(sOp.length);
+    // console.log(sOp.length);
 
 		if(sOp.length > 0) {
 			for(let i = 0; i <= fO.length; i++) {
@@ -251,12 +242,16 @@ function generateOperations(_qtt, _lvl) {
 	function validateEntry(_arr, _type) {
 		const arr = _arr;
 		const type = _type;
+    const max = difficultyByLevel[lvl].max;
+    const min = difficultyByLevel[lvl].min;
 
-		let value = (type === 0) ? Math.floor(Math.random() * (difficultyByLevel[lvl].max - difficultyByLevel[lvl].min) + difficultyByLevel[lvl].min) : entries[rand(entries.length)];
+		let value = (type === 0) ? Math.floor(Math.random() * (max - min) + min) : entries[rand(entries.length)];
+
+    // console.log(value);
 
 		if(type === 0) {
 			while(arr.includes(value)) {
-				value = rand();
+				value = rand(min,max);
 			};
 		} else if(type === 1) {
 			while(arr.includes(value)) {
@@ -267,12 +262,12 @@ function generateOperations(_qtt, _lvl) {
 		return value
 	};
 
-	console.log(level);
-	console.timeEnd();
-
+	console.table(level);
 	return level;	
 };
 
-module.exports = generateOperations;
+// module.exports = generateOperations;
 
-//generateOperations(10,1);
+for(let i = 0; i < 10; i++) {
+  generateOperations(10,i);
+};
