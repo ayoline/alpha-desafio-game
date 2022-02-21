@@ -1,7 +1,6 @@
-const arrCalculate = new Array(...$(".snip").addClass());
+const arrCalculate = new Array(...$(".req-item").addClass());
 
 $(function () {
-    // const arrCalculate = new Array(...$('.snip').addClass());
     const game_id = window.location.search.replace("?id=", "");
     if (game_id) {
         loadGame(game_id, arrCalculate);
@@ -14,12 +13,11 @@ $(function () {
 $("#math-div").on("click", function () {
     const check = arrCalculate.every((item) => /^[+-x/]$|^\d+$/.test(item));
     const playerProblemString = arrCalculate.join(" ");
-    const currentProblemResult = $("#question").html();
+    const currentProblemResult = $("#result").html();
     console.log(playerProblemString, currentProblemResult);
     if (check) {
         const apiUrl = "http://localhost:3000/";
         const game_id = window.location.search.replace("?id=", "");
-        console.log(game_id);
         $.ajax({
             url: apiUrl + "update/updateData",
             method: "PUT",
@@ -28,8 +26,7 @@ $("#math-div").on("click", function () {
             dataType: "json",
             data: JSON.stringify({
                 id: game_id,
-                problemString: playerProblemString,
-                problemResult: currentProblemResult,
+                problemString: playerProblemString
             }),
         }).done((data) => {
             // verifyWinOrLose(data);
@@ -66,24 +63,24 @@ function timeRun(defaultTime) {
                     ? `${(defaultTime - timer) % 60}`
                     : `0${(defaultTime - timer) % 60}`;
             const str = defaultMinutes + ":" + defaultSeconds;
-            const get_time = $("#time > h2").text(str);
+            const get_time = $("#time h2").text(str);
         }
         timer++;
     }, 1000);
 }
 
 function start(arrCalculate) {
-    const arrDrag = [".operations", ".block-num"];
+    const arrDrag = [".operations-item", ".block-num"];
     const arrDrop = [
-        ["#numbers", ".block-num"],
-        ["#operations-id", ".operations"],
+        ["#number", ".block-num"],
+        ["#operations", ".operations-item"],
     ];
     const arrResDrop = [
-        [".input-num", ".block-num"],
-        [".input-op", ".operations"],
+        [".num", ".block-num"],
+        [".ope", ".operations-item"],
     ];
     for (let i of arrDrag)
-        $(i).draggable({ revert: "invalid", scroll: false /*,snap:'.snip'*/ });
+        $(i).draggable({ cancel:false,revert: "invalid", scroll: false, snap:'.req-item' });
     for (let i of arrDrop)
         $(i[0]).droppable({
             accept: i[1],
@@ -101,16 +98,18 @@ function start(arrCalculate) {
                 "ui-droppable-hover": "ui-state-hover",
             },
             drop: function (event, ui) {
-                const dragItem = ui.draggable[0];
+                console.log(123);
+                const dragItem = ui.draggable[0].firstChild;
                 const dropItem = event.target;
+                console.log(dragItem);
                 if (
-                    dropItem.className.includes("input-op") &&
+                    dropItem.className.includes("ope") &&
                     dragItem.className.includes("block-num")
                 ) {
                     console.log(false);
                 } else if (
-                    dropItem.className.includes("input-num") &&
-                    dragItem.className.includes("operations")
+                    dropItem.className.includes("num") &&
+                    dragItem.className.includes("operations-item")
                 ) {
                     console.log(false);
                 } else {
@@ -123,7 +122,7 @@ function start(arrCalculate) {
 
 function loadGame(id, arrCalculate) {
     const apiUrl = "http://localhost:3000/";
-    fetch(apiUrl + `problems/problemsData/${id}`)
+    fetch(apiUrl + `problems/problemsData/?value=${id}`)
         .then((res) => {
             if (res.status !== 200) {
                 //add-message-error
@@ -136,12 +135,13 @@ function loadGame(id, arrCalculate) {
         .then((data) => {
             const dataElements = data[0][0];
             for (let i of dataElements) {
-                const numPieces = $("<div>")
-                    .addClass("block-num block-model")
-                    .text(i);
-                $("#numbers>div").append(numPieces);
+                const spanInfo = $('<span>').text(i);
+                const numPieces = $("<button>")
+                    .addClass("block-num")
+                    .append(spanInfo);
+                $("#number-div-two").append(numPieces);
             }
-            $("#question").text(data[0][1]);
+            $("#result").text(data[0][1]);
             start(arrCalculate);
 
             const requestOptions = {

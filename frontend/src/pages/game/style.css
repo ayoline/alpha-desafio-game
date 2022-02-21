@@ -1,7 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Solway:wght@300;400;500;700;800&display=swap");
 
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+    supported by Chrome, Edge, Opera and Firefox */
+  }
+
 html,
 body {
+    background-color: #034abc;
     overflow: hidden;
     width: 100vw;
     height: 100vh;
@@ -36,9 +47,14 @@ header {
 }
 
 main {
-    /* border: 2px solid black; */
-    width: 93.8%;
+    width: 80%;
     background-color: #034abc;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 1400px;
+    max-height: 980px;
 }
 
 /* section {
@@ -51,6 +67,7 @@ main {
     /* height: 17%; */
     display: flex;
     align-items: flex-end;
+    justify-content: center;
 }
 
 #sec-one div {
@@ -58,6 +75,7 @@ main {
     height: clamp(2.5em, 7vw, 6.5em);
     /* height: 80.5%; */
     border: 3px solid black;
+    padding: 0rem 0.4rem;
     border-radius: clamp(0.8em, 2vw, 2.5em);
     /* border-radius: 28px; */
     display: flex;
@@ -315,7 +333,8 @@ img {
     letter-spacing: -2px;
 }
 
-#operetions {
+#operations {
+    /* background-color: red; */
     margin-left: clamp(2em, 10vw, 10em);
     /* margin-left: 11%; */
     width: clamp(3em, 5vw, 4.7em);
@@ -326,9 +345,9 @@ img {
     justify-content: space-between;
 }
 
-#operetions button {
+#operations div {
     background-color: #f54460;
-    width: 100%;
+    width: 85%;
     border-radius: clamp(0.8em, 2vw, 2em);
     /* border-radius: 25px; */
     height: clamp(2.5em, 5.4vw, 5.8em);
@@ -342,9 +361,9 @@ img {
     box-shadow: 0px clamp(0.2em, 0.3vw, 0.3em) #000000;
 }
 
-#operetions button span {
+#operations div span {
     background-color: #ad0025;
-    width: 90%;
+    width: 85%;
     height: 87%;
     /* border-radius: 19px; */
     border-radius: clamp(0.15em, 1.2vw, 0.5em);
@@ -459,7 +478,7 @@ i {
     justify-content: center;
     align-items: center;
     box-shadow: -1px 5px 4px #000000;
-    padding: 0;
+    padding: 0rem 0.4rem;
 }
 
 #sec-three button div {
@@ -475,4 +494,12 @@ i {
     /* font-size: 35px; */
     font-weight: 500;
     font-family: "Solway", serif;
+}
+
+#ajust-block{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
 }
