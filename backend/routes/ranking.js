@@ -3,6 +3,9 @@ const router = express.Router();
 router.use(express.json());
 const fs = require('fs');
 
+// modules
+const updateRanking = require("../modules/updateRanking"); // updateRanking(_id, _lvl, _score)
+
 router.get('/rankingData', function (req, res) {
     const value = req.query.value;
     const orderedRanking = JSON.parse(fs.readFileSync('data/ranking.json', 'utf8'));

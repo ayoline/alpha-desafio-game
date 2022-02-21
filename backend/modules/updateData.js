@@ -1,4 +1,7 @@
 function updateData(_playerData) {
+    const playersJson = JSON.parse(
+        fs.readFileSync("data/current-players.json", "utf8")
+    );
     let playerToBeUpdated;
 
     if (_playerData.id) {
@@ -21,9 +24,6 @@ function updateData(_playerData) {
             }
             if (_playerData.life) {
                 playersJson[playerToBeUpdatedIndex].life = _playerData.life;
-                if (playersJson[playerToBeUpdatedIndex].life < 1) {
-                    deleteCurrentPlayer(dataFromClient.id);
-                }
             }
             if (_playerData.score) {
                 playersJson[playerToBeUpdatedIndex].score = _playerData.score;
@@ -34,10 +34,10 @@ function updateData(_playerData) {
                 JSON.stringify(playersJson),
                 function (err) {
                     if (err) {
-                        res.send(err);
-                    } else {
                         console.log("Error: " + err);
-                        res.json(playerToBeUpdated);
+                        return error
+                    } else {
+                        return playerToBeUpdated;
                     }
                 }
             );

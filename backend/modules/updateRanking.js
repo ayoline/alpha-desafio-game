@@ -1,11 +1,11 @@
 const fs = require('fs');
 
-function updateRanking(_id, _lvl, _score) {
+function updateRanking(_player) {
     const rankingToBeOrdered = JSON.parse(fs.readFileSync('data/ranking.json', 'utf8'));
     const playerData = {};
-    playerData.id = _id;
-    playerData.lvl = _lvl;
-    playerData.score = _score;
+    playerData.player = _player.player;
+    playerData.lvl = _player.lvl;
+    playerData.score = _player.score;
 
     if (playerData.id && playerData.lvl && playerData.score) {
         rankingToBeOrdered.push(playerData);

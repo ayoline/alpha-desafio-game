@@ -6,95 +6,73 @@ const fs = require("fs");
 // modules
 const verifyPlayerCalc = require("../modules/verifyPlayerCalc"); // verifyPlayerCalc (problemString, problemResult)
 const deleteCurrentPlayer = require("../modules/deletePlayer"); // deleteCurrentPlayer (playerID)
-const updateRanking = require("../modules/updateRanking");
+const updateRanking = require("../modules/updateRanking"); // updateRanking(playerObject)
+const updateData = require("../modules/updateData"); // updateData(playerObject)
+const generateProblemsByLevel = require("../modules/generateProblems"); // generateProblemsByLevel(_problemLevel)
 
 // routes
 router.put("/updateData", function (req, res) {
     const playersJson = JSON.parse(
         fs.readFileSync("data/current-players.json", "utf8")
     );
-    const dataFromClient = req.body;
+    const reqData = req.body;
 
-    console.log(dataFromClient);
-
-    if (dataFromClient.problemResult) {
-        let playerToBeUpdated = playersJson.find(el => el.id === dataFromClient.id);
-        
-        if (verifyPlayerCalc(dataFromClient.problemString, dataFromClient.problemResult)) {
-            if (playerToBeUpdated.subLevel === 3) {
-                dataFromClient.lvl = playerToBeUpdated.lvl + 1;
-                dataFromClient.subLevel = 1;
-            } else {
-                dataFromClient.subLevel = playerToBeUpdated.subLevel + 1;
-            }
-        } else {
-            console.log("perdeu 1 vida")
-            dataFromClient.life = playerToBeUpdated.life - 1;
+    if (reqData.problemString) {
+        let playerCurrentObject = playersJson.find((el) => el.id === reqData.id);
+        const playerNewObject = reqData;
+        if (playerCurrentObject.timerCheck) {
+            
         }
-    }
+        if (verifyPlayerCalc(reqData.problemString, playerCurrentObject.problemResult)) { // player acertou
+            if (playerCurrentObject.subLevel === 3) {
+                playerNewObject.lvl = playerCurrentObject.lvl + 1;
+                playerNewObject.subLevel = 1;
+                playerNewObject.levelProblems = generateProblems(playerNewObject.lvl)
+            } else {             
+                playerNewObject.subLevel = playerCurrentObject.subLevel + 1;
+            }
+            playerNewObject.currentProblemResult = playerCurrentObject.levelProblems[playerCurrentObject.subLevel-1].split(" ")[-1];
+            updateData(playerNewObject);
+            playerNewObject.correctAnswer = true;
+            res.json(playerNewObject)
+        } else {                                                                          // player errou
+            playerNewObject.life = playerCurrentObject.life - 1;
+            // console.log(`tem ${playerNewObject.life} vida(s)`);
+            if (playerNewObject.life < 1) {
+                updateRanking(playerNewObject)
+                deleteCurrentPlayer(playerNewObject.id)
+            } else {
+                updateData(playerNewObject);
+                playerNewObject.correctAnswer = false
+                res.json(playerNewObject)
 
-    updateData(dataFromClient);
-
-    function updateData(_playerData) {
-        let playerToBeUpdated;
-
-        if (_playerData.id) {
-            playerToBeUpdated = playersJson.find(
-                (el) => el.id === _playerData.id
-            );
-
-            if (playerToBeUpdated) {
-                const playerJSONObject = playersJson[playersJson.indexOf(playerToBeUpdated)];
-
-                if (_playerData.lvl) {
-                    playerJSONObject.lvl = _playerData.lvl;
-                }
-                if (_playerData.subLevel) {
-                    playerJSONObject.subLevel =
-                        _playerData.subLevel;
-                }
-                if (_playerData.currentProblemResult) {
-                    playerJSONObject.currentProblemResult =
-                        +_playerData.currentProblemResult[0];
-                }
-                if (_playerData.life >= 0) {
-                    playerJSONObject.life = _playerData.life;
-                    if (playerJSONObject.life < 1) {
-                        console.log("MORREU")
-
-                        const tempPlayer = playerJSONObject;
-                        // updateRanking(playerJSONObject.player, playerJSONObject.score, playerJSONObject.lvl);
-                        deleteCurrentPlayer(dataFromClient.id);
-                        res.json({
-                            lose: true, 
-                            player: tempPlayer.player,
-                            score: tempPlayer.score,
-                            lvl: tempPlayer.lvl
-                        });
-                        return
-                    }
-                }
-                if (_playerData.score) {
-                    playerJSONObject.score =
-                        _playerData.score;
-                }
-                console.log("PASSOU")
-
-                fs.writeFile(
-                    "data/current-players.json",
-                    JSON.stringify(playersJson),
-                    function (err) {
-                        if (!err) {
-                            res.json(playerToBeUpdated);
-                        } else {
-                            console.log("Error: " + err);
-                            res.send(err);
-                        }
-                    }
-                );
             }
         }
     }
 });
 
+router.get("/updateData", function (req, res) {
+    const currentPlayers = JSON.parse(fs.readFileSync("data/current-players.json"));
+    const currentPlayer = currentPlayers.filter(el => playerID === el.id)[0];
+    const playerID = req.query.id;
+    
+    // res.json(currentPlayer.)
+})
+
 module.exports = router;
+
+// function newTimer(_id) {
+//     const actualDate = new Date();
+//     let playerNewObject = {id: _id, timer: actualDate}
+//     updateData(playerNewObject);
+// }
+// function verifyTimer(_id) {
+//     const currentPlayers = JSON.parse(fs.readFileSync("data/current-players.json"));
+//     const currentPlayer = currentPlayers.filter(el => playerID === _id)[0];
+//     const actualDate = new Date();
+//     if () {
+//         return true
+//     } else {
+//         return false
+//     }
+// }

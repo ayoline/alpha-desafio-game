@@ -3,6 +3,8 @@ const router = express.Router();
 router.use(express.json());
 const fs = require('fs');
 
+// const generateProblems = require("../modules/generateProblems"); 
+
 router.post('/saveNewUser', function (req, res) {
     const dataFromClient = req.body;
     const currentPlayersJson = JSON.parse(fs.readFileSync('data/current-players.json', 'utf8'));
@@ -13,7 +15,8 @@ router.post('/saveNewUser', function (req, res) {
         newUser.player = dataFromClient.name;
         newUser.lvl = 1;
         newUser.subLevel = 1;
-        newUser.currentProblem = null;
+        newUser.levelProblems = ["10 + 10 = 20", "10 + 10 = 20", "10 +  = 35"] //generateProblems(newUser.lvl); 
+        newUser.currentProblemResult = newUser.levelProblems[newUser.subLevel-1].split(" ")[-1];
         newUser.timer = process.env.ROUND_TIME;
         newUser.timerCheck = true;
         newUser.life = 3;
