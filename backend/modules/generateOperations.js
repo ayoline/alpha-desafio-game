@@ -273,6 +273,6 @@ function generateOperations(_qtt, _lvl) {
 	return level;	
 };
 
-//module.exports = auxiliarFunction;
+module.exports = generateOperations;
 
-generateOperations(10,1);
+//generateOperations(10,1);
