@@ -3,70 +3,70 @@ function generateOperations(_qtt, _lvl) {
 		{
 			op: '+',
 			qtt: 2,
-			min: 0,
-			max: 10,
+			min: 2,
+			max: 20,
 			questions: 3
 		},
 		{
 			op: '+',
 			qtt: 3,
-			min: 0,
-			max: 20,
-			questions: 3
-		},
-		{
-			op: '-',
-			qtt: 2,
-			min: 0,
-			max: 10,
-			questions: 3
-		},
-		{
-			op: '-',
-			qtt: 3,
-			min: 0,
-			max: 20,
-			questions: 3
-		},
-		{
-			op: ['+', '-'],
-			qtt: 2,
-			min: 0,
-			max: 20,
-			questions: 3
-		},
-		{
-			op: ['+', '-'],
-			qtt: 3,
-			min: 0,
+			min: 2,
 			max: 30,
+			questions: 3
+		},
+		{
+			op: '-',
+			qtt: 2,
+			min: 2,
+			max: 20,
+			questions: 3
+		},
+		{
+			op: '-',
+			qtt: 3,
+			min: 2,
+			max: 20,
+			questions: 3
+		},
+		{
+			op: ['+', '-'],
+			qtt: 2,
+			min: 2,
+			max: 30,
+			questions: 3
+		},
+		{
+			op: ['+', '-'],
+			qtt: 3,
+			min: 2,
+			max: 100,
 			questions: 3
 		},
 		{
 			op: '*',
 			qtt: 2,
-			min: 0,
+			min: 2,
 			max: 10,
 			questions: 3
 		},
 		{
 			op: '/',
 			qtt: 2,
-			min: 0,
+			min: 2,
 			max: 10,
 			questions: 3
 		},
 		{
 			op: ['*', '/'],
 			qtt: 2,
-			min: 0,
-			max: 10,
+			min: 2,
+			max: 30,
 			questions: 3
 		},
 		{
 			op: ['*', '/'],
 			qtt: 3,
-			min: 0,
+			min: 2,
 			max: 50,
 			questions: 3
 		}
