@@ -37,6 +37,7 @@ $("#math-div").on("click", function () {
             const timeLine = $('.desafio-number')
             if(parseInt(data.life)!==actualLife)life()
             //gera bugs, troque.
+            console.log(data);
             $('#match-current').text(data.subLevel + '/3');
             if(data.correctAnswer)timeLine.eq(parseInt(data.subLevel)-2).css('backgroundColor','#68FF74');
             if(parseInt(data.lvl) !== parseInt($('#lvl-number-externo h2').text())){
@@ -44,7 +45,7 @@ $("#math-div").on("click", function () {
                 problemsLevel = data.levelProblems;
             }
             $('#lvl-number-externo h2').text(data.lvl);
-            scoreItem.text(score);
+            if(data.score)scoreItem.text(score);
             resetProblem(data.subLevel-1);
             if(setTimeRun) timeRun(180);
             else resetTimeRun = true;
@@ -151,6 +152,7 @@ function loadGame(id) {
             }
         })
         .then((data) => {
+            console.log(data);
             const dataElements = data[0][0];
             problemsLevel = data;
             for (let i of dataElements) {
