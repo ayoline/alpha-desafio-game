@@ -1,4 +1,3 @@
-const port = 3000;
 const config = require('./config');
 const express = require('express');
 const app = express();
