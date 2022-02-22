@@ -4,9 +4,20 @@ let resetTimeRun;
 let setTimeRun;
 
 $(function () {
+    const pageAccessedByReload = (
+        (window.performance.navigation && window.performance.navigation.type === 1) ||
+          window.performance
+            .getEntriesByType('navigation')
+            .map((nav) => nav.type)
+            .includes('reload')
+      );
     const game_id = window.location.search.replace("?id=", "");
-    if (game_id)loadGame(game_id);
-    else window.location.href = "http://localhost:3001/";
+    if(pageAccessedByReload){
+        deletePlayer(game_id);
+    }else{
+        if (game_id)loadGame(game_id);
+        else window.location.href = "http://localhost:3001/";
+    }
 });
 
 $("#math-div").on("click", function () {
@@ -213,6 +224,27 @@ function start() {
                 }
             },
         });
+}
+
+function deletePlayer(){
+    const url = 'http://localhost:3000/';
+    $.ajax({
+        url: `${url}/deleteData`,
+            method: "DELETE",
+            headers: { Accepts: "application/json" },
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify({
+                id: game_id
+            }),
+            error: function(){
+                alert('erro inesperado.');
+                window.location.href = "http://localhost:3001/";
+            }
+    }).done(function(){
+        window.alert('Sessão encerrada, retornara para pagina inicial.');
+        window.location.href = "http://localhost:3001/"
+    });
 }
 
 timeRun(180);

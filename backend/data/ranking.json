@@ -1,1 +1,27 @@
-[{"player":"fulano","lvl":8,"score":4564},{"player":"ciclano","lvl":5,"score":1234},{"player":"beltrano","lvl":2,"score":125},{"player":"doiwd","lvl":1,"score":120},{"player":"Felype","score":0,"lvl":1}]
+[
+    {
+        "player": "fulano",
+        "lvl": 8,
+        "score": 4564
+    },
+    {
+        "player": "ciclano",
+        "lvl": 5,
+        "score": 1234
+    },
+    {
+        "player": "beltrano",
+        "lvl": 2,
+        "score": 125
+    },
+    {
+        "player": "doiwd",
+        "lvl": 1,
+        "score": 120
+    },
+    {
+        "player": "Felype",
+        "score": 0,
+        "lvl": 1
+    }
+]
