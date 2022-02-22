@@ -1,7 +1,8 @@
+const config = require('../config');
 
 // the parameters format needed: startDate = new Date(); endDate = new Date(); lvl = intNumber;
 function updateScore(_startDate, _endDate, _lvl) {
-    const maxTime = process.env.ROUND_TIME;
+    const maxTime = config.timer;
     const timeExpendInSeconds = (_endDate.getTime() - _startDate.getTime()) / 1000;
     const timeLeft = parseInt(maxTime) - parseInt(timeExpendInSeconds);
     let scoreCalculated;
@@ -18,3 +19,5 @@ function updateScore(_startDate, _endDate, _lvl) {
 
     return scoreCalculated;
 }
+
+module.exports = updateScore;
