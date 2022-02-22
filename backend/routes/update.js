@@ -39,14 +39,17 @@ router.put("/updateData", function (req, res) {
             playerNewObject.life = playerCurrentObject.life;
             playerNewObject.score = scoreCal(playerCurrentObject.timer, Math.floor(new Date() / 1000), playerCurrentObject.lvl);
             playerNewObject.timer = Math.ceil(new Date() / 1000);
-            playerNewObject.currentProblemResult = newProblem[0][1];
-            playerNewObject.currentProblemPieces = newProblem[0][0];
+            playerNewObject.currentProblemResult = newProblem[1];
+            playerNewObject.currentProblemPieces = newProblem[0];
+            playerNewObject.numEntries = newProblem[2];
             updateData(playerNewObject);
             playerNewObject.correctAnswer = true;
             res.json(playerNewObject)
         } else {                                                                          // player errou
             playerNewObject.life = playerCurrentObject.life - 1;
             playerNewObject.subLevel = playerCurrentObject.subLevel;
+            playerNewObject.currentProblemPieces = playerCurrentObject.currentProblemPieces;
+            playerNewObject.currentProblemResult = playerCurrentObject.currentProblemResult;
             playerNewObject.timer = Math.ceil(new Date() / 1000);
             playerNewObject.lvl = playerCurrentObject.lvl;
             if (playerNewObject.life < 1) {
@@ -66,11 +69,15 @@ router.get("/updateData", function (req, res) {
     const currentPlayers = JSON.parse(fs.readFileSync("data/current-players.json"));
     const playerID = req.query.id;
     const currentPlayer = currentPlayers.find(el => playerID === el.id);
-    const problems = currentPlayer.levelProblems;
+    const problems = currentPlayer.currentProblemPieces;
+    const solution = currentPlayer.currentProblemResult;
+    const numEntries = currentPlayer.numEntries;
+    const arr = [problems,solution,numEntries];
+    console.log(arr);
     // currentPlayer.timer = Math.ceil(new Date()/1000);
     // fs.writeFileSync("data/current-players.json", JSON.stringify(currentPlayers));
-
-    res.json(problems);
+    
+    res.json(arr);
     // res.json(currentPlayer.)
 })
 
