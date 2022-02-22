@@ -1,3 +1,10 @@
+// This module requires the following parameters:
+// _qtt = quantity of random numbers generated to populate the buttons in the game.
+// _lvl = level of difficulty of the current operation.
+// Example of use:
+// generateOperations(10, 1); generate 10 random numbers with a level of difficulty of 2.
+// So far we have only 10 levels of difficulty as an array (0 to 9).
+
 function deliveryOperation(_qtt, _lvl) {
 	// console.time();
 	const qtt = _qtt;
