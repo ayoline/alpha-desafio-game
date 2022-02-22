@@ -1,6 +1,6 @@
 ## Projeto de jogo de matemática 👋
 
-## Grupo:   
+# Grupo:   
 - Anderson Pacheco Soares
 - Felype Nascimento  
 - Marcos Peter  
