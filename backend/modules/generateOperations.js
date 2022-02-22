@@ -1,3 +1,35 @@
+// This module requires the following parameters:
+// _qtt = quantity of random numbers generated to populate the buttons in the game.
+// _lvl = level of difficulty of the current operation.
+// Example of use:
+// generateOperations(10, 1); generate 10 random numbers with a level of difficulty of 2.
+// So far we have only 10 levels of difficulty as an array (0 to 9).
+
+function deliveryOperation(_qtt, _lvl) {
+	// console.time();
+	const qtt = _qtt;
+	const lvl = _lvl;
+	let response = [];
+	let validResponse = false;
+
+	response = generateOperations(qtt, lvl);
+
+	while(validResponse === false) {
+		if(response[1] > 0 && (response[1] % 2) === 0 ){
+			// console.log('===========================');
+			// console.log(`Resposta tratada: ${response[1]}`);
+			// console.log('===========================');
+			validResponse = true;
+		} else {
+			response = [];
+			response = generateOperations(qtt, lvl);
+		};
+	};
+
+	// console.timeEnd();
+	return response;
+};
+
 function generateOperations(_qtt, _lvl) {
   // Need to remove the 'lvl object' from code (it's just a debug feature)
 	const difficultyByLevel = [
@@ -87,9 +119,6 @@ function generateOperations(_qtt, _lvl) {
   };
   const response = [];
 
-  //Don't forget to remove this variable from code (it's just a debug feature)
-	let level = {};
-
 	//Populating the entries array
 	while(entries.length < qtt) {
 		entries.push(validateEntry(entries, 0));
@@ -98,22 +127,12 @@ function generateOperations(_qtt, _lvl) {
 	//Populating the operators array
 	populateOperators(difficultyByLevel[lvl].qtt);
 
-
-
-  // console.log(args);
-
 	//Populating the results array
   getResult(args);
 
 	//Populating the operations array
 	getFinalOperations(difficultyByLevel[lvl].qtt, difficultyByLevel[lvl].questions);
 
-  //Populating the level object ------- Need to remove this from code (it's just a debug feature)
-	level = {
-		"operations": operations
-	};
-
-  // The bigger problem for now is handle with the erros in the 'getResult' function
   response.push(entries);
   response.push(results);
 
@@ -150,15 +169,12 @@ function generateOperations(_qtt, _lvl) {
 			args.secondOperands.push(difficultyByLevel[lvl].op[1] || difficultyByLevel[lvl].op[0]);
 		};
 
-    // getResult(args);
-
     return args;
 	};
 
   // Need to ensure that there are no negative or fractional results in the response
-  function getResult(_obj, _index = 0) {
+  function getResult(_obj) {
     const obj = _obj;
-    let i = _index;
     const fO = obj.firstOperator;
     const fOp = obj.firstOperands;
     const sO = obj.secondOperator;
@@ -174,22 +190,21 @@ function generateOperations(_qtt, _lvl) {
     nextOperandRes();
 
     // Function to get the result of the first operation
-    function oneOperandRes(_index = 0) {
-      const i = _index;
-      if(fOp[i] === '+') {
-        tmpRes = +(fO[i] + sO[i]);
-      } else if(fOp[i] === '-') {
-        tmpRes = +(fO[i] - sO[i]);
-      } else if (fOp[i] === '*') {
-        tmpRes = +(fO[i] * sO[i]);
-      } else if(fOp[i] === '/') {
-        tmpRes = +(Math.floor(fO[i] / sO[i]));
+    function oneOperandRes() {
+      if(fOp[0] === '+') {
+        tmpRes = +(fO[0] + sO[0]);
+      } else if(fOp[0] === '-') {
+        tmpRes = +(fO[0] - sO[0]);
+      } else if (fOp[0] === '*') {
+        tmpRes = +(fO[0] * sO[0]);
+      } else if(fOp[0] === '/') {
+        tmpRes = +(Math.floor(fO[0] / sO[0]));
       };
   
       return tmpRes;
     };
     // Function to get the result of the next operations
-    function nextOperandRes(_obj, _index) {
+    function nextOperandRes() {
       if(sOp.length > 0) {
         if(sOp[0] === '+') {
           res = +(tmpRes + tO[0]);
@@ -243,15 +258,8 @@ function generateOperations(_qtt, _lvl) {
 
 		return value
 	}; 
-
-  console.log(level);
-	console.log(response);
-	return level;	
+	
+	return response;	
 };
 
-// module.exports = generateOperations;
-
-// for(let i = 0; i < 10; i++) {
-  generateOperations(10,0);
-  generateOperations(10,2);
-// };
+module.exports = deliveryOperation;
