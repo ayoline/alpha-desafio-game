@@ -23,7 +23,7 @@ router.post('/saveNewUser', function (req, res) {
         newUser.timer = Math.ceil(new Date()/1000);
         newUser.timerCheck = true;
         newUser.life = 3;
-        newUser.score = 0;
+        newUser.score = 1;
 
     currentPlayersJson.push(newUser);
 

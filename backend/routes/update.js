@@ -45,7 +45,8 @@ router.put("/updateData", function (req, res) {
             updateData(playerNewObject);
             playerNewObject.correctAnswer = true;
             res.json(playerNewObject)
-        } else {                                                                          // player errou
+        } else {
+            console.log(1002)                                                                   // player errou
             playerNewObject.life = playerCurrentObject.life - 1;
             playerNewObject.subLevel = playerCurrentObject.subLevel;
             playerNewObject.currentProblemPieces = playerCurrentObject.currentProblemPieces;
@@ -53,7 +54,7 @@ router.put("/updateData", function (req, res) {
             playerNewObject.timer = Math.ceil(new Date() / 1000);
             playerNewObject.lvl = playerCurrentObject.lvl;
             if (playerNewObject.life < 1) {
-                updateRanking(playerNewObject);
+                updateRanking(playerCurrentObject);
                 playerNewObject.correctAnswer = false;
                 deleteCurrentPlayer(playerNewObject.id);
             } else {

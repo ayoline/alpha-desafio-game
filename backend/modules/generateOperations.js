@@ -268,5 +268,3 @@ function generateOperations(_qtt, _lvl) {
 };
 
 module.exports = deliveryOperation;
-
-console.log(deliveryOperation(10,9));

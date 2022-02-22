@@ -1,1 +1,30 @@
-[{"id":"waqkH","player":"Felype","lvl":1,"subLevel":1,"currentProblemResult":null,"subLevelResults":[12,5,55],"subLevelPieces":[20,15,20,34,23,14,2,43,4,5],"timer":0,"timerCheck":true,"life":3,"score":0},{"id":"C6cSj","player":"kola","lvl":1,"subLevel":1,"levelProblems":[10,21,15,7,14,3,19,18,13,24],"currentProblemResult":[30],"numEntries":[3],"timer":1645558763,"timerCheck":true,"life":3,"score":0},{"id":"L8eaU","player":"mlk","lvl":1,"subLevel":1,"levelProblems":[18,19,16,2,10,6,20,13,12,8],"currentProblemResult":[40],"numEntries":[3],"timer":1645559620,"timerCheck":true,"life":3,"score":0},{"id":"cLk4t","player":"lola","lvl":1,"subLevel":1,"levelProblems":[24,23,18,26,5,21,2,15,12,14],"currentProblemResult":[58],"numEntries":[3],"timer":1645559653,"timerCheck":true,"life":3,"score":0},{"id":"P4kDO","player":"momala","lvl":1,"subLevel":1,"levelProblems":[18,22,28,9,20,29,10,3,4,19],"currentProblemResult":[48],"numEntries":[3],"timer":1645559765,"timerCheck":true,"life":3,"score":0},{"id":"VppKP","player":"aasc","lvl":1,"subLevel":1,"levelProblems":[11,26,15,2,12,3,8,20,28,13],"currentProblemResult":[36],"numEntries":[3],"timer":1645559859,"timerCheck":true,"life":3,"score":0},{"id":"mR5b7","player":"aaoinsa","lvl":1,"subLevel":1,"levelProblems":[25,22,7,2,17,14,6,26,20,5],"currentProblemResult":[48],"numEntries":[3],"timer":1645559962,"timerCheck":true,"life":3,"score":0},{"id":"kQbHf","player":"ndwdoikd","lvl":1,"subLevel":1,"currentProblemPieces":[13,5,17,26,29,12,27,19,10,21],"currentProblemResult":[64],"numEntries":[3],"timer":1645560221,"timerCheck":true,"life":2,"score":0},{"id":"LIvaM","player":"dbdiwb","lvl":1,"subLevel":2,"currentProblemPieces":[20,6,4,27,3,21,9,22,14,13],"currentProblemResult":22,"numEntries":[3],"timer":1645560885,"timerCheck":true,"life":2,"score":98},{"id":"AGxmi","player":"dqiodoiqoq","lvl":5,"subLevel":3,"currentProblemPieces":[12,16,15,4,19,26,5,7,3,6],"currentProblemResult":22,"numEntries":[3],"timer":1645561847,"timerCheck":true,"life":2,"score":8463},{"id":"6gT4z","player":"wdiwdowoi","lvl":1,"subLevel":2,"currentProblemPieces":[27,12,9,7,13,17,10,11,22,3],"currentProblemResult":30,"numEntries":[3],"timer":1645563304,"timerCheck":true,"life":2,"score":161},{"id":"lTd8e","player":"wdiwdowoidww","lvl":1,"subLevel":1,"currentProblemPieces":[15,5,9,25,22,12,7,30,27,11],"currentProblemResult":[40],"numEntries":[3],"timer":1645563382,"timerCheck":true,"life":3,"score":0},{"id":"VWJpt","player":"dwdwdw","lvl":1,"subLevel":1,"currentProblemPieces":[2,3,29,17,10,6,13,12,14,15],"currentProblemResult":[44],"numEntries":[3],"timer":1645563524,"timerCheck":true,"life":3,"score":0},{"id":"RksXj","player":"aaASA","lvl":1,"subLevel":2,"currentProblemPieces":[27,7,12,28,17,15,21,14,18,9],"currentProblemResult":52,"numEntries":[3],"timer":1645563611,"timerCheck":true,"life":2,"score":168},{"id":"2DEGR","player":"dwdw","lvl":1,"subLevel":1,"currentProblemPieces":[5,7,17,29,25,13,21,28,14,10],"currentProblemResult":[44],"numEntries":[3],"timer":1645563644,"timerCheck":true,"life":2,"score":0},{"id":"45WfZ","player":"almakm","lvl":1,"subLevel":1,"currentProblemPieces":[4,19,5,22,24,28,26,15,29,27],"currentProblemResult":[68],"numEntries":[3],"timer":1645563740,"timerCheck":true,"life":3,"score":0},{"id":"1I6F0","player":"dwdwsaxvr","lvl":1,"subLevel":1,"currentProblemPieces":[15,4,3,16,11,28,6,9,14,2],"currentProblemResult":[58],"numEntries":[3],"timer":1645563936,"timerCheck":true,"life":3,"score":0},{"id":"G5qNw","player":"dwdwsaxvr","lvl":1,"subLevel":1,"currentProblemPieces":[22,8,24,17,16,3,6,27,15,13],"currentProblemResult":[30],"numEntries":[3],"timer":1645563974,"timerCheck":true,"life":3,"score":0}]
+[
+    {
+        "id": "waqkH",
+        "player": "Felype",
+        "lvl": 1,
+        "subLevel": 1,
+        "currentProblemResult": null,
+        "subLevelResults": [
+            12,
+            5,
+            55
+        ],
+        "subLevelPieces": [
+            20,
+            15,
+            20,
+            34,
+            23,
+            14,
+            2,
+            43,
+            4,
+            5
+        ],
+        "timer": 0,
+        "timerCheck": true,
+        "life": 3,
+        "score": 0
+    }
+]
