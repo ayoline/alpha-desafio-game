@@ -85,9 +85,9 @@ function generateOperations(_qtt, _lvl) {
     'secondOperands': [],
     'thirdOperator': []
   };
-
   const response = [];
 
+  //Don't forget to remove this variable from code (it's just a debug feature)
 	let level = {};
 
 	//Populating the entries array
@@ -115,10 +115,8 @@ function generateOperations(_qtt, _lvl) {
   response.push(results);
 
 	//Function to get the complete math operations
-	function getFinalOperations(_qtt, _qts) {
+	function getFinalOperations(_qtt) {
 		const qtt = _qtt;
-		const qts = _qts;
-
 		if(qtt === 2) {
 			operations.push(
         `q1: ${args.firstOperator[0]} ${args.firstOperands[0]} ${args.secondOperator[0]} = ${results[0]}`
@@ -151,8 +149,9 @@ function generateOperations(_qtt, _lvl) {
   // The function is working fine
   // Just working on the division problems now
   // Need to ensure that there are no negative results in the response
-  function getResult(_obj) {
+  function getResult(_obj, _index = 0) {
     const obj = _obj;
+    let i = _index;
     const fO = obj.firstOperator;
     const fOp = obj.firstOperands;
     const sO = obj.secondOperator;
@@ -162,34 +161,56 @@ function generateOperations(_qtt, _lvl) {
     let tmpRes;
     let res;
 
-    if(fOp[0] === '+') {
-      tmpRes = +(fO[0] + sO[0]);
-    } else if(fOp[0] === '-') {
-      tmpRes = +(fO[0] - sO[0]);
-    } else if (fOp[0] === '*') {
-      tmpRes = +(fO[0] * sO[0]);
-    } else if(fOp[0] === '/') {
-      tmpRes = +(Math.floor(fO[0] / sO[0]));
+    // Make the first operands and operators
+    oneOperandRes();
+    // If the operation has more than one operand, terminate the account and return the result
+    nextOperandRes();
+
+    if(res < 0 || tmpRes < 0) {
+      oneOperandRes(i);
+      nextOperandRes();
+      i++;
     };
 
-    if(sOp.length > 0) {
-      if(sOp[0] === '+') {
-        res = +(tmpRes + tO[0]);
-      } else if(sOp[0] === '-') {
-        res = +(tmpRes - tO[0]);
-      } else if (sOp[0] === '*') {
-        res = +(tmpRes * tO[0]);
-      } else if(sOp[0] === '/') {
-        res = +(tmpRes / tO[0]);
+    
+
+    // Function to get the result of the first operation
+    function oneOperandRes(_index = 0){
+      const i = _index;
+      console.log('chamou a função apenas internamente');
+      if(fOp[i] === '+') {
+        tmpRes = +(fO[i] + sO[i]);
+      } else if(fOp[i] === '-') {
+        tmpRes = +(fO[i] - sO[i]);
+      } else if (fOp[i] === '*') {
+        tmpRes = +(fO[i] * sO[i]);
+      } else if(fOp[i] === '/') {
+        tmpRes = +(Math.floor(fO[i] / sO[i]));
       };
-
-      results.push(res);
-      return res;
-
-    } else {
-      results.push(tmpRes);
+  
       return tmpRes;
-    };      
+    };
+    // Function to get the result of the next operations
+    function nextOperandRes(_obj, _index) {
+      if(sOp.length > 0) {
+        if(sOp[0] === '+') {
+          res = +(tmpRes + tO[0]);
+        } else if(sOp[0] === '-') {
+          res = +(tmpRes - tO[0]);
+        } else if (sOp[0] === '*') {
+          res = +(tmpRes * tO[0]);
+        } else if(sOp[0] === '/') {
+          res = +(tmpRes / tO[0]);
+        };
+  
+        results.push(res);
+        return res;
+  
+      } else {
+        results.push(tmpRes);
+        return tmpRes;
+      };
+    };
   };
 
 	//Function to generate a random number
@@ -223,7 +244,7 @@ function generateOperations(_qtt, _lvl) {
 		};
 
 		return value
-	};
+	}; 
 
   console.log(level);
 	console.log(response);
@@ -233,5 +254,6 @@ function generateOperations(_qtt, _lvl) {
 // module.exports = generateOperations;
 
 // for(let i = 0; i < 10; i++) {
-  generateOperations(10,9);
+  generateOperations(10,0);
+  generateOperations(10,2);
 // };
