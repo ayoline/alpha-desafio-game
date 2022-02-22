@@ -208,6 +208,7 @@ function generateOperations(_qtt, _lvl) {
 
 			return tmpRes;
 		};
+    
 		// Function to get the result of the next operations
 		function nextOperandRes() {
 			if (sOp.length > 0) {
