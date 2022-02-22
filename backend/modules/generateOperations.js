@@ -255,5 +255,4 @@ function generateOperations(_qtt, _lvl) {
 	return response;	
 };
 
-
 module.exports = deliveryOperation;
