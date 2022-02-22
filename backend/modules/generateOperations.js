@@ -94,23 +94,26 @@ function generateOperations(_qtt, _lvl) {
 	while(entries.length < qtt) {
 		entries.push(validateEntry(entries, 0));
 	};
-	// console.log(entries);
 
 	//Populating the operators array
 	populateOperators(difficultyByLevel[lvl].qtt);
 
+
+
+  // console.log(args);
+
 	//Populating the results array
   getResult(args);
-	// getResult(args);
 
 	//Populating the operations array
 	getFinalOperations(difficultyByLevel[lvl].qtt, difficultyByLevel[lvl].questions);
 
-  //Populating the level object
+  //Populating the level object ------- Need to remove this from code (it's just a debug feature)
 	level = {
 		"operations": operations
 	};
 
+  // The bigger problem for now is handle with the erros in the 'getResult' function
   response.push(entries);
   response.push(results);
 
@@ -126,11 +129,14 @@ function generateOperations(_qtt, _lvl) {
         `q1: ${args.firstOperator[0]} ${args.firstOperands[0]} ${args.secondOperator[0]} ${args.secondOperands[0]} ${args.thirdOperator[0]} = ${results[0]}`
       );
 		};
+
+    return operations;
 	};
 
 	//Function to populate the operators and operands arrays
 	function populateOperators(_qtt) {
 		const qtt = _qtt;
+    let method = 'push';
 
 		if(qtt === 2) {
 			args.firstOperator.push(validateEntry(args.firstOperator, 1));
@@ -143,12 +149,13 @@ function generateOperations(_qtt, _lvl) {
 			args.firstOperands.push(difficultyByLevel[lvl].op[0]);
 			args.secondOperands.push(difficultyByLevel[lvl].op[1] || difficultyByLevel[lvl].op[0]);
 		};
+
+    // getResult(args);
+
+    return args;
 	};
 
-  // Testing the new function to get the result, still need to test and handle with the division problems
-  // The function is working fine
-  // Just working on the division problems now
-  // Need to ensure that there are no negative results in the response
+  // Need to ensure that there are no negative or fractional results in the response
   function getResult(_obj, _index = 0) {
     const obj = _obj;
     let i = _index;
@@ -166,18 +173,9 @@ function generateOperations(_qtt, _lvl) {
     // If the operation has more than one operand, terminate the account and return the result
     nextOperandRes();
 
-    if(res < 0 || tmpRes < 0) {
-      oneOperandRes(i);
-      nextOperandRes();
-      i++;
-    };
-
-    
-
     // Function to get the result of the first operation
-    function oneOperandRes(_index = 0){
+    function oneOperandRes(_index = 0) {
       const i = _index;
-      console.log('chamou a função apenas internamente');
       if(fOp[i] === '+') {
         tmpRes = +(fO[i] + sO[i]);
       } else if(fOp[i] === '-') {
