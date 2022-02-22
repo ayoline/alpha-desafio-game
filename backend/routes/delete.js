@@ -8,10 +8,14 @@ const deleteCurrentPlayer = require("../modules/deletePlayer"); // deleteCurrent
 
 router.delete('/deleteData', function (req, res) {
     const reqData = req.body;
+    const playersJson = JSON.parse(
+        fs.readFileSync("data/current-players.json", "utf8")
+    );
+    const currentPlayer = playersJson.find((el) => el.id === reqData.id);
 
-    if (reqData.id && reqData.score && reqData.lvl) {
-        const updateReturn = updateRanking(reqData.player, reqData.score, reqData.lvl);
-        deleteCurrentPlayer(reqData.id);
+    if (currentPlayer.id && currentPlayer.score && currentPlayer.lvl) {
+        const updateReturn = updateRanking(currentPlayer.player, currentPlayer.score, currentPlayer.lvl);
+        deleteCurrentPlayer(currentPlayer.id);
         try {
             res.json(updateReturn);
         } catch (error) {
