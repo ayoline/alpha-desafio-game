@@ -12,8 +12,6 @@ function updateData(_playerData) {
         if (playerToBeUpdated) {
             const playerToBeUpdatedIndex =
                 playersJson.indexOf(playerToBeUpdated);
-            console.log(_playerData.timer);
-            console.log(playersJson[playerToBeUpdatedIndex].timer);
 
             if (_playerData.lvl) {
                 playersJson[playerToBeUpdatedIndex].lvl = _playerData.lvl;

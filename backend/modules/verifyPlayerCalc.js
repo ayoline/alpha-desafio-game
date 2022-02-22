@@ -1,6 +1,5 @@
 function verifyPlayerInput(playerString, result) {
     const parsedPlayerString = playerString.replaceAll("x", "*")
-    console.log(parsedPlayerString)
     function validatePlayerInput(string) {
         const stringArr = string.split(" ");
         let isValid = true;

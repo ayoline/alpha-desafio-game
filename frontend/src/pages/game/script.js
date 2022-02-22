@@ -41,6 +41,7 @@ $("#math-div").on("click", function () {
             if(data.correctAnswer)timeLine.eq(parseInt(data.subLevel)-2).css('backgroundColor','#68FF74');
             if(parseInt(data.lvl) !== parseInt($('#lvl-number-externo h2').text())){
                 timeLine.css('backgroundColor', '#313640');
+                problemsLevel = data.levelProblems;
             }
             $('#lvl-number-externo h2').text(data.lvl);
             scoreItem.text(score);

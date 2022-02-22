@@ -27,8 +27,10 @@ router.put("/updateData", function (req, res) {
         if (verifyPlayerCalc(reqData.problemString, playerCurrentObject.currentProblemResult) && objTime.check) { // player acertou
             if (playerCurrentObject.subLevel === 3) {
                 playerNewObject.lvl = playerCurrentObject.lvl + 1;
+                console.log(playerNewObject.lvl);
                 playerNewObject.subLevel = 1;
                 playerNewObject.levelProblems = generateProblemsByLevel(playerNewObject.lvl)
+                console.log(playerNewObject.levelProblems);
             } else {
                 playerNewObject.lvl = playerCurrentObject.lvl;
                 playerNewObject.subLevel = playerCurrentObject.subLevel + 1;
