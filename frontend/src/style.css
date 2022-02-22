@@ -72,6 +72,11 @@ main {
     transition: 100ms;
 }
 
+#error-message{
+    font-size: 1.1rem;
+    color: #ff4a4a;
+}
+
 #play-button:hover {
     margin-top: 21px;
     margin-bottom: 19px;

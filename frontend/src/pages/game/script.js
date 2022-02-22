@@ -32,6 +32,8 @@ $("#math-div").on("click", function () {
                 window.location.href = "http://localhost:3001/";
             }
         }).done((data) => {
+            const scoreItem = $('#score h2');
+            const score = parseInt(scoreItem.text()) + data.score;
             const timeLine = $('.desafio-number')
             if(parseInt(data.life)!==actualLife)life()
             //gera bugs, troque.
@@ -41,7 +43,7 @@ $("#math-div").on("click", function () {
                 timeLine.css('backgroundColor', '#313640');
             }
             $('#lvl-number-externo h2').text(data.lvl);
-            // $('#score h2').textContent(data.score);
+            scoreItem.text(score);
             resetProblem(data.subLevel-1);
             if(setTimeRun) timeRun(180);
             else resetTimeRun = true;

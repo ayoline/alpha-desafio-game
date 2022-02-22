@@ -3,7 +3,7 @@ const config = require('../config');
 // the parameters format needed: startDate = new Date(); endDate = new Date(); lvl = intNumber;
 function updateScore(_startDate, _endDate, _lvl) {
     const maxTime = config.timer;
-    const timeExpendInSeconds = (_endDate.getTime() - _startDate.getTime()) / 1000;
+    const timeExpendInSeconds = (_endDate - _startDate);
     const timeLeft = parseInt(maxTime) - parseInt(timeExpendInSeconds);
     let scoreCalculated;
     if (_lvl === 1) { scoreCalculated = timeLeft * 1 };

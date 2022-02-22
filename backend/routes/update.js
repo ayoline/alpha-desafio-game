@@ -10,6 +10,7 @@ const updateRanking = require("../modules/updateRanking"); // updateRanking(play
 const updateData = require("../modules/updateData"); // updateData(playerObject)
 const generateProblemsByLevel = require("../modules/generateProblems"); // generateProblemsByLevel(_problemLevel)
 const getTimer = require("../modules/timer")//getTimer(playerCurrentObject.timer);
+const scoreCal = require("../modules/updateScore")//scoreCal(initial,ended,lvl)
 
 // routes
 router.put("/updateData", function (req, res) {
@@ -33,6 +34,7 @@ router.put("/updateData", function (req, res) {
                 playerNewObject.subLevel = playerCurrentObject.subLevel + 1;
             }
             playerNewObject.life = playerCurrentObject.life;
+            playerNewObject.score = scoreCal(playerCurrentObject.timer, Math.floor(new Date()/1000), playerCurrentObject.lvl);
             playerNewObject.timer = Math.ceil(new Date()/1000);
             playerNewObject.currentProblemResult = playerCurrentObject.levelProblems[playerNewObject.subLevel-1][1];
             updateData(playerNewObject);

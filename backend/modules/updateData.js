@@ -30,7 +30,7 @@ function updateData(_playerData) {
                 playersJson[playerToBeUpdatedIndex].life = _playerData.life;
             }
             if (_playerData.score) {
-                playersJson[playerToBeUpdatedIndex].score = _playerData.score;
+                playersJson[playerToBeUpdatedIndex].score += _playerData.score;
             }
             if (_playerData.timer){
                 playersJson[playerToBeUpdatedIndex].timer = _playerData.timer;

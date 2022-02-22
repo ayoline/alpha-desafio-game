@@ -23,6 +23,7 @@ function renderRanking(data) {
 $("#play-button").on("click", function () {
     const newUsername = $("#name-input").val();
     if (/^\w\w\w+$/.test(newUsername)) {
+        $("#error-message").text('');
         $.post({
             url: apiURL + "save/saveNewUser",
             headers: {Accepts: "application/json"},
@@ -35,6 +36,7 @@ $("#play-button").on("click", function () {
             window.location.href = `http://localhost:3001/pages/game/?id=${data.id}`
         });
     } else {
-        console.log("NOME INVALIDO");
+        $("#error-message")
+            .text('Username deve conter no minimo 3 caracteres alphanumericos')
     }
 });
