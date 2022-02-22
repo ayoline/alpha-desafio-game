@@ -16,8 +16,8 @@ function deliveryOperation(_qtt, _lvl) {
 	arr = generateOperations(qtt, lvl);
 	response = arr[0];
 
-	while(validResponse === false) {
-		if(response[1] > 0 && (response[1] % 2) === 0 ){
+	while (validResponse === false) {
+		if (response[1] > 0 && (response[1] % 2) === 0) {
 			// console.log('===========================');
 			// console.log(`Resposta tratada: ${response[1]}`);
 			// console.log('===========================');
@@ -35,7 +35,7 @@ function deliveryOperation(_qtt, _lvl) {
 };
 
 function generateOperations(_qtt, _lvl) {
-  // Need to remove the 'lvl object' from code (it's just a debug feature)
+	// Need to remove the 'lvl object' from code (it's just a debug feature)
 	const difficultyByLevel = [
 		{
 			op: '+',
@@ -115,17 +115,17 @@ function generateOperations(_qtt, _lvl) {
 	const numEntries = difficultyByLevel[lvl].qtt;
 	const operations = [];
 	const results = [];
-  const args = {
-    'firstOperator': [],
-    'firstOperands': [],
-    'secondOperator': [],
-    'secondOperands': [],
-    'thirdOperator': []
-  };
-  const response = [];
+	const args = {
+		'firstOperator': [],
+		'firstOperands': [],
+		'secondOperator': [],
+		'secondOperands': [],
+		'thirdOperator': []
+	};
+	const response = [];
 
 	//Populating the entries array
-	while(entries.length < qtt) {
+	while (entries.length < qtt) {
 		entries.push(validateEntry(entries, 0));
 	};
 
@@ -133,40 +133,40 @@ function generateOperations(_qtt, _lvl) {
 	populateOperators(difficultyByLevel[lvl].qtt);
 
 	//Populating the results array
-  getResult(args);
+	getResult(args);
 
 	//Populating the operations array
 	getFinalOperations(difficultyByLevel[lvl].qtt, difficultyByLevel[lvl].questions);
 
-  response.push(entries);
-  response.push(results);
+	response.push(entries);
+	response.push(results);
 
 	//Function to get the complete math operations
 	function getFinalOperations(_qtt) {
 		const qtt = _qtt;
-		if(qtt === 2) {
+		if (qtt === 2) {
 			operations.push(
-        `q1: ${args.firstOperator[0]} ${args.firstOperands[0]} ${args.secondOperator[0]} = ${results[0]}`
-      );
-		} else if(qtt === 3) {
+				`q1: ${args.firstOperator[0]} ${args.firstOperands[0]} ${args.secondOperator[0]} = ${results[0]}`
+			);
+		} else if (qtt === 3) {
 			operations.push(
-        `q1: ${args.firstOperator[0]} ${args.firstOperands[0]} ${args.secondOperator[0]} ${args.secondOperands[0]} ${args.thirdOperator[0]} = ${results[0]}`
-      );
+				`q1: ${args.firstOperator[0]} ${args.firstOperands[0]} ${args.secondOperator[0]} ${args.secondOperands[0]} ${args.thirdOperator[0]} = ${results[0]}`
+			);
 		};
 
-    return operations;
+		return operations;
 	};
 
 	//Function to populate the operators and operands arrays
 	function populateOperators(_qtt) {
 		const qtt = _qtt;
-    let method = 'push';
+		let method = 'push';
 
-		if(qtt === 2) {
+		if (qtt === 2) {
 			args.firstOperator.push(validateEntry(args.firstOperator, 1));
 			args.secondOperator.push(validateEntry(args.secondOperator, 1));
 			args.firstOperands.push(operands[rand(operands.length)]);
-		} else if(qtt === 3) {
+		} else if (qtt === 3) {
 			args.firstOperator.push(validateEntry(args.firstOperator, 1));
 			args.secondOperator.push(validateEntry(args.secondOperator, 1));
 			args.thirdOperator.push(validateEntry(args.thirdOperator, 1));
@@ -174,71 +174,71 @@ function generateOperations(_qtt, _lvl) {
 			args.secondOperands.push(difficultyByLevel[lvl].op[1] || difficultyByLevel[lvl].op[0]);
 		};
 
-    return args;
+		return args;
 	};
 
-  // Need to ensure that there are no negative or fractional results in the response
-  function getResult(_obj) {
-    const obj = _obj;
-    const fO = obj.firstOperator;
-    const fOp = obj.firstOperands;
-    const sO = obj.secondOperator;
-    const sOp = obj.secondOperands;
-    const tO = obj.thirdOperator;
+	// Need to ensure that there are no negative or fractional results in the response
+	function getResult(_obj) {
+		const obj = _obj;
+		const fO = obj.firstOperator;
+		const fOp = obj.firstOperands;
+		const sO = obj.secondOperator;
+		const sOp = obj.secondOperands;
+		const tO = obj.thirdOperator;
 
-    let tmpRes;
-    let res;
+		let tmpRes;
+		let res;
 
-    // Make the first operands and operators
-    oneOperandRes();
-    // If the operation has more than one operand, terminate the account and return the result
-    nextOperandRes();
+		// Make the first operands and operators
+		oneOperandRes();
+		// If the operation has more than one operand, terminate the account and return the result
+		nextOperandRes();
 
-    // Function to get the result of the first operation
-    function oneOperandRes() {
-      if(fOp[0] === '+') {
-        tmpRes = +(fO[0] + sO[0]);
-      } else if(fOp[0] === '-') {
-        tmpRes = +(fO[0] - sO[0]);
-      } else if (fOp[0] === '*') {
-        tmpRes = +(fO[0] * sO[0]);
-      } else if(fOp[0] === '/') {
-        tmpRes = +(Math.floor(fO[0] / sO[0]));
-      };
-  
-      return tmpRes;
-    };
-    // Function to get the result of the next operations
-    function nextOperandRes() {
-      if(sOp.length > 0) {
-        if(sOp[0] === '+') {
-          res = +(tmpRes + tO[0]);
-        } else if(sOp[0] === '-') {
-          res = +(tmpRes - tO[0]);
-        } else if (sOp[0] === '*') {
-          res = +(tmpRes * tO[0]);
-        } else if(sOp[0] === '/') {
-          res = +(tmpRes / tO[0]);
-        };
-  
-        results.push(res);
-        return res;
-  
-      } else {
-        results.push(tmpRes);
-        return tmpRes;
-      };
-    };
-  };
+		// Function to get the result of the first operation
+		function oneOperandRes() {
+			if (fOp[0] === '+') {
+				tmpRes = +(fO[0] + sO[0]);
+			} else if (fOp[0] === '-') {
+				tmpRes = +(fO[0] - sO[0]);
+			} else if (fOp[0] === '*') {
+				tmpRes = +(fO[0] * sO[0]);
+			} else if (fOp[0] === '/') {
+				tmpRes = +(Math.floor(fO[0] / sO[0]));
+			};
+
+			return tmpRes;
+		};
+		// Function to get the result of the next operations
+		function nextOperandRes() {
+			if (sOp.length > 0) {
+				if (sOp[0] === '+') {
+					res = +(tmpRes + tO[0]);
+				} else if (sOp[0] === '-') {
+					res = +(tmpRes - tO[0]);
+				} else if (sOp[0] === '*') {
+					res = +(tmpRes * tO[0]);
+				} else if (sOp[0] === '/') {
+					res = +(tmpRes / tO[0]);
+				};
+
+				results.push(res);
+				return res;
+
+			} else {
+				results.push(tmpRes);
+				return tmpRes;
+			};
+		};
+	};
 
 	//Function to generate a random number
 	function rand(_min = 0, _max) {
 		const min = _min;
 		const max = _max;
 
-		if(max) 
+		if (max)
 			return Math.floor(Math.random() * (max - min + 1)) + min;
-		 else 
+		else
 			return Math.floor(Math.random() * min);
 	};
 
@@ -246,17 +246,17 @@ function generateOperations(_qtt, _lvl) {
 	function validateEntry(_arr, _type) {
 		const arr = _arr;
 		const type = _type;
-    const max = difficultyByLevel[lvl].max;
-    const min = difficultyByLevel[lvl].min;
+		const max = difficultyByLevel[lvl].max;
+		const min = difficultyByLevel[lvl].min;
 
 		let value = (type === 0) ? Math.floor(Math.random() * (max - min) + min) : entries[rand(entries.length)];
 
-		if(type === 0) {
-			while(arr.includes(value)) {
-				value = rand(min,max);
+		if (type === 0) {
+			while (arr.includes(value)) {
+				value = rand(min, max);
 			};
-		} else if(type === 1) {
-			while(arr.includes(value)) {
+		} else if (type === 1) {
+			while (arr.includes(value)) {
 				value = entries[rand(entries.length)];
 			};
 		};
