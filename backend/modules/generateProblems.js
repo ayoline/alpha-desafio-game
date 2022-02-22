@@ -68,3 +68,5 @@ function removeLowerPositions(_array) {
 }
 
 module.exports = generateProblemsByLevel;
+
+generateProblemsByLevel(10);

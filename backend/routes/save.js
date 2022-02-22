@@ -3,7 +3,7 @@ const router = express.Router();
 router.use(express.json());
 const fs = require('fs');
 
-// const generateProblems = require("../modules/generateProblems"); 
+const generateProblemsByLevel = require("../modules/generateProblems");
 
 router.post('/saveNewUser', function (req, res) {
     const dataFromClient = req.body;
@@ -15,9 +15,9 @@ router.post('/saveNewUser', function (req, res) {
         newUser.player = dataFromClient.name;
         newUser.lvl = 1;
         newUser.subLevel = 1;
-        newUser.levelProblems = ["10 + 10 = 20", "10 + 10 = 20", "10 + 15 = 35"] //generateProblems(newUser.lvl); 
-        newUser.currentProblemResult = newUser.levelProblems[newUser.subLevel-1].split(" ")[-1]; //nao ta funfando, deve ser o index -1
-        newUser.timer = process.env.ROUND_TIME;
+        newUser.levelProblems = generateProblemsByLevel(newUser.lvl) ;/*["10 + 10 = 20", "10 + 10 = 20", "10 + 15 = 35"]*/ //generateProblems(newUser.lvl); 
+        newUser.currentProblemResult = newUser.levelProblems[newUser.subLevel-1][1][0];/*newUser.levelProblems[newUser.subLevel-1].split(" ")[-1];*/ //nao ta funfando, deve ser o index -1
+        newUser.timer = Math.ceil(new Date()/1000);
         newUser.timerCheck = true;
         newUser.life = 3;
         newUser.score = 0;

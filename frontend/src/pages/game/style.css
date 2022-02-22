@@ -436,10 +436,18 @@ img {
 
 .ope {
     width: clamp(1.9em, 5vw, 4.7em);
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
     border-radius: clamp(0.8em, 1.6vw, 2em);
     /* border-radius: 25px; */
     height: clamp(2.5em, 4.8vw, 5.8em);
     background-color: #313640;
+    font-size: 1.5rem;
+    font-weight: 1000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 i {

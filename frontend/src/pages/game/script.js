@@ -1,6 +1,8 @@
 const arrCalculate = new Array(...$(".req-item").addClass());
 const actualLife = 3;
 let problemsLevel;
+let resetTimeRun;
+let setTimeRun;
 
 $(function () {
     const game_id = window.location.search.replace("?id=", "");
@@ -30,13 +32,19 @@ $("#math-div").on("click", function () {
                 window.location.href = "http://localhost:3001/";
             }
         }).done((data) => {
-            if(parseInt(data.life)!==actualLife)life();
-            // $('#match-current').text('');
+            const timeLine = $('.desafio-number')
+            if(parseInt(data.life)!==actualLife)life()
+            //gera bugs, troque.
             $('#match-current').text(data.subLevel + '/3');
-            if(data.correctAnswer)$('.desafio-number').eq(parseInt(data.subLevel)-2).css('backgroundColor','#68FF74');
+            if(data.correctAnswer)timeLine.eq(parseInt(data.subLevel)-2).css('backgroundColor','#68FF74');
+            if(parseInt(data.lvl) !== parseInt($('#lvl-number-externo h2').text())){
+                timeLine.css('backgroundColor', '#313640');
+            }
             $('#lvl-number-externo h2').text(data.lvl);
             // $('#score h2').textContent(data.score);
             resetProblem(data.subLevel-1);
+            if(setTimeRun) timeRun(180);
+            else resetTimeRun = true;
             alert(JSON.stringify(data));
         });
     } else {
@@ -52,7 +60,7 @@ function resetProblem(problemIndex){
     for (let i of problemsLevel[problemIndex][0]) {
         const spanInfo = $('<span>').text(i);
         const numPieces = $("<button>")
-            .addClass("block-num")
+            .addClass("block-num noselect")
             .append(spanInfo);
         $("#number-div-two").append(numPieces);
     }
@@ -73,7 +81,15 @@ const life = (() => {
 function timeRun(defaultTime) {
     let timer = 0;
     const intervalTimer = setInterval(() => {
-        if (defaultTime - timer === -1) clearInterval(intervalTimer);
+        if (defaultTime - timer === -1) {
+            clearInterval(intervalTimer);
+            setTimeRun = true;
+        }
+        else if(resetTimeRun){
+            resetTimeRun = false;
+            timeRun(180);
+            clearInterval(intervalTimer);
+        }
         else {
             const defaultMinutes = Math.floor((defaultTime - timer) / 60);
             const defaultSeconds =
@@ -87,56 +103,37 @@ function timeRun(defaultTime) {
     }, 1000);
 }
 
-// function start(arrCalculate) {
-//     const arrDrag = [".operations-item", ".block-num"];
-//     const arrDrop = [
-//         ["#number", ".block-num"],
-//         ["#operations", ".operations-item"],
-//     ];
-//     const arrResDrop = [
-//         [".num", ".block-num"],
-//         [".ope", ".operations-item"],
-//     ];
-//     for (let i of arrDrag)
-//         $(i).draggable({ cancel:false,revert: "invalid", scroll: false, snap:'.req-item' });
-//     for (let i of arrDrop)
-//         $(i[0]).droppable({
-//             accept: i[1],
-//             classes: {
-//                 "ui-droppable-active": "ui-state-active",
-//                 "ui-droppable-hover": "ui-state-hover",
-//             },
-//             // drop: function()
-//         });
-//     for (let i of arrResDrop)
-//         $(i[0]).droppable({
-//             accept: i[1],
-//             classes: {
-//                 "ui-droppable-active": "ui-state-active",
-//                 "ui-droppable-hover": "ui-state-hover",
-//             },
-//             drop: function (event, ui) {
-//                 console.log(123);
-//                 const dragItem = ui.draggable[0].firstChild;
-//                 const dropItem = event.target;
-//                 console.log(dragItem);
-//                 if (
-//                     dropItem.className.includes("ope") &&
-//                     dragItem.className.includes("block-num")
-//                 ) {
-//                     console.log(false);
-//                 } else if (
-//                     dropItem.className.includes("num") &&
-//                     dragItem.className.includes("operations-item")
-//                 ) {
-//                     console.log(false);
-//                 } else {
-//                     arrCalculate[parseInt(dropItem.id) - 1] =
-//                         dragItem.textContent;
-//                 }
-//             },
-//         });
-// }
+function cloneOpItem(_cloneItem, _overwriteOp){
+    const opWrite = _overwriteOp;
+    const newItem = $('<div>').addClass('noselect operations-item');
+    const cloneItem = _cloneItem;
+    const contentItem = cloneItem.textContent.match(/[+-/x]/)[0];
+    let idRef;
+    switch (contentItem){
+        case '+':
+            idRef = '#reference-plus-clone';
+            newItem.append('<span>+</span>');
+            break;
+        case '-':
+            idRef = '#reference-minus-clone';
+            newItem.append('<span>-</span>');
+            break;
+        case 'x':
+            idRef = '#reference-product-clone';
+            newItem.append('<span>x</span>');
+            break;
+        case '/':
+            idRef = '#reference-division-clone';
+            newItem.append('<span>/</span>');
+            break;
+    }
+    $(idRef).before(newItem);
+    $(newItem).draggable({ cancel:false,revert: "invalid", scroll: false, snap:'.req-item' })
+    opWrite.textContent = contentItem;
+    opWrite.style.backgroundColor = '#ad0025';
+    cloneItem.parentElement.parentNode.removeChild(cloneItem.parentElement);
+    return;
+}
 
 function loadGame(id) {
     const apiUrl = "http://localhost:3000/";
@@ -156,7 +153,7 @@ function loadGame(id) {
             for (let i of dataElements) {
                 const spanInfo = $('<span>').text(i);
                 const numPieces = $("<button>")
-                    .addClass("block-num")
+                    .addClass("block-num noselect")
                     .append(spanInfo);
                 $("#number-div-two").append(numPieces);
             }
@@ -164,18 +161,6 @@ function loadGame(id) {
             start();
         });
 }
-
-// function resetProblem(problemIndex){
-//     $("#number-div-two").html('');
-//     for (let i of problemsLevel[problemIndex][0]) {
-//         const spanInfo = $('<span>').text(i);
-//         const numPieces = $("<button>")
-//             .addClass("block-num")
-//             .append(spanInfo);
-//         $("#number-div-two").append(numPieces);
-//     }
-//     $("#result").text(problemsLevel[problemIndex][1]);
-// }
 
 function start() {
     const arrDrag = [".operations-item", ".block-num"];
@@ -206,10 +191,9 @@ function start() {
                 "ui-droppable-hover": "ui-state-hover",
             },
             drop: function (event, ui) {
-                console.log(123);
                 const dragItem = ui.draggable[0].firstChild;
                 const dropItem = event.target;
-                console.log(dragItem);
+                if(dragItem.parentElement.className.includes('operations-item'))cloneOpItem(dragItem, dropItem);
                 if (
                     dropItem.className.includes("ope") &&
                     dragItem.className.includes("block-num")

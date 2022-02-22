@@ -12,6 +12,8 @@ function updateData(_playerData) {
         if (playerToBeUpdated) {
             const playerToBeUpdatedIndex =
                 playersJson.indexOf(playerToBeUpdated);
+            console.log(_playerData.timer);
+            console.log(playersJson[playerToBeUpdatedIndex].timer);
 
             if (_playerData.lvl) {
                 playersJson[playerToBeUpdatedIndex].lvl = _playerData.lvl;
@@ -29,6 +31,9 @@ function updateData(_playerData) {
             }
             if (_playerData.score) {
                 playersJson[playerToBeUpdatedIndex].score = _playerData.score;
+            }
+            if (_playerData.timer){
+                playersJson[playerToBeUpdatedIndex].timer = _playerData.timer;
             }
 
             fs.writeFile(
