@@ -7,12 +7,14 @@
 
 function deliveryOperation(_qtt, _lvl) {
 	// console.time();
+	let arr; //adicionado para inserir o numero de entries
 	const qtt = _qtt;
 	const lvl = _lvl;
 	let response = [];
 	let validResponse = false;
 
-	response = generateOperations(qtt, lvl);
+	arr = generateOperations(qtt, lvl);
+	response = arr[0];
 
 	while(validResponse === false) {
 		if(response[1] > 0 && (response[1] % 2) === 0 ){
@@ -22,11 +24,13 @@ function deliveryOperation(_qtt, _lvl) {
 			validResponse = true;
 		} else {
 			response = [];
-			response = generateOperations(qtt, lvl);
+			arr = generateOperations(qtt, lvl);
+			response = arr[0];
 		};
 	};
 
 	// console.timeEnd();
+	response.push([arr[1]]);
 	return response;
 };
 
@@ -108,6 +112,7 @@ function generateOperations(_qtt, _lvl) {
 	const lvl = _lvl;
 	const entries = [];
 	const operands = difficultyByLevel[lvl].op;
+	const numEntries = difficultyByLevel[lvl].qtt;
 	const operations = [];
 	const results = [];
   const args = {
@@ -259,7 +264,9 @@ function generateOperations(_qtt, _lvl) {
 		return value
 	}; 
 	
-	return response;	
+	return [response,numEntries];	
 };
 
 module.exports = deliveryOperation;
+
+console.log(deliveryOperation(10,9));

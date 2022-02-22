@@ -1,6 +1,5 @@
 const arrCalculate = new Array(...$(".req-item").addClass());
 const actualLife = 3;
-let problemsLevel;
 let resetTimeRun;
 let setTimeRun;
 
@@ -32,21 +31,21 @@ $("#math-div").on("click", function () {
                 window.location.href = "http://localhost:3001/";
             }
         }).done((data) => {
+            console.log(data);
             const scoreItem = $('#score h2');
             const score = parseInt(scoreItem.text()) + data.score;
             const timeLine = $('.desafio-number')
             if(parseInt(data.life)!==actualLife)life()
             //gera bugs, troque.
-            console.log(data);
             $('#match-current').text(data.subLevel + '/3');
             if(data.correctAnswer)timeLine.eq(parseInt(data.subLevel)-2).css('backgroundColor','#68FF74');
             if(parseInt(data.lvl) !== parseInt($('#lvl-number-externo h2').text())){
                 timeLine.css('backgroundColor', '#313640');
-                problemsLevel = data.levelProblems;
+                // problemsLevel = data.levelProblems;
             }
             $('#lvl-number-externo h2').text(data.lvl);
             if(data.score)scoreItem.text(score);
-            resetProblem(data.subLevel-1);
+            resetProblem(data.currentProblemPieces, data.currentProblemResult);
             if(setTimeRun) timeRun(180);
             else resetTimeRun = true;
             alert(JSON.stringify(data));
@@ -59,16 +58,16 @@ $("#math-div").on("click", function () {
 
 //---------------
 
-function resetProblem(problemIndex){
+function resetProblem(pieces, result){
     $("#number-div-two").html('');
-    for (let i of problemsLevel[problemIndex][0]) {
+    for (let i of pieces) {
         const spanInfo = $('<span>').text(i);
         const numPieces = $("<button>")
             .addClass("block-num noselect")
             .append(spanInfo);
         $("#number-div-two").append(numPieces);
     }
-    $("#result").text(problemsLevel[problemIndex][1]);
+    $("#result").text(result);
     start();
 }
 
@@ -153,8 +152,7 @@ function loadGame(id) {
         })
         .then((data) => {
             console.log(data);
-            const dataElements = data[0][0];
-            problemsLevel = data;
+            const dataElements = data[0];
             for (let i of dataElements) {
                 const spanInfo = $('<span>').text(i);
                 const numPieces = $("<button>")
@@ -162,7 +160,7 @@ function loadGame(id) {
                     .append(spanInfo);
                 $("#number-div-two").append(numPieces);
             }
-            $("#result").text(data[0][1]);
+            $("#result").text(data[1]);
             start();
         });
 }
