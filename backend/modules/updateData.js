@@ -4,6 +4,7 @@ function updateData(_playerData) {
     const playersJson = JSON.parse(
         fs.readFileSync("data/current-players.json", "utf8")
     );
+
     let playerToBeUpdated;
 
     if (_playerData.id) {
@@ -37,7 +38,7 @@ function updateData(_playerData) {
             if (_playerData.score) {
                 playersJson[playerToBeUpdatedIndex].score += _playerData.score;
             }
-            if (_playerData.timer){
+            if (_playerData.timer) {
                 playersJson[playerToBeUpdatedIndex].timer = _playerData.timer;
             }
 
