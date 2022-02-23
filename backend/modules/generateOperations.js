@@ -7,8 +7,7 @@ const fs = require('fs');
 // So far we have only 10 levels of difficulty as an array (0 to 9).
 
 function deliveryOperation(_qtt, _lvl) {
-	// console.time();
-	let arr; //adicionado para inserir o numero de entries
+	let arr; //added to insert the number of entries
 	const qtt = _qtt;
 	const lvl = _lvl;
 	let response = [];
@@ -33,7 +32,6 @@ function deliveryOperation(_qtt, _lvl) {
 		};
 	};
 
-	// console.timeEnd();
 	response.push([arr[1]]);
 	return response;
 };

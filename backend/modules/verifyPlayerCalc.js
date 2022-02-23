@@ -1,8 +1,9 @@
 function verifyPlayerInput(playerString, result) {
-    const parsedPlayerString = playerString.replaceAll("x", "*")
+    const parsedPlayerString = playerString.replaceAll("x", "*");
     function validatePlayerInput(string) {
         const stringArr = string.split(" ");
         let isValid = true;
+
         stringArr.forEach((currElement, index) => {
             if (index % 2 == 0) {
                 if (!Number.isInteger(parseInt(currElement))) {
@@ -19,6 +20,7 @@ function verifyPlayerInput(playerString, result) {
                 }
             }
         });
+
         return isValid;
     }
 
