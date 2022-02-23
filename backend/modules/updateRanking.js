@@ -11,7 +11,9 @@ function updateRanking(_player) {
         rankingToBeOrdered.push(playerData);
         rankingToBeOrdered.sort((a, b) => Number(a.score) > Number(b.score) ? 1 : -1);
         rankingToBeOrdered.reverse();
+
         removeLowerPositions(rankingToBeOrdered);
+
         fs.writeFile('data/ranking.json', JSON.stringify(rankingToBeOrdered), function (err) {
             if (!err) {
                 return rankingToBeOrdered;
