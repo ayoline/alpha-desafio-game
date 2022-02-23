@@ -18,9 +18,12 @@ function deliveryOperation(_qtt, _lvl) {
 
 	while (validResponse === false) {
 		if (response[1] > 0 && (response[1] % 2) === 0) {
+			//===================DEBUGGING========================
 			// console.log('===========================');
 			// console.log(`Resposta tratada: ${response[1]}`);
 			// console.log('===========================');
+			// console.log(arr[2]);
+			//===================DEBUGGING========================
 			validResponse = true;
 		} else {
 			response = [];
@@ -113,7 +116,6 @@ function generateOperations(_qtt, _lvl) {
 	const entries = [];
 	const operands = difficultyByLevel[lvl].op;
 	const numEntries = difficultyByLevel[lvl].qtt;
-	const operations = [];
 	const results = [];
 	const args = {
 		'firstOperator': [],
@@ -123,6 +125,9 @@ function generateOperations(_qtt, _lvl) {
 		'thirdOperator': []
 	};
 	const response = [];
+	let operations = [];
+	let operation;
+	
 
 	//Populating the entries array
 	while (entries.length < qtt) {
@@ -144,13 +149,14 @@ function generateOperations(_qtt, _lvl) {
 	//Function to get the complete math operations
 	function getFinalOperations(_qtt) {
 		const qtt = _qtt;
+		operations = [];
 		if (qtt === 2) {
 			operations.push(
-				`q1: ${args.firstOperator[0]} ${args.firstOperands[0]} ${args.secondOperator[0]} = ${results[0]}`
+				`${args.firstOperator[0]} ${args.firstOperands[0]} ${args.secondOperator[0]} = ${results[0]}`
 			);
 		} else if (qtt === 3) {
 			operations.push(
-				`q1: ${args.firstOperator[0]} ${args.firstOperands[0]} ${args.secondOperator[0]} ${args.secondOperands[0]} ${args.thirdOperator[0]} = ${results[0]}`
+				`${args.firstOperator[0]} ${args.firstOperands[0]} ${args.secondOperator[0]} ${args.secondOperands[0]} ${args.thirdOperator[0]} = ${results[0]}`
 			);
 		};
 
@@ -264,8 +270,10 @@ function generateOperations(_qtt, _lvl) {
 
 		return value
 	}; 
-	
-	return [response,numEntries];	
+
+	operation = operations.pop();
+
+	return [response,numEntries, operation];
 };
 
 module.exports = deliveryOperation;
