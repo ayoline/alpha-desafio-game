@@ -12,6 +12,10 @@ window.addEventListener('scroll', function() {
     innerText.style.left = 100 - value / 5 + '%';
 });
 
+$('#btn').on('click',function(){
+    window.location.href = 'http://localhost:3001/';
+})
+
 $(function(){
     let scoreNumber = window.location.search.replace('?id','');
     let posicaoPlacar = $('button').offset().top;
