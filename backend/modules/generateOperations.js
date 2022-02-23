@@ -145,10 +145,11 @@ function generateOperations(_qtt, _lvl) {
 			} else if (fOp[0] === '/') {
 				// tmpRes = +(Math.floor(fO[0] / sO[0]));
 				if(Number.isInteger(fO[0]/sO[0])){
-					tmpRes = +(f0[0] / sO[0]);
+					tmpRes = +(fO[0] / sO[0]);
 				}else{
-					const rest = fO[0]%s0[0];
+					const rest = fO[0]%sO[0];
 					fO[0] -= rest;
+					obj.firstOperator = fO[0];
 					tmpRes = +(fO[0] / sO[0]);
 				}
 			};
@@ -167,6 +168,13 @@ function generateOperations(_qtt, _lvl) {
 					res = +(tmpRes * tO[0]);
 				} else if (sOp[0] === '/') {
 					res = +(tmpRes / tO[0]);
+					if(Number.isInteger(tmpRes/tO[0])){
+						tmpRes = +(tmpRes / tO[0]);
+					}else{
+						tO[0] = fO[0];
+						obj.thirdOperator = tO[0];
+						tmpRes = +(tmpRes / tO[0]);
+					}
 				};
 
 				results.push(res);
