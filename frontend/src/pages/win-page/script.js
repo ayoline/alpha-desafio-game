@@ -13,7 +13,7 @@ window.addEventListener('scroll', function () {
 });
 
 $(function () {
-    let scoreNumber = window.location.search.replace('?id', '');
+    let scoreNumber = window.location.search.split("=")[1];
     let posicaoPlacar = $('button').offset().top;
     console.log('teste')
     $('html, body').animate(
