@@ -45,8 +45,7 @@ router.put("/updateData", function (req, res) {
             updateData(playerNewObject);
             playerNewObject.correctAnswer = true;
             res.json(playerNewObject)
-        } else {
-            console.log(1002)                                                                   // player errou
+        } else {                                                                  // player errou
             playerNewObject.life = playerCurrentObject.life - 1;
             playerNewObject.subLevel = playerCurrentObject.subLevel;
             playerNewObject.currentProblemPieces = playerCurrentObject.currentProblemPieces;
@@ -73,11 +72,11 @@ router.get("/updateData", function (req, res) {
     const problems = currentPlayer.currentProblemPieces;
     const solution = currentPlayer.currentProblemResult;
     const numEntries = currentPlayer.numEntries;
-    const arr = [problems,solution,numEntries];
+    const arr = [problems, solution, numEntries];
     console.log(arr);
     // currentPlayer.timer = Math.ceil(new Date()/1000);
     // fs.writeFileSync("data/current-players.json", JSON.stringify(currentPlayers));
-    
+
     res.json(arr);
     // res.json(currentPlayer.)
 })

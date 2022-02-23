@@ -1,5 +1,5 @@
 # Miscellaneous
 node_modules
-current-players.json
+backend/data/current-players.json
 backend/package-lock.json
 frontend/package-lock.json
