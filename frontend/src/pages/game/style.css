@@ -267,7 +267,8 @@ img{
 }
 
 #operations div{
-    background-color: #F54460;
+    /* background-color: #F54460; COR QUANDO DISPONIVEL PRA USO*/
+    background-color: #2f2f2f;
     width: 100%;
     border-radius: clamp(0.8em, 2vw, 2em);
     height: clamp(2.5em, 5vw, 7.5em);
@@ -280,7 +281,8 @@ img{
 }
 
 #operations div span{
-    background-color: #AD0025;
+    /* background-color: #AD0025; COR QUANDO DISPONIVEL PRA USO*/
+    background-color: #313640;
     width: 90%;
     height: 87%;
     border-radius: clamp(0.15em, 1.2vw, 0.5em);
@@ -288,7 +290,8 @@ img{
     justify-content: center;
     align-items: center;
     font-family: 'Roboto', sans-serif;
-    color: white;
+    /* color: white; COR QUANDO DISPONIVEL PRA USO*/
+    color: #272727;
     font-size: clamp(1em, 2.6vw, 3em);
     font-weight: 1000;
 }

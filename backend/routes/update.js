@@ -35,7 +35,7 @@ router.put("/updateData", function (req, res) {
                 playerNewObject.lvl = playerCurrentObject.lvl;
                 playerNewObject.subLevel = playerCurrentObject.subLevel + 1;
             }
-            const newProblem = generateProblemsByLevel(10, playerNewObject.lvl);
+            const newProblem = generateProblemsByLevel(10, playerNewObject.lvl-1);
             playerNewObject.life = playerCurrentObject.life;
             playerNewObject.score = scoreCal(playerCurrentObject.timer, Math.floor(new Date() / 1000), playerCurrentObject.lvl);
             playerNewObject.timer = Math.ceil(new Date() / 1000);
@@ -50,6 +50,7 @@ router.put("/updateData", function (req, res) {
             playerNewObject.subLevel = playerCurrentObject.subLevel;
             playerNewObject.currentProblemPieces = playerCurrentObject.currentProblemPieces;
             playerNewObject.currentProblemResult = playerCurrentObject.currentProblemResult;
+            playerNewObject.numEntries = playerCurrentObject.numEntries;
             playerNewObject.timer = Math.ceil(new Date() / 1000);
             playerNewObject.lvl = playerCurrentObject.lvl;
             if (playerNewObject.life < 1) {

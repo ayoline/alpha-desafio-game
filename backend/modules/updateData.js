@@ -22,7 +22,7 @@ function updateData(_playerData) {
             }
             if (_playerData.currentProblemResult) {
                 playersJson[playerToBeUpdatedIndex].currentProblemResult =
-                    +_playerData.currentProblemResult[0];
+                    +_playerData.currentProblemResult;
             }
             if (_playerData.life) {
                 playersJson[playerToBeUpdatedIndex].life = _playerData.life;
