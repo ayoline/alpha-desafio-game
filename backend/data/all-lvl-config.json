@@ -51,14 +51,14 @@
         "op": "*",
         "qtt": 2,
         "min": 2,
-        "max": 10,
+        "max": 30,
         "questions": 3
     },
     {
         "op": "/",
         "qtt": 2,
         "min": 2,
-        "max": 10,
+        "max": 30,
         "questions": 3
     },
     {

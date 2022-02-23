@@ -121,7 +121,7 @@ const operarionsUsed = (()=>{
             console.log(i);
             console.log(position);
             itemsSpan.each(function(){
-                if(!(position == undefined) || arr[lvl-1].length === 1){
+                if((position == undefined) || arr[lvl-1].length === 1){
                     console.log(123);
                     $(this).parent().css('backgroundColor','#2f2f2f');
                     $(this).css({
