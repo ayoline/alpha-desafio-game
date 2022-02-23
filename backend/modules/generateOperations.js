@@ -1,3 +1,4 @@
+const fs = require('fs');
 // This module requires the following parameters:
 // _qtt = quantity of random numbers generated to populate the buttons in the game.
 // _lvl = level of difficulty of the current operation.
@@ -39,78 +40,9 @@ function deliveryOperation(_qtt, _lvl) {
 
 function generateOperations(_qtt, _lvl) {
 	// Need to remove the 'lvl object' from code (it's just a debug feature)
-	const difficultyByLevel = [
-		{
-			op: '+',
-			qtt: 2,
-			min: 2,
-			max: 20,
-			questions: 3
-		},
-		{
-			op: '+',
-			qtt: 3,
-			min: 2,
-			max: 30,
-			questions: 3
-		},
-		{
-			op: '-',
-			qtt: 2,
-			min: 2,
-			max: 20,
-			questions: 3
-		},
-		{
-			op: '-',
-			qtt: 3,
-			min: 2,
-			max: 20,
-			questions: 3
-		},
-		{
-			op: ['+', '-'],
-			qtt: 2,
-			min: 2,
-			max: 30,
-			questions: 3
-		},
-		{
-			op: ['+', '-'],
-			qtt: 3,
-			min: 2,
-			max: 100,
-			questions: 3
-		},
-		{
-			op: '*',
-			qtt: 2,
-			min: 2,
-			max: 10,
-			questions: 3
-		},
-		{
-			op: '/',
-			qtt: 2,
-			min: 2,
-			max: 10,
-			questions: 3
-		},
-		{
-			op: ['*', '/'],
-			qtt: 2,
-			min: 2,
-			max: 30,
-			questions: 3
-		},
-		{
-			op: ['*', '/'],
-			qtt: 3,
-			min: 2,
-			max: 50,
-			questions: 3
-		}
-	];
+	const difficultyByLevel = JSON.parse(
+		fs.readFileSync("data/all-lvl-config.json", "utf8")
+	);
 	const qtt = _qtt;
 	const lvl = _lvl;
 	const entries = [];
@@ -279,5 +211,3 @@ function generateOperations(_qtt, _lvl) {
 };
 
 module.exports = deliveryOperation;
-
-// deliveryOperation(10,5);
