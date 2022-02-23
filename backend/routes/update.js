@@ -36,9 +36,9 @@ router.put("/updateData", function (req, res) {
             playerNewObject.life = playerCurrentObject.life;
             playerNewObject.score = scoreCal(playerCurrentObject.timer, Math.floor(new Date() / 1000), playerCurrentObject.lvl);
             playerNewObject.timer = Math.ceil(new Date() / 1000);
-            playerNewObject.currentProblemResult = playerNewObject.lvl < 9 ? newProblem[1] : 0;
-            playerNewObject.currentProblemPieces = playerNewObject.lvl < 9 ? newProblem[0] : 0;
-            playerNewObject.numEntries = playerNewObject.lvl < 9 ? newProblem[2] : 0;
+            playerNewObject.currentProblemResult = playerNewObject.lvl < 11 ? newProblem[1] : 0;
+            playerNewObject.currentProblemPieces = playerNewObject.lvl < 11 ? newProblem[0] : 0;
+            playerNewObject.numEntries = playerNewObject.lvl < 11 ? newProblem[2] : 0;
             updateData(playerNewObject);
             playerNewObject.correctAnswer = true;
 
