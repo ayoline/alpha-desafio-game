@@ -9,9 +9,8 @@ const deleteCurrentPlayer = require("../modules/deletePlayer"); // deleteCurrent
 const updateRanking = require("../modules/updateRanking"); // updateRanking(playerObject)
 const updateData = require("../modules/updateData"); // updateData(playerObject)
 const generateProblemsByLevel = require('../modules/generateOperations');
-//const generateProblemsByLevel = require("../modules/generateProblems"); // generateProblemsByLevel(_problemLevel)
-const getTimer = require("../modules/timer")//getTimer(playerCurrentObject.timer);
-const scoreCal = require("../modules/updateScore")//scoreCal(initial,ended,lvl)
+const getTimer = require("../modules/timer");//getTimer(playerCurrentObject.timer);
+const scoreCal = require("../modules/updateScore");//scoreCal(initial,ended,lvl)
 
 // routes
 router.put("/updateData", function (req, res) {
@@ -28,14 +27,12 @@ router.put("/updateData", function (req, res) {
         if (verifyPlayerCalc(reqData.problemString, playerCurrentObject.currentProblemResult) && objTime.check) { // player acertou
             if (playerCurrentObject.subLevel === 3) {
                 playerNewObject.lvl = playerCurrentObject.lvl + 1;
-                console.log(playerNewObject.lvl);
                 playerNewObject.subLevel = 1;
-                console.log(playerNewObject.levelProblems);
             } else {
                 playerNewObject.lvl = playerCurrentObject.lvl;
                 playerNewObject.subLevel = playerCurrentObject.subLevel + 1;
             }
-            const newProblem = generateProblemsByLevel(10, playerNewObject.lvl-1);
+            const newProblem = generateProblemsByLevel(10, playerNewObject.lvl - 1);
             playerNewObject.life = playerCurrentObject.life;
             playerNewObject.score = scoreCal(playerCurrentObject.timer, Math.floor(new Date() / 1000), playerCurrentObject.lvl);
             playerNewObject.timer = Math.ceil(new Date() / 1000);
@@ -44,7 +41,11 @@ router.put("/updateData", function (req, res) {
             playerNewObject.numEntries = newProblem[2];
             updateData(playerNewObject);
             playerNewObject.correctAnswer = true;
-            res.json(playerNewObject);
+            try {
+                res.json(playerNewObject);
+            } catch (error) {
+                console.log('Error: ' + error);
+            }
         } else {                                                                  // player errou
             playerNewObject.lvl = playerCurrentObject.lvl;
             playerNewObject.subLevel = playerCurrentObject.subLevel;
@@ -59,7 +60,7 @@ router.put("/updateData", function (req, res) {
                 deleteCurrentPlayer(playerNewObject.id);
             } else {
                 updateData(playerNewObject);
-                playerNewObject.correctAnswer = false
+                playerNewObject.correctAnswer = false;
             }
             res.json(playerNewObject);
         }
@@ -74,12 +75,8 @@ router.get("/updateData", function (req, res) {
     const solution = currentPlayer.currentProblemResult;
     const numEntries = currentPlayer.numEntries;
     const arr = [problems, solution, numEntries];
-    console.log(arr);
-    // currentPlayer.timer = Math.ceil(new Date()/1000);
-    // fs.writeFileSync("data/current-players.json", JSON.stringify(currentPlayers));
 
     res.json(arr);
-    // res.json(currentPlayer.)
 })
 
 module.exports = router;
