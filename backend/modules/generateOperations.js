@@ -8,6 +8,7 @@ const fs = require('fs');
 
 function deliveryOperation(_qtt, _lvl) {
 	// console.time();
+	console.log(123);
 	let arr; //adicionado para inserir o numero de entries
 	const qtt = _qtt;
 	const lvl = _lvl;
@@ -43,6 +44,7 @@ function generateOperations(_qtt, _lvl) {
 	const difficultyByLevel = JSON.parse(
 		fs.readFileSync("data/all-lvl-config.json", "utf8")
 	);
+
 	const qtt = _qtt;
 	const lvl = _lvl;
 	const entries = [];
@@ -141,7 +143,14 @@ function generateOperations(_qtt, _lvl) {
 			} else if (fOp[0] === '*') {
 				tmpRes = +(fO[0] * sO[0]);
 			} else if (fOp[0] === '/') {
-				tmpRes = +(Math.floor(fO[0] / sO[0]));
+				// tmpRes = +(Math.floor(fO[0] / sO[0]));
+				if(Number.isInteger(fO[0]/sO[0])){
+					tmpRes = +(f0[0] / sO[0]);
+				}else{
+					const rest = fO[0]%s0[0];
+					fO[0] -= rest;
+					tmpRes = +(fO[0] / sO[0]);
+				}
 			};
 
 			return tmpRes;
