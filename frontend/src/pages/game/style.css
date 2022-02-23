@@ -31,14 +31,9 @@ h4 {
     color: #9693d0;
 }
 
-ul {
-    list-style: none;
-}
-
 main {
     background-color: #034abc;
     width: 100%;
-    min-width: 1280px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -65,10 +60,14 @@ main {
 }
 
 ul {
+    list-style: none;
     border-radius: clamp(0.1em, 2vw, 1.4em);
     width: clamp(1.3em, 11vw, 13em);
     background-color: #242b38;
     height: 83%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #score {
@@ -120,7 +119,7 @@ ul {
     list-style: none;
     display: flex;
     height: none;
-    width: 60px;
+    width: fit-content;
 }
 
 #life-info span {
@@ -129,7 +128,8 @@ ul {
     text-align: center;
     font-weight: 1000;
     color: #00b479;
-    display: block;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 #lvl-number-externo h2 {
@@ -147,10 +147,11 @@ ul {
 }
 
 #life {
-    margin-left: clamp(0.1em, calc(6vw - 29px), 3em);
     flex-direction: column;
-    align-items: center;
     display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 80%;
 }
 #life span {
     margin-top: clamp(-0.5em, 0vw, -0.5em);
@@ -163,7 +164,6 @@ ul {
 }
 
 img {
-    margin-left: clamp(0.5em, calc(4vw - 20px), 0.9em);
     width: clamp(1.7em, 3vw, 2.4em);
 }
 
