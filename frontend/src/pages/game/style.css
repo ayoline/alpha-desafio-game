@@ -49,7 +49,7 @@ main{
 
 #sec-one div{
     border-radius: clamp(0.8em, 2vw, 2.5em);
-    box-shadow: -1px 5px 4px #000000;
+    box-shadow: 0 5px 0 #000000;
     height: clamp(2.5em, 7vw, 8em);
     background-color: #343C4F;
     border: 3px solid black;
@@ -325,7 +325,7 @@ img{
     align-items: center;
     border: 3px solid black;
     margin-left: clamp(2em, calc(20vw - 50px), 20em);
-    box-shadow: -4px 7px 0px #000000;
+    box-shadow: 0 7px 0px #000000;
 }
 
 #calc ul{
@@ -375,7 +375,7 @@ i{
     font-weight: 900;
     font-size: clamp(2.7em, 7vw, 8em);
     color: #F4B522;
-    text-shadow: -8px 5px 4px #000000;
+    text-shadow: 0 5px 0 #000000;
 }
 
 #sec-three button{
@@ -389,7 +389,7 @@ i{
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: -1px 5px 4px #000000;
+    box-shadow: 0 5px 0 #000000;
     padding: 0;
 }
 
