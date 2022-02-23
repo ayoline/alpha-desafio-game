@@ -1,6 +1,7 @@
 const fs = require("fs");
 
 function deleteCurrentPlayer(_playerID) {
+    console.log(_playerID)
     const playersJson = JSON.parse(fs.readFileSync('data/current-players.json', 'utf8'));
     const playerToBeDeleted = playersJson.find((el) => el.id === _playerID);
 

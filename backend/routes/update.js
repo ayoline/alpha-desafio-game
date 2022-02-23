@@ -42,7 +42,7 @@ router.put("/updateData", function (req, res) {
             updateData(playerNewObject);
             playerNewObject.correctAnswer = true;
 
-            if (playerCurrentObject.lvl > 10) {
+            if (playerNewObject.lvl > 10) {
                 const finalScore = playerNewObject.score;
                 updateRanking(playerCurrentObject);
                 deleteCurrentPlayer(playerNewObject.id);
