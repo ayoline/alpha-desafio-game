@@ -170,12 +170,12 @@ function generateOperations(_qtt, _lvl) {
 
 		if (qtt === 2) {
 			args.firstOperator.push(validateEntry(args.firstOperator, 1));
-			args.secondOperator.push(validateEntry(args.secondOperator, 1));
+			args.secondOperator.push(validateEntry(args.secondOperator, 1, args.firstOperator));
 			args.firstOperands.push(operands[rand(operands.length)]);
 		} else if (qtt === 3) {
 			args.firstOperator.push(validateEntry(args.firstOperator, 1));
-			args.secondOperator.push(validateEntry(args.secondOperator, 1));
-			args.thirdOperator.push(validateEntry(args.thirdOperator, 1));
+			args.secondOperator.push(validateEntry(args.secondOperator, 1, args.firstOperator));
+			args.thirdOperator.push(validateEntry(args.thirdOperator, 1, args.firstOperator, args.secondOperator));
 			args.firstOperands.push(difficultyByLevel[lvl].op[0]);
 			args.secondOperands.push(difficultyByLevel[lvl].op[1] || difficultyByLevel[lvl].op[0]);
 		};
@@ -250,8 +250,10 @@ function generateOperations(_qtt, _lvl) {
 	};
 
 	//Function to validate if the entry is already in the array
-	function validateEntry(_arr, _type) {
+	function validateEntry(_arr, _type, _arr2 = [], _arr3 = []) {
 		const arr = _arr;
+		const arr2 = _arr2;
+		const arr3 = _arr3;
 		const type = _type;
 		const max = difficultyByLevel[lvl].max;
 		const min = difficultyByLevel[lvl].min;
@@ -263,7 +265,7 @@ function generateOperations(_qtt, _lvl) {
 				value = rand(min, max);
 			};
 		} else if (type === 1) {
-			while (arr.includes(value)) {
+			while (arr.includes(value) || arr2.includes(value) || arr3.includes(value)) {
 				value = entries[rand(entries.length)];
 			};
 		};
@@ -277,3 +279,5 @@ function generateOperations(_qtt, _lvl) {
 };
 
 module.exports = deliveryOperation;
+
+// deliveryOperation(10,5);
