@@ -1,4 +1,4 @@
-const arrCalculate = new Array(...$(".req-item").addClass());
+let arrCalculate = new Array(...$(".req-item").addClass());
 const actualLife = 3;
 let resetTimeRun;
 let setTimeRun;
@@ -50,14 +50,15 @@ function sendData() {
             if (parseInt(data.life) !== actualLife) life()
             //gera bugs, troque.
             $('#match-current').text(data.subLevel + '/3');
-            if (data.correctAnswer) timeLine.eq(parseInt(data.subLevel) - 2).css('backgroundColor', '#68FF74');
+            if (data.correctAnswer)timeLine.eq(parseInt(data.subLevel) - 2).css('backgroundColor', '#68FF74');
             if (parseInt(data.lvl) !== parseInt($('#lvl-number-externo h2').text())) {
                 timeLine.css('backgroundColor', '#313640');
-                // problemsLevel = data.levelProblems;
+                modalPassLvl();
+                operarionsUsed(data.lvl);
             }
             $('#lvl-number-externo h2').text(data.lvl);
             if (data.score) scoreItem.text(score);
-            resetProblem(data.currentProblemPieces, data.currentProblemResult);
+            resetProblem(data.currentProblemPieces, data.currentProblemResult, data.numEntries);
             if (setTimeRun) timeRun(180);
             else resetTimeRun = true;
             alert(JSON.stringify(data));
@@ -70,7 +71,7 @@ function sendData() {
 
 //---------------
 
-function resetProblem(pieces, result) {
+function resetProblem(pieces, result, numEntries) {
     $("#number-div-two").html('');
     for (let i of pieces) {
         const spanInfo = $('<span>').text(i);
@@ -80,6 +81,8 @@ function resetProblem(pieces, result) {
         $("#number-div-two").append(numPieces);
     }
     $("#result").text(result);
+
+    entries(numEntries);
     start();
 }
 
@@ -89,8 +92,53 @@ const life = (() => {
     return function () {
         hearts[index].src = "./assets/img/empty-heart.svg";
         if (index === 0) modalDeath();
-        else index--;
+        else {
+            index--;
+            actualLife--;
+        }
     };
+})();
+
+const entries = (num)=>{
+    console.log('entries played');
+    $('#calc ul').text('');
+    for(let i = 0; i<num*2-1; i++){
+        const elementDiv = $('<div>').attr('id',String(i+1))
+            .addClass('req-item');
+        (i%2 === 0)? elementDiv.addClass('num'): elementDiv.addClass('ope');
+        $('#calc ul').append(elementDiv);
+    }
+    arrCalculate = new Array(...$(".req-item").addClass());
+};
+
+const operarionsUsed = (()=>{
+    const arr = [['+'],['+'],['-'],['-'],['+','-'],['+','-'],['x'],['/'],['x','/'],['x','/']];
+    return function(lvl){
+        const itemsDiv = $('.operations-item');
+        const itemsSpan = $('.operations-item > span');
+        let position;
+        for(let i of arr[lvl-1]){
+            console.log(i);
+            console.log(position);
+            itemsSpan.each(function(){
+                if((position == undefined) || arr[lvl-1].length === 1){
+                    console.log(123);
+                    $(this).parent().css('backgroundColor','#2f2f2f');
+                    $(this).css({
+                        "backgroundColor":"#313640",
+                        "color":"#272727"
+                    });
+                }
+                if(i === $(this).text())position = $(itemsSpan).index(this);
+                else return;
+            });
+            itemsDiv.eq(position).css('backgroundColor','#F54460');
+            itemsSpan.eq(position).css({
+                "backgroundColor":"#AD0025",
+                "color":"white"
+            })
+        }
+    }
 })();
 
 function timeRun(defaultTime) {
@@ -121,7 +169,8 @@ function timeRun(defaultTime) {
 
 function cloneOpItem(_cloneItem, _overwriteOp) {
     const opWrite = _overwriteOp;
-    const newItem = $('<div>').addClass('noselect operations-item');
+    const newItem = $('<div>').addClass('noselect operations-item').css('backgroundColor','#F54460');
+    $('#operations').css('height','90%');
     const cloneItem = _cloneItem;
     const contentItem = cloneItem.textContent.match(/[+-/x]/)[0];
     let idRef;
@@ -143,6 +192,10 @@ function cloneOpItem(_cloneItem, _overwriteOp) {
             newItem.append('<span>/</span>');
             break;
     }
+    newItem.children().css({
+        "backgroundColor":"#AD0025",
+        "color":"white"
+    })
     $(idRef).before(newItem);
     $(newItem).draggable({ cancel: false, revert: "invalid", scroll: false, snap: '.req-item' })
     opWrite.textContent = contentItem;
@@ -164,7 +217,6 @@ function loadGame(id) {
             }
         })
         .then((data) => {
-            console.log(data);
             const dataElements = data[0];
             for (let i of dataElements) {
                 const spanInfo = $('<span>').text(i);
@@ -174,6 +226,8 @@ function loadGame(id) {
                 $("#number-div-two").append(numPieces);
             }
             $("#result").text(data[1]);
+            console.log(operarionsUsed);
+            operarionsUsed(1);
             start();
         });
 }
@@ -301,6 +355,30 @@ function modalTimeOut() {
         })
         sendData();
     });
+}
+
+function modalPassLvl(){
+    $('.modal-container').addClass('fundo-black');
+        $('.btn').removeClass('btn-tempo');
+        $('.btn').removeClass('btn-perdeu');
+        $('.btn').addClass('btn-passou');
+
+        $('.modal h1').removeClass('color-white');
+        $('.modal h1').addClass('color-laranja');
+
+        $('.modal h1').html('VOCÊ<span>ARREBENTOU</span>');
+        $('.modal h2').html('Passou de Fase');
+
+        $('.modal h2').removeClass('color-white');
+        $('.modal h2').addClass('color-azul');
+
+        $('.modal').removeClass('background-azul')
+        $('.modal').removeClass('background-rosa');
+        $('.modal').addClass('background-verde')
+
+        $('#fechar-modal').click(function () {
+            $('.modal-container').removeClass('fundo-black');
+        });
 }
 
 timeRun(180);

@@ -21,9 +21,16 @@ function updateData(_playerData) {
                 playersJson[playerToBeUpdatedIndex].subLevel =
                     _playerData.subLevel;
             }
+            if (_playerData.currentProblemPieces) {
+                playersJson[playerToBeUpdatedIndex].currentProblemPieces =
+                    +_playerData.currentProblemPieces;
+            }
             if (_playerData.currentProblemResult) {
                 playersJson[playerToBeUpdatedIndex].currentProblemResult =
-                    +_playerData.currentProblemResult[0];
+                    +_playerData.currentProblemResult;
+            }
+            if (_playerData.numEntries) {
+                playersJson[playerToBeUpdatedIndex].numEntries = _playerData.numEntries;
             }
             if (_playerData.life) {
                 playersJson[playerToBeUpdatedIndex].life = _playerData.life;
