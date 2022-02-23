@@ -20,7 +20,9 @@ $(function () {
     }
 });
 
-$("#math-div").on("click", function () {
+$("#math-div").on("click", sendData);
+
+function sendData() {
     const check = arrCalculate.every((item) => /^[+-x/]$|^\d+$/.test(item));
     const playerProblemString = arrCalculate.join(" ");
     
@@ -42,7 +44,6 @@ $("#math-div").on("click", function () {
                 window.location.href = "http://localhost:3001/";
             }
         }).done((data) => {
-            console.log(data);
             const scoreItem = $('#score h2');
             const score = parseInt(scoreItem.text()) + data.score;
             const timeLine = $('.desafio-number')
@@ -65,7 +66,7 @@ $("#math-div").on("click", function () {
         //not-fetch
         console.log("invalid");
     }
-});
+};
 
 //---------------
 
@@ -87,7 +88,7 @@ const life = (() => {
     let index = hearts.length - 1;
     return function () {
         hearts[index].src = "./assets/img/empty-heart.svg";
-        if (index === 0) console.log("Morreu");
+        if (index === 0)modalDeath();
         else index--;
     };
 })();
@@ -98,6 +99,7 @@ function timeRun(defaultTime) {
         if (defaultTime - timer === -1) {
             clearInterval(intervalTimer);
             setTimeRun = true;
+            modalTimeOut();
         }
         else if(resetTimeRun){
             resetTimeRun = false;
@@ -111,7 +113,7 @@ function timeRun(defaultTime) {
                     ? `${(defaultTime - timer) % 60}`
                     : `0${(defaultTime - timer) % 60}`;
             const str = defaultMinutes + ":" + defaultSeconds;
-            const get_time = $("#time h2").text(str);
+            $("#time h2").text(str);
         }
         timer++;
     }, 1000);
@@ -242,9 +244,63 @@ function deletePlayer(playerId){
                     window.location.href = "http://localhost:3001/"    
                 }
                 window.location.href = "http://localhost:3001/"
-                // alert('Sessão encerrada, retornara para pagina inicial.');
             }
     })
+}
+
+function modalDeath(){
+        $('.modal-container').addClass('fundo-black');
+        // $('.modal').addClass('show-modal')
+        $('.btn').removeClass('btn-tempo');
+        $('.btn').removeClass('btn-passou');
+        $('.btn').addClass('btn-perdeu');
+
+        $('.modal h1').removeClass('color-white');
+        $('.modal h1').addClass('color-laranja');
+
+        $('.modal h1').html('VIDAS <span>ESGOTADAS</span>');
+        $('.modal h2').html('Você Perdeu');
+
+        $('.modal h2').removeClass('color-azul');
+        $('.modal h2').addClass('color-white');
+
+        $('.modal').removeClass('background-azul')
+        $('.modal').removeClass('background-verde')
+        $('.modal').addClass('background-rosa');
+
+        $('#fechar-modal').click(function() {
+            $('.modal-container').removeClass('fundo-black');
+            deletePlayer(window.location.search.replace("?id=", ""));
+        });
+}
+
+function modalTimeOut(){
+    $('.modal-container').addClass('fundo-black');
+    $('.btn').removeClass('btn-perdeu');
+    $('.btn').removeClass('btn-passou');
+    $('.btn').addClass('btn-tempo');
+ 
+    $('.modal h1').removeClass('color-laranja');
+    $('.modal h1').addClass('color-white');
+
+    $('.modal h1').html('TEMPO<span>ESGOTADO</span>');
+    $('.modal h2').html('Perdeu uma Vida');
+
+    $('.modal h2').removeClass('color-white');
+    $('.modal h2').removeClass('color-azul');
+
+    $('.modal').removeClass('background-rosa');
+    $('.modal').removeClass('background-verde');
+    $('.modal').addClass('background-azul');
+
+    $('#fechar-modal').click(function() {
+        $('.modal-container').removeClass('fundo-black');
+        arrCalculate.map(k=>{
+            const index = arrCalculate.indexOf(k);
+            return (index%2===0)? '200': 'x';
+        })
+        sendData();
+    });
 }
 
 timeRun(180);
