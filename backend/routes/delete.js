@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 const router = express.Router();
 router.use(express.json());
 
@@ -17,8 +18,10 @@ router.delete('/deleteData', function (req, res) {
         const updateReturn = updateRanking(currentPlayer.player, currentPlayer.score, currentPlayer.lvl);
         deleteCurrentPlayer(currentPlayer.id);
         try {
-            res.json(updateReturn);
+            // res.json(updateReturn);
+            res.send('OK');
         } catch (error) {
+            console.log(error);
             res.send(error);
         }
     }

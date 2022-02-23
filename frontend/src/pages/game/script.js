@@ -226,25 +226,25 @@ function start() {
         });
 }
 
-function deletePlayer(){
-    const url = 'http://localhost:3000/';
+function deletePlayer(playerId){
+    const url = 'http://localhost:3000';
     $.ajax({
-        url: `${url}/deleteData`,
+        url: `${url}/delete/deleteData`,
             method: "DELETE",
             headers: { Accepts: "application/json" },
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify({
-                id: game_id
+                id: playerId
             }),
-            error: function(){
-                alert('erro inesperado.');
-                window.location.href = "http://localhost:3001/";
+            complete: function(){
+                if(window.confirm('Sessão encerrada, retornara para pagina inicial.')){
+                    window.location.href = "http://localhost:3001/"    
+                }
+                window.location.href = "http://localhost:3001/"
+                // alert('Sessão encerrada, retornara para pagina inicial.');
             }
-    }).done(function(){
-        window.alert('Sessão encerrada, retornara para pagina inicial.');
-        window.location.href = "http://localhost:3001/"
-    });
+    })
 }
 
 timeRun(180);
