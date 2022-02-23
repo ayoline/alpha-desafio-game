@@ -1,5 +1,5 @@
 let arrCalculate = new Array(...$(".req-item").addClass());
-const actualLife = 3;
+let actualLife = 3;
 let resetTimeRun;
 let setTimeRun;
 
@@ -143,9 +143,9 @@ function timeRun(defaultTime) {
     let timer = 0;
     const intervalTimer = setInterval(() => {
         if (defaultTime - timer === -1) {
-            clearInterval(intervalTimer);
-            setTimeRun = true;
             modalTimeOut();
+            setTimeRun = true;
+            clearInterval(intervalTimer);
         }
         else if (resetTimeRun) {
             resetTimeRun = false;
@@ -346,10 +346,14 @@ function modalTimeOut() {
 
     $('#fechar-modal').click(function () {
         $('.modal-container').removeClass('fundo-black');
-        arrCalculate.map(k => {
-            const index = arrCalculate.indexOf(k);
-            return (index % 2 === 0) ? '200' : 'x';
-        })
+        for(let i in arrCalculate){
+            if(i%2 === 0){
+                arrCalculate[i] = '200';
+            }else{
+                arrCalculate[i] = 'x';
+            }
+        }
+        console.log(arrCalculate);
         sendData();
     });
 }
