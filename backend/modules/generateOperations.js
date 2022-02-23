@@ -19,10 +19,10 @@ function deliveryOperation(_qtt, _lvl) {
 	while (validResponse === false) {
 		if (response[1] > 0 && (response[1] % 2) === 0) {
 			//===================DEBUGGING========================
-			// console.log('===========================');
-			// console.log(`Resposta tratada: ${response[1]}`);
-			// console.log('===========================');
-			// console.log(arr[2]);
+			console.log('===========================');
+			console.log(`Resposta tratada: ${response[1]}`);
+			console.log('===========================');
+			console.log(arr[2]);
 			//===================DEBUGGING========================
 			validResponse = true;
 		} else {
@@ -127,7 +127,7 @@ function generateOperations(_qtt, _lvl) {
 	const response = [];
 	let operations = [];
 	let operation;
-	
+
 
 	//Populating the entries array
 	while (entries.length < qtt) {
@@ -214,7 +214,7 @@ function generateOperations(_qtt, _lvl) {
 
 			return tmpRes;
 		};
-    
+
 		// Function to get the result of the next operations
 		function nextOperandRes() {
 			if (sOp.length > 0) {
@@ -269,11 +269,11 @@ function generateOperations(_qtt, _lvl) {
 		};
 
 		return value
-	}; 
+	};
 
 	operation = operations.pop();
 
-	return [response,numEntries, operation];
+	return [response, numEntries, operation];
 };
 
 module.exports = deliveryOperation;
