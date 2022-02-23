@@ -8,10 +8,11 @@
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently
     supported by Chrome, Edge, Opera and Firefox */
-  }
+}
 
-  html, body {
-    font-family: 'Solway', serif;
+html,
+body {
+    font-family: "Solway", serif;
     overflow: hidden;
     display: flex;
     height: 100%;
@@ -19,39 +20,44 @@
     margin: 0;
 }
 
-h4{
+h4 {
     letter-spacing: clamp(-0.1em, -0.1vw, -0.1em);
-    margin-bottom: clamp(0.3em, 0.6vw, 0.5em );
+    margin-bottom: clamp(0.3em, 0.6vw, 0.5em);
     font-size: clamp(0.45em, 1.3vw, 1.5em);
     margin-top: clamp(0.6em, 1.3vw, 1.1em);
     text-align: center;
     text-align: center;
     font-weight: 1000;
-    color: #9693D0;
+    color: #9693d0;
 }
 
-ul{
+ul {
     list-style: none;
 }
 
-main{
-    background-color: #034ABC;
+main {
+    background-color: #034abc;
     width: 100%;
+    min-width: 1280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /* CÓDIGO RELACIONADO A PRIMEIRA DIV */
 
-#sec-one{
+#sec-one {
     height: clamp(3.7em, calc(12vw - 55px), 13em);
-    align-items: flex-end;
     display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
-#sec-one div{
+#sec-one div {
     border-radius: clamp(0.8em, 2vw, 2.5em);
     box-shadow: 0 5px 0 #000000;
     height: clamp(2.5em, 7vw, 8em);
-    background-color: #343C4F;
+    background-color: #343c4f;
     border: 3px solid black;
     justify-content: center;
     align-items: center;
@@ -61,20 +67,19 @@ main{
 ul {
     border-radius: clamp(0.1em, 2vw, 1.4em);
     width: clamp(1.3em, 11vw, 13em);
-    background-color: #242B38;
+    background-color: #242b38;
     height: 83%;
 }
 
-#score{
+#score {
     width: clamp(5em, 15vw, 17em);
-    margin-left: 4.7%;
 }
 
-#score h2{
+#score h2 {
     color: white;
 }
 
-.time-score{
+.time-score {
     letter-spacing: clamp(-0.1em, 0em, -0.1em);
     margin-top: clamp(0em, 0.5vw, 0.2em);
     font-size: clamp(0.45em, 1vw, 1rem);
@@ -82,110 +87,106 @@ ul {
     margin-left: -40px;
     text-align: center;
     font-weight: 1000;
-    color: #00B479;
+    color: #00b479;
     display: block;
 }
 
-.lvl-number{
+.lvl-number {
     font-size: clamp(2.5em, 3vw, 3.2em);
     text-align: center;
     font-weight: 1000;
-    color: #F4B522;
+    color: #f4b522;
     margin: 0;
 }
 
-#time{
-    margin-left: clamp(4em, calc(20vw - 30px), 17em);
+#time {
     width: clamp(5em, 15vw, 17em);
 }
 
-#life-info{
+#life-info {
     width: clamp(8em, 27vw, 32em);
-    margin-left: 14%;
 }
 
-#life-info ul{
+#life-info ul {
     width: clamp(8.1em, 26vw, 30.5em);
     justify-content: space-around;
     display: flex;
     padding: 0;
 }
 
-
-#life-info li{
+#life-info li {
     justify-content: space-around;
     flex-direction: column;
     list-style: none;
     display: flex;
     height: none;
     width: 60px;
-
 }
 
-#life-info span{
+#life-info span {
     letter-spacing: clamp(-0.1em, 0vw, -0.1em);
     font-size: clamp(0.5em, 1.1vw, 1em);
     text-align: center;
     font-weight: 1000;
-    color: #00B479;
+    color: #00b479;
     display: block;
 }
 
-#lvl-number-externo h2{
+#lvl-number-externo h2 {
     font-size: clamp(1.1em, 3vw, 3em);
     text-align: center;
     font-weight: 1000;
-    color: #F4B522;
-} 
+    color: #f4b522;
+}
 
-#match-current{
+#match-current {
     font-size: clamp(1.2em, 3vw, 3em);
     font-weight: 1000;
-    color: #257FFE;
+    color: #257ffe;
     margin: 0;
 }
 
-#life{
+#life {
     margin-left: clamp(0.1em, calc(6vw - 29px), 3em);
     flex-direction: column;
     align-items: center;
     display: flex;
 }
-#life span{
+#life span {
     margin-top: clamp(-0.5em, 0vw, -0.5em);
 }
 
-
-#heart{
+#heart {
     width: clamp(7.9em, 13vw, 10.5em);
     justify-content: space-between;
     display: flex;
 }
 
-img{
+img {
     margin-left: clamp(0.5em, calc(4vw - 20px), 0.9em);
     width: clamp(1.7em, 3vw, 2.4em);
 }
 
 /* CÓDIGO RELACIONADO A SEGUNDA DIV */
 
-#sec-two{
+#sec-two {
     height: clamp(11em, calc(33vw - 60px), 37em);
-    align-items: center;
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#buttons{
+#buttons {
     flex-direction: column;
     align-items: center;
     text-align: center;
     font-weight: 1000;
     display: flex;
     height: 100%;
-    width: 20%;
+    width: 14%;
 }
 
-#buttons div{
+#buttons div {
     border-radius: clamp(0.6em, 1.6vw, 1.6em);
     width: clamp(2em, 6vw, 6.7em);
     height: clamp(2em, 6vw, 7em);
@@ -193,12 +194,12 @@ img{
     margin-top: 0%;
 }
 
-#number{
+#number {
     box-shadow: 0px clamp(0.25em, 0.9vw, 0.5em) #000000;
     border-radius: clamp(1.7em, 5vw, 2.5em);
     width: clamp(26em, 50vw, 60em);
     height: clamp(8em, 21vw, 25em);
-    background-color: #97761D;
+    background-color: #97761d;
     border: 3px solid black;
     justify-content: center;
     align-items: center;
@@ -206,8 +207,8 @@ img{
     display: flex;
 }
 
-#number-div-one{
-    background-color: #F6B506;
+#number-div-one {
+    background-color: #f6b506;
     justify-content: center;
     border-radius: 30px;
     align-items: center;
@@ -217,7 +218,7 @@ img{
     width: 97%;
 }
 
-#number-div-two{
+#number-div-two {
     display: flex;
     flex-wrap: wrap;
     height: 80%;
@@ -226,13 +227,13 @@ img{
     justify-content: center;
 }
 
-#number button{
+#number button {
     width: clamp(2.2em, 6vw, 8em);
     height: clamp(2.4em, 6vw, 8.2em);
     border-radius: clamp(0.6em, 1.7vw, 1.8em);
     border: clamp(0.12em, 0.2vw, 0.23em) solid black;
     margin-left: clamp(1em, 2.7vw, 2.5em);
-    background-color: #BFA6A3;
+    background-color: #bfa6a3;
     box-shadow: 0px clamp(0.2em, 0.3vw, 0.35em) #000000;
     padding: 0;
     display: flex;
@@ -240,7 +241,7 @@ img{
     align-items: center;
 }
 
-#number button span{
+#number button span {
     background-color: white;
     display: flex;
     justify-content: center;
@@ -248,17 +249,14 @@ img{
     border-radius: clamp(0.15em, 100vw, 0.5em);
     width: clamp(0.5em, 5vw, 2.1em);
     height: clamp(0.55em, 5vw, 2.1em);
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: clamp(1em, 2.6vw, 3.2em);
     font-weight: 1000;
     letter-spacing: -2px;
 }
 
-
-
-
-#operations{
-    margin-left: clamp(2em, 10vw, 10em);
+#operations {
+    margin-left: clamp(2em, 10vw, 8em);
     width: clamp(3em, 5vw, 6em);
     height: 100%;
     display: flex;
@@ -266,7 +264,7 @@ img{
     justify-content: space-between;
 }
 
-#operations div{
+#operations div {
     /* background-color: #F54460; COR QUANDO DISPONIVEL PRA USO*/
     background-color: #2f2f2f;
     width: 100%;
@@ -280,7 +278,7 @@ img{
     box-shadow: 0px clamp(0.2em, 0.3vw, 0.3em) #000000;
 }
 
-#operations div span{
+#operations div span {
     /* background-color: #AD0025; COR QUANDO DISPONIVEL PRA USO*/
     background-color: #313640;
     width: 90%;
@@ -289,14 +287,14 @@ img{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     /* color: white; COR QUANDO DISPONIVEL PRA USO*/
     color: #272727;
     font-size: clamp(1em, 2.6vw, 3em);
     font-weight: 1000;
 }
 
-#operation-name h2{
+#operation-name h2 {
     writing-mode: vertical-rl;
     color: white;
     font-weight: 1000;
@@ -304,19 +302,22 @@ img{
     margin-left: clamp(0.9em, 0vw, 1.2em);
 }
 
-#firt{
+#first {
     margin-top: clamp(1.7em, 3.5vw, 4em);
 }
 
 /* CÓDIGO RELACIONADO A TERCEIRA SECTION */
 
-#sec-three{
-    height: clamp(7em, 15vw, 15em);
+#sec-three {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    height: clamp(3.3em, 8vw, 9em);
+    margin-top: 0.1%;
 }
 
-#calc{
-    background-color: #343C4F;
+#calc {
+    background-color: #343c4f;
     width: clamp(15em, 42vw, 50em);
     height: clamp(3.3em, 8vw, 9em);
     border-radius: clamp(1em, 1.7vw, 1.6em);
@@ -324,11 +325,10 @@ img{
     justify-content: center;
     align-items: center;
     border: 3px solid black;
-    margin-left: clamp(2em, calc(20vw - 50px), 20em);
     box-shadow: 0 7px 0px #000000;
 }
 
-#calc ul{
+#calc ul {
     width: clamp(12em, 41vw, 48.5em);
     border-radius: clamp(0.7em, 1.3vw, 1.4em);
     display: flex;
@@ -338,14 +338,14 @@ img{
     padding: 0;
 }
 
-.num{
+.num {
     width: clamp(2.2em, 5.2vw, 6.4em);
     height: clamp(2.4em, 5.4vw, 6.6em);
     border-radius: clamp(0.6em, 2vw, 1.8em);
-    background-color: #837F7F;
+    background-color: #837f7f;
 }
 
-.ope{
+.ope {
     width: clamp(1.9em, 5vw, 5.5em);
     border-radius: clamp(0.8em, 1.6vw, 2em);
     font-family: "Roboto", sans-serif;
@@ -357,10 +357,10 @@ img{
     color: #fff;
     display: flex;
     align-items: center;
-    justify-content: center;}
+    justify-content: center;
+}
 
-
-i{
+i {
     font-style: normal;
     color: white;
     font-size: clamp(2.3em, 4.8vw, 5em);
@@ -370,45 +370,73 @@ i{
     margin-right: clamp(0.1em, 0vw, 0.15em);
 }
 
-#result{
+#result {
     font-family: Solway;
     font-weight: 900;
     font-size: clamp(2.7em, 7vw, 8em);
-    color: #F4B522;
+    color: #f4b522;
     text-shadow: 0 5px 0 #000000;
+    min-width: 16%;
 }
 
-#sec-three button{
-    margin-left: clamp(1.2em, calc(9vw - 29px), 8em);
+#button-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#math-div {
     width: clamp(5em, 11vw, 16em);
     height: clamp(2.7em, 6vw, 8em);
-    margin-top: clamp(2.1em, 4vw, 3.6em);
     border-radius: clamp(1em, 2vw, 2em);
-    background-color: #E54AD4;
+    background-color: #e54ad4;
     border: 3px solid black;
     display: flex;
+    cursor: pointer;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 5px 0 #000000;
+    box-shadow: 0 6px 0 #000000;
     padding: 0;
+    transition: 100ms;
 }
 
-#sec-three button div{
+#math-div div {
     width: clamp(3.8em, 10vw, 5.6em);
     height: clamp(2em, 5vw, 2.5em);
     border-radius: clamp(0.6em, 1vw, 1.3em);
-    background-color: #931EAA;
+    background-color: #931eaa;
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
     font-size: clamp(0.9em, 3vw, 2.5em);
     font-weight: 500;
-    font-family: 'Solway', serif;
-
+    font-family: "Solway", serif;
+    transition: 100ms;
 }
 
-#ajust-block{
+#math-div:hover {
+    margin-top: 6px;
+    box-shadow: 0 3px 0 #000000;
+    background-color: #e47cd8;
+}
+
+#math-div:active {
+    margin-top: 12px;
+    box-shadow: 0 1px 0 #000000;
+    background-color: #f0afe8;
+}
+
+#math-div div:hover {
+    background-color: #b239ca;
+}
+
+#math-div div:active {
+    background-color: #cb62e0;
+}
+
+#ajust-block {
     display: flex;
     flex-direction: row;
     align-items: center;
