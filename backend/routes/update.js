@@ -25,6 +25,9 @@ router.put("/updateData", function (req, res) {
         const objTime = getTimer(playerCurrentObject.timer);
 
         if (verifyPlayerCalc(reqData.problemString, playerCurrentObject.currentProblemResult) && objTime.check) { // player acertou
+            if(playerCurrentObject.lvl === 10 && playerCurrentObject.subLevel === 3){
+                res.json({endGame: true});
+            }
             if (playerCurrentObject.subLevel === 3) {
                 playerNewObject.lvl = playerCurrentObject.lvl + 1;
                 playerNewObject.subLevel = 1;

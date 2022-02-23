@@ -23,7 +23,7 @@ function updateData(_playerData) {
             }
             if (_playerData.currentProblemPieces) {
                 playersJson[playerToBeUpdatedIndex].currentProblemPieces =
-                    +_playerData.currentProblemPieces;
+                    _playerData.currentProblemPieces;
             }
             if (_playerData.currentProblemResult) {
                 playersJson[playerToBeUpdatedIndex].currentProblemResult =

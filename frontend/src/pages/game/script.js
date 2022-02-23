@@ -43,6 +43,9 @@ function sendData() {
                 window.location.href = "http://localhost:3001/";
             }
         }).done((data) => {
+            if(data.endGame){
+                window.location.href = 'http://localhost:3001/pages/win-page/?score='+$('#score h2');
+            }
             const scoreItem = $('#score h2');
             const score = parseInt(scoreItem.text()) + data.score;
             const timeLine = $('.desafio-number')
