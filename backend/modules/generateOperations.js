@@ -10,6 +10,7 @@ function deliveryOperation(_qtt, _lvl) {
 	let arr; //added to insert the number of entries
 	const qtt = _qtt;
 	const lvl = _lvl;
+	if (lvl > 9) return;
 	let response = [];
 	let validResponse = false;
 
@@ -141,10 +142,10 @@ function generateOperations(_qtt, _lvl) {
 				tmpRes = +(fO[0] * sO[0]);
 			} else if (fOp[0] === '/') {
 				// tmpRes = +(Math.floor(fO[0] / sO[0]));
-				if(Number.isInteger(fO[0]/sO[0])){
+				if (Number.isInteger(fO[0] / sO[0])) {
 					tmpRes = +(fO[0] / sO[0]);
-				}else{
-					const rest = fO[0]%sO[0];
+				} else {
+					const rest = fO[0] % sO[0];
 					fO[0] -= rest;
 					obj.firstOperator = fO[0];
 					tmpRes = +(fO[0] / sO[0]);
@@ -165,9 +166,9 @@ function generateOperations(_qtt, _lvl) {
 					res = +(tmpRes * tO[0]);
 				} else if (sOp[0] === '/') {
 					res = +(tmpRes / tO[0]);
-					if(Number.isInteger(tmpRes/tO[0])){
+					if (Number.isInteger(tmpRes / tO[0])) {
 						tmpRes = +(tmpRes / tO[0]);
-					}else{
+					} else {
 						tO[0] = fO[0];
 						obj.thirdOperator = tO[0];
 						tmpRes = +(tmpRes / tO[0]);
