@@ -30,7 +30,7 @@ router.post('/saveNewUser', function (req, res) {
             if (!err) {
                 res.json(newUser);
             } else {
-                console.log('Erro: ' + err);
+                console.log('Error: ' + err);
             }
         });
     }
