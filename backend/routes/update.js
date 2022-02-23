@@ -25,8 +25,12 @@ router.put("/updateData", function (req, res) {
         const objTime = getTimer(playerCurrentObject.timer);
 
         if (verifyPlayerCalc(reqData.problemString, playerCurrentObject.currentProblemResult) && objTime.check) { // player acertou
-            if(playerCurrentObject.lvl === 10 && playerCurrentObject.subLevel === 3){
-                res.json({endGame: true});
+            if (playerCurrentObject.lvl === 10 && playerCurrentObject.subLevel === 3) {
+                try {
+                    res.json({ endGame: true });
+                } catch (error) {
+                    console.log('Endgame error: ' + error);
+                }
             }
             if (playerCurrentObject.subLevel === 3) {
                 playerNewObject.lvl = playerCurrentObject.lvl + 1;
@@ -39,13 +43,13 @@ router.put("/updateData", function (req, res) {
             playerNewObject.life = playerCurrentObject.life;
             playerNewObject.score = scoreCal(playerCurrentObject.timer, Math.floor(new Date() / 1000), playerCurrentObject.lvl);
             playerNewObject.timer = Math.ceil(new Date() / 1000);
-            playerNewObject.currentProblemResult = newProblem[1];
-            playerNewObject.currentProblemPieces = newProblem[0];
-            playerNewObject.numEntries = newProblem[2];
+            playerNewObject.currentProblemResult = playerNewObject.lvl < 9 ? newProblem[1] : 0;
+            playerNewObject.currentProblemPieces = playerNewObject.lvl < 9 ? newProblem[0] : 0;
+            playerNewObject.numEntries = playerNewObject.lvl < 9 ? newProblem[2] : 0;
             updateData(playerNewObject);
             playerNewObject.correctAnswer = true;
             try {
-                res.json(playerNewObject);
+                if (playerNewObject.lvl < 9) { res.json(playerNewObject) };
             } catch (error) {
                 console.log('Error: ' + error);
             }
