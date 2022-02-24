@@ -1,4 +1,5 @@
 const apiURL = "http://localhost:3000/";
+const audio = $("#click-sound")[0];
 
 $(document).ready(function () {
     $.ajax({
@@ -22,7 +23,7 @@ function renderRanking(data) {
 
 $("#play-button").on("click", function () {
     const newUsername = $("#name-input").val();
-    if (/^\w\w\w+$/.test(newUsername)) {
+    if (/^\w\w\w+$/.test(newUsername) && newUsername.length <= 10) {
         $("#error-message").text('');
         $.post({
             url: apiURL + "save/saveNewUser",
@@ -37,6 +38,10 @@ $("#play-button").on("click", function () {
         });
     } else {
         $("#error-message")
-            .text('Username deve conter no minimo 3 caracteres alphanumericos')
+            .text('Nome deve conter entre 3 e 10 caracteres alfanuméricos')
     }
+});
+
+$("#play-button").click(function() {
+    audio.play();
 });

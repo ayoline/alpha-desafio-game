@@ -255,6 +255,10 @@ img {
     letter-spacing: -2px;
 }
 
+#number button:hover {
+    cursor: grab;
+}
+
 #operations {
     margin-left: clamp(2em, 10vw, 8em);
     width: clamp(3em, 5vw, 6em);
@@ -262,6 +266,10 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+#operations div:hover {
+    cursor: grab;
 }
 
 #operations div {

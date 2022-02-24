@@ -54,6 +54,7 @@ main {
     padding: 4px 12px;
     font-size: 30px;
     font-family: var(--zcool);
+    text-transform: uppercase;
 }
 
 #play-button {
@@ -70,6 +71,7 @@ main {
     box-shadow: 0 8px 0 0 #5c6391;
     cursor: pointer;
     transition: 100ms;
+    text-transform: uppercase;
 }
 
 #error-message{
