@@ -1,1 +1,22 @@
-[{"player":"Linus","lvl":10,"score":430618},{"player":"hellowoooudyyy","lvl":11,"score":85504},{"player":"Anderson","lvl":11,"score":82432}]
+[
+    {
+        "player": "Churrasco-revenge",
+        "lvl": 10,
+        "score": 430618
+    },
+    {
+        "player": "hellooooWorld",
+        "lvl": 9,
+        "score": 85504
+    },
+    {
+        "player": "Fulano",
+        "lvl": 8,
+        "score": 82432
+    },
+    {
+        "player": "Beltrano",
+        "lvl": 5,
+        "score": 50000
+    }
+]
