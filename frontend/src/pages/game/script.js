@@ -43,8 +43,9 @@ function sendData() {
                 window.location.href = "http://localhost:3001/";
             }
         }).done((data) => {
-            if(data.endGame){
-                window.location.href = 'http://localhost:3001/pages/win-page/?score='+$('#score h2').text();
+            if (data.endGame) {
+                const finalScore = data.score
+                window.location.href = 'http://localhost:3001/pages/win-page/?score=' + $('#score h2').text();
             }
             const scoreItem = $('#score h2');
             const score = parseInt(scoreItem.text()) + data.score;
@@ -349,10 +350,10 @@ function modalTimeOut() {
 
     $('#fechar-modal').click(function () {
         $('.modal-container').removeClass('fundo-black');
-        for(let i in arrCalculate){
-            if(i%2 === 0){
+        for (let i in arrCalculate) {
+            if (i % 2 === 0) {
                 arrCalculate[i] = '200';
-            }else{
+            } else {
                 arrCalculate[i] = 'x';
             }
         }

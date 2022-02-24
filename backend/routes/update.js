@@ -25,9 +25,6 @@ router.put("/updateData", function (req, res) {
         const objTime = getTimer(playerCurrentObject.timer);
 
         if (verifyPlayerCalc(reqData.problemString, playerCurrentObject.currentProblemResult) && objTime.check) { // player acertou
-            if(playerCurrentObject.lvl === 10 && playerCurrentObject.subLevel === 3){
-                res.json({endGame: true});
-            }
             if (playerCurrentObject.subLevel === 3) {
                 playerNewObject.lvl = playerCurrentObject.lvl + 1;
                 playerNewObject.subLevel = 1;
@@ -39,15 +36,28 @@ router.put("/updateData", function (req, res) {
             playerNewObject.life = playerCurrentObject.life;
             playerNewObject.score = scoreCal(playerCurrentObject.timer, Math.floor(new Date() / 1000), playerCurrentObject.lvl);
             playerNewObject.timer = Math.ceil(new Date() / 1000);
-            playerNewObject.currentProblemResult = newProblem[1];
-            playerNewObject.currentProblemPieces = newProblem[0];
-            playerNewObject.numEntries = newProblem[2];
+            playerNewObject.currentProblemResult = playerNewObject.lvl < 11 ? newProblem[1] : 0;
+            playerNewObject.currentProblemPieces = playerNewObject.lvl < 11 ? newProblem[0] : 0;
+            playerNewObject.numEntries = playerNewObject.lvl < 11 ? newProblem[2] : 0;
             updateData(playerNewObject);
             playerNewObject.correctAnswer = true;
-            try {
-                res.json(playerNewObject);
-            } catch (error) {
-                console.log('Error: ' + error);
+
+            if (playerNewObject.lvl > 10) {
+                const finalScore = playerNewObject.score;
+                playerNewObject.endGame = true;
+                updateRanking(playerCurrentObject);
+                deleteCurrentPlayer(playerNewObject.id);
+                try {
+                    res.json({ endGame: true, finalScore: finalScore });
+                } catch (error) {
+                    console.log('Endgame error: ' + error);
+                }
+            } else {
+                try {
+                    res.json(playerNewObject);
+                } catch (error) {
+                    console.log('Error: ' + error);
+                }
             }
         } else {                                                                  // player errou
             playerNewObject.lvl = playerCurrentObject.lvl;
