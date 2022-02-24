@@ -1,1 +1,106 @@
-[]
+[
+    {
+        "id": "N01zZ",
+        "player": "Anderson",
+        "lvl": 11,
+        "subLevel": 1,
+        "currentProblemPieces": [
+            3,
+            27,
+            24,
+            20,
+            22,
+            16,
+            18,
+            10,
+            29,
+            4
+        ],
+        "currentProblemResult": 88,
+        "numEntries": [
+            3
+        ],
+        "timer": 1645665922,
+        "timerCheck": true,
+        "life": 3,
+        "score": 161281
+    },
+    {
+        "id": "AMloH",
+        "player": "Anderson",
+        "lvl": 11,
+        "subLevel": 1,
+        "currentProblemPieces": [
+            3,
+            21,
+            23,
+            17,
+            15,
+            29,
+            30,
+            4,
+            28,
+            8
+        ],
+        "currentProblemResult": 290,
+        "numEntries": [
+            3
+        ],
+        "timer": 1645666456,
+        "timerCheck": true,
+        "life": 3,
+        "score": 163841
+    },
+    {
+        "id": "EWjNf",
+        "player": "Anderson",
+        "lvl": 11,
+        "subLevel": 1,
+        "currentProblemPieces": [
+            20,
+            7,
+            10,
+            6,
+            29,
+            26,
+            4,
+            28,
+            24,
+            13
+        ],
+        "currentProblemResult": 26,
+        "numEntries": [
+            3
+        ],
+        "timer": 1645666662,
+        "timerCheck": true,
+        "life": 3,
+        "score": 160257
+    },
+    {
+        "id": "IMZai",
+        "player": "hellowoooudyyy",
+        "lvl": 11,
+        "subLevel": 1,
+        "currentProblemPieces": [
+            22,
+            2,
+            3,
+            26,
+            12,
+            15,
+            9,
+            4,
+            27,
+            16
+        ],
+        "currentProblemResult": 60,
+        "numEntries": [
+            3
+        ],
+        "timer": 1645666775,
+        "timerCheck": true,
+        "life": 3,
+        "score": 161281
+    }
+]
