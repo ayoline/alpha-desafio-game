@@ -15,7 +15,6 @@ router.delete('/deleteData', function (req, res) {
     const currentPlayer = playersJson.find((el) => el.id === reqData.id);
 
     if (currentPlayer.id && currentPlayer.score && currentPlayer.lvl) {
-        const updateReturn = updateRanking(currentPlayer.player, currentPlayer.score, currentPlayer.lvl);
         deleteCurrentPlayer(currentPlayer.id);
         try {
             res.send('OK');

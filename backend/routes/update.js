@@ -45,8 +45,10 @@ router.put("/updateData", function (req, res) {
             if (playerNewObject.lvl > 10) {
                 const finalScore = playerNewObject.score;
                 playerNewObject.endGame = true;
-                updateRanking(playerCurrentObject);
-                deleteCurrentPlayer(playerNewObject.id);
+                playerNewObject.player = playerCurrentObject.player;
+                console.log(playerNewObject);
+                updateRanking(playerNewObject);
+                //deleteCurrentPlayer(playerNewObject.id);
                 try {
                     res.json({ endGame: true, finalScore: finalScore });
                 } catch (error) {
