@@ -46,7 +46,7 @@ router.put("/updateData", function (req, res) {
                 const finalScore = playerNewObject.score;
                 playerNewObject.endGame = true;
                 playerNewObject.player = playerCurrentObject.player;
-                console.log(playerNewObject);
+                playerNewObject.lvl--;
                 updateRanking(playerNewObject);
                 //deleteCurrentPlayer(playerNewObject.id);
                 try {
