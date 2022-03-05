@@ -1,7 +1,8 @@
-function verifyPlayerInput(playerString, result) {
-    const parsedPlayerString = playerString.replaceAll("x", "*");
-    function validatePlayerInput(string) {
-        const stringArr = string.split(" ");
+function verifyPlayerInput(_playerString, _result) {
+    const parsedPlayerString = _playerString.replaceAll("x", "*");
+
+    function validatePlayerInput(_string) {
+        const stringArr = _string.split(" ");
         let isValid = true;
 
         stringArr.forEach((currElement, index) => {
@@ -27,7 +28,8 @@ function verifyPlayerInput(playerString, result) {
     if (validatePlayerInput(parsedPlayerString)) {
         const calculate = Function("return " + parsedPlayerString);
         const playerResult = calculate();
-        return playerResult == result;
+
+        return playerResult == _result;
     } else {
         return "Invalid String";
     }

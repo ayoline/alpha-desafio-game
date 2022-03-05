@@ -1,59 +1,52 @@
 const fs = require('fs');
 
 function updateData(_playerData) {
+    const currentPlayer = _playerData;
     const playersJson = JSON.parse(
         fs.readFileSync("data/current-players.json", "utf8")
     );
 
-    let playerToBeUpdated;
-
-    if (_playerData.id) {
-        playerToBeUpdated = playersJson.find((el) => el.id === _playerData.id);
+    if (currentPlayer.id) {
+        const playerToBeUpdated = playersJson.find((el) => el.id === currentPlayer.id);
 
         if (playerToBeUpdated) {
-            const playerToBeUpdatedIndex =
-                playersJson.indexOf(playerToBeUpdated);
+            const playerToBeUpdatedIndex = playersJson.indexOf(playerToBeUpdated);
 
-            if (_playerData.lvl) {
-                playersJson[playerToBeUpdatedIndex].lvl = _playerData.lvl;
+            if (currentPlayer.lvl) {
+                playersJson[playerToBeUpdatedIndex].lvl = currentPlayer.lvl;
             }
-            if (_playerData.subLevel) {
-                playersJson[playerToBeUpdatedIndex].subLevel =
-                    _playerData.subLevel;
+            if (currentPlayer.subLevel) {
+                playersJson[playerToBeUpdatedIndex].subLevel = currentPlayer.subLevel;
             }
-            if (_playerData.currentProblemPieces) {
+            if (currentPlayer.currentProblemPieces) {
                 playersJson[playerToBeUpdatedIndex].currentProblemPieces =
-                    _playerData.currentProblemPieces;
+                    currentPlayer.currentProblemPieces;
             }
-            if (_playerData.currentProblemResult) {
+            if (currentPlayer.currentProblemResult) {
                 playersJson[playerToBeUpdatedIndex].currentProblemResult =
-                    +_playerData.currentProblemResult;
+                    parseInt(currentPlayer.currentProblemResult);
             }
-            if (_playerData.numEntries) {
-                playersJson[playerToBeUpdatedIndex].numEntries = _playerData.numEntries;
+            if (currentPlayer.numEntries) {
+                playersJson[playerToBeUpdatedIndex].numEntries = currentPlayer.numEntries;
             }
-            if (_playerData.life) {
-                playersJson[playerToBeUpdatedIndex].life = _playerData.life;
+            if (currentPlayer.life) {
+                playersJson[playerToBeUpdatedIndex].life = currentPlayer.life;
             }
-            if (_playerData.score) {
-                playersJson[playerToBeUpdatedIndex].score += _playerData.score;
+            if (currentPlayer.score) {
+                playersJson[playerToBeUpdatedIndex].score += currentPlayer.score;
             }
-            if (_playerData.timer) {
-                playersJson[playerToBeUpdatedIndex].timer = _playerData.timer;
+            if (currentPlayer.timer) {
+                playersJson[playerToBeUpdatedIndex].timer = currentPlayer.timer;
             }
 
-            fs.writeFile(
-                "data/current-players.json",
-                JSON.stringify(playersJson),
-                function (err) {
-                    if (err) {
-                        console.log("Error: " + err);
-                        return error
-                    } else {
-                        return playerToBeUpdated;
-                    }
+            fs.writeFile("data/current-players.json", JSON.stringify(playersJson), function (err) {
+                if (!err) {
+                    return playerToBeUpdated;
+                } else {
+                    console.log("Error: " + err);
+                    return err;
                 }
-            );
+            });
         }
     }
 }
