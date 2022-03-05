@@ -1,6 +1,7 @@
 var confettiSettings = { target: 'my-canvas' };
 var confetti = new ConfettiGenerator(confettiSettings);
 confetti.render();
+const audioCongrats = $("#congrats")[0];
 
 let section = document.querySelector('section');
 window.addEventListener('scroll', function () {
@@ -25,4 +26,9 @@ $(function () {
 
 $('#home-btn').on('click', function () {
     window.location.href = 'http://localhost:3001';
+});
+
+$(function() {
+    audioCongrats.play();
+    audioCongrats.loop = true;
 });

@@ -2,6 +2,11 @@ let arrCalculate = new Array(...$(".req-item").addClass());
 let actualLife = 3;
 let resetTimeRun;
 let setTimeRun;
+const audio = $("#background-music")[0];
+const audioClick = $("#click")[0];
+const audioError = $("#error")[0];
+const audioMatch = $("#match")[0];
+const audioGameOver = $("#game-over")[0];
 
 $(function () {
     const pageAccessedByReload = (
@@ -50,10 +55,10 @@ function sendData() {
             const scoreItem = $('#score h2');
             const score = parseInt(scoreItem.text()) + data.score;
             const timeLine = $('.desafio-number')
-            if (parseInt(data.life) !== actualLife) life()
+            if (parseInt(data.life) !== actualLife) {life(); $("#math-div").click(function() {audioError.play()});};
             //gera bugs, troque.
             $('#match-current').text(data.subLevel + '/3');
-            if (data.correctAnswer) timeLine.eq(parseInt(data.subLevel) - 2).css('backgroundColor', '#68FF74');
+            if (data.correctAnswer) {timeLine.eq(parseInt(data.subLevel) - 2).css('backgroundColor', '#68FF74'); audioMatch.play();}
             if (parseInt(data.lvl) !== parseInt($('#lvl-number-externo h2').text())) {
                 timeLine.css('backgroundColor', '#313640');
                 modalPassLvl();
@@ -323,6 +328,13 @@ function modalDeath() {
     $('.modal').removeClass('background-verde')
     $('.modal').addClass('background-rosa');
 
+    $(function() {
+        audio.pause();
+        audio.loop = false;
+        audioGameOver.play();
+        audioGameOver.loop = true;
+    });
+
     $('#fechar-modal').click(function () {
         $('.modal-container').removeClass('fundo-black');
         window.location.href = "http://localhost:3001/";
@@ -385,5 +397,10 @@ function modalPassLvl() {
         $('.modal-container').removeClass('fundo-black');
     });
 }
+
+$(function() {
+    audio.play();
+    audio.loop = true;
+});
 
 timeRun(180);

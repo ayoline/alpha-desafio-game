@@ -10,6 +10,21 @@
 </head>
 <body>
     <main>
+        <audio id="background-music" preload="auto">
+            <source src="./assets/sounds/background.mp3"></source>
+        </audio>
+        <audio id="click" preload="auto">
+            <source src="./assets/sounds/click.mp3"></source>
+        </audio>
+        <audio id="error" preload="auto">
+            <source src="./assets/sounds/error.wav"></source>
+        </audio>
+        <audio id="match" preload="auto">
+            <source src="./assets/sounds/match.mp3"></source>
+        </audio>
+        <audio id="game-over" preload="auto">
+            <source src="./assets/sounds/game-over-page.mp3"></source>
+        </audio>
         <!-- PRIMEIRA PARTE -->
         <section id="sec-one">
             <div id="score">
@@ -95,7 +110,7 @@
             <i>=</i>
             <span id="result"></span>
             <div id="button-container">
-                <button id="math-div"><div lang="en">MATH!</div></button>
+                <button id="math-div"><div lang="en">VAMOS!</div></button>
             </div>
         </section>
     </main>
@@ -107,7 +122,7 @@
                     <h1></h1>
                     <!-- <h1>VIDAS <span>ESGOTADAS</span></h1> -->
                     <h2></h2>
-                    <!-- <h2>Você Pedeu</h2> -->
+                    <!-- <h2>Você Perdeu</h2> -->
                     <button id="fechar-modal">CONTINUAR</button>
                 </div>
             </div>
