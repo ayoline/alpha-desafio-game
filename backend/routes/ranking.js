@@ -1,10 +1,7 @@
+const fs = require('fs');
 const express = require('express');
 const router = express.Router();
 router.use(express.json());
-const fs = require('fs');
-
-// modules
-const updateRanking = require("../modules/updateRanking"); // updateRanking(_id, _lvl, _score)
 
 router.get('/rankingData', function (req, res) {
     const value = req.query.value;
@@ -18,10 +15,14 @@ router.get('/rankingData', function (req, res) {
 });
 
 function filteredResponse(filteredJSON, res) {
-    if (filteredJSON.length > 0) {
-        res.json(filteredJSON);
-    } else {
-        res.send({ error: true, msg: "NO RESULTS FOUND" });
+    try {
+        if (filteredJSON.length > 0) {
+            res.json(filteredJSON);
+        } else {
+            res.send({ error: true, msg: "NO RESULTS FOUND" });
+        }
+    } catch (error) {
+        console.log(error);
     }
 }
 

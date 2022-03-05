@@ -18,6 +18,7 @@ function updateRanking(_player) {
             if (!err) {
                 return rankingToBeOrdered;
             } else {
+                console.log("Error: " + err);
                 return err;
             }
         });

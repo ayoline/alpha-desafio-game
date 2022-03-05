@@ -1,54 +1,54 @@
+const fs = require("fs");
 const express = require("express");
 const router = express.Router();
 router.use(express.json());
-const fs = require("fs");
 
 // modules
-const verifyPlayerCalc = require("../modules/verifyPlayerCalc"); // verifyPlayerCalc (problemString, problemResult)
-const deleteCurrentPlayer = require("../modules/deletePlayer"); // deleteCurrentPlayer (playerID)
-const updateRanking = require("../modules/updateRanking"); // updateRanking(playerObject)
-const updateData = require("../modules/updateData"); // updateData(playerObject)
-const generateProblemsByLevel = require('../modules/generateOperations');
-const getTimer = require("../modules/timer");//getTimer(playerCurrentObject.timer);
-const scoreCal = require("../modules/updateScore");//scoreCal(initial,ended,lvl)
+const verifyPlayerCalc = require("../modules/verifyPlayerCalc");
+const deleteCurrentPlayer = require("../modules/deletePlayer");
+const updateRanking = require("../modules/updateRanking");
+const updateData = require("../modules/updateData");
+const generateProblemsByLevel = require("../modules/generateOperations");
+const getTimer = require("../modules/timer");
+const scoreCal = require("../modules/updateScore");
 
 // routes
 router.put("/updateData", function (req, res) {
+    const playerToBeUpdated = req.body;
     const playersJson = JSON.parse(
         fs.readFileSync("data/current-players.json", "utf8")
     );
-    const reqData = req.body;
 
-    if (reqData.problemString) {
-        let playerCurrentObject = playersJson.find((el) => el.id === reqData.id);
-        const playerNewObject = reqData;
-        const objTime = getTimer(playerCurrentObject.timer);
+    if (playerToBeUpdated.problemString) {
+        const currentPlayerObject = playersJson.find((el) => el.id === playerToBeUpdated.id);
+        const objTime = getTimer(currentPlayerObject.timer);
 
-        if (verifyPlayerCalc(reqData.problemString, playerCurrentObject.currentProblemResult) && objTime.check) { // player acertou
-            if (playerCurrentObject.subLevel === 3) {
-                playerNewObject.lvl = playerCurrentObject.lvl + 1;
-                playerNewObject.subLevel = 1;
+        if (verifyPlayerCalc(playerToBeUpdated.problemString, currentPlayerObject.currentProblemResult) && objTime.check) {
+            if (currentPlayerObject.subLevel === 3) {
+                playerToBeUpdated.lvl = currentPlayerObject.lvl + 1;
+                playerToBeUpdated.subLevel = 1;
             } else {
-                playerNewObject.lvl = playerCurrentObject.lvl;
-                playerNewObject.subLevel = playerCurrentObject.subLevel + 1;
+                playerToBeUpdated.lvl = currentPlayerObject.lvl;
+                playerToBeUpdated.subLevel = currentPlayerObject.subLevel + 1;
             }
-            const newProblem = generateProblemsByLevel(10, playerNewObject.lvl - 1);
-            playerNewObject.life = playerCurrentObject.life;
-            playerNewObject.score = scoreCal(playerCurrentObject.timer, Math.floor(new Date() / 1000), playerCurrentObject.lvl);
-            playerNewObject.timer = Math.ceil(new Date() / 1000);
-            playerNewObject.currentProblemResult = playerNewObject.lvl < 11 ? newProblem[1] : 0;
-            playerNewObject.currentProblemPieces = playerNewObject.lvl < 11 ? newProblem[0] : 0;
-            playerNewObject.numEntries = playerNewObject.lvl < 11 ? newProblem[2] : 0;
-            updateData(playerNewObject);
-            playerNewObject.correctAnswer = true;
 
-            if (playerNewObject.lvl > 10) {
-                const finalScore = playerNewObject.score;
-                playerNewObject.endGame = true;
-                playerNewObject.player = playerCurrentObject.player;
-                playerNewObject.lvl--;
-                updateRanking(playerNewObject);
-                //deleteCurrentPlayer(playerNewObject.id);
+            const newProblem = generateProblemsByLevel(10, playerToBeUpdated.lvl - 1);
+            playerToBeUpdated.life = currentPlayerObject.life;
+            playerToBeUpdated.score = scoreCal(currentPlayerObject.timer, Math.floor(new Date() / 1000), currentPlayerObject.lvl);
+            playerToBeUpdated.timer = Math.ceil(new Date() / 1000);
+            playerToBeUpdated.currentProblemResult = playerToBeUpdated.lvl < 11 ? newProblem[1] : 0;
+            playerToBeUpdated.currentProblemPieces = playerToBeUpdated.lvl < 11 ? newProblem[0] : 0;
+            playerToBeUpdated.numEntries = playerToBeUpdated.lvl < 11 ? newProblem[2] : 0;
+            updateData(playerToBeUpdated);
+            playerToBeUpdated.correctAnswer = true;
+
+            if (playerToBeUpdated.lvl > 10) {
+                const finalScore = playerToBeUpdated.score;
+                playerToBeUpdated.endGame = true;
+                playerToBeUpdated.player = currentPlayerObject.player;
+                playerToBeUpdated.lvl--;
+                updateRanking(playerToBeUpdated);
+
                 try {
                     res.json({ endGame: true, finalScore: finalScore });
                 } catch (error) {
@@ -56,58 +56,52 @@ router.put("/updateData", function (req, res) {
                 }
             } else {
                 try {
-                    res.json(playerNewObject);
+                    res.json(playerToBeUpdated);
                 } catch (error) {
                     console.log('Error: ' + error);
                 }
             }
-        } else {                                                                  // player errou
-            playerNewObject.lvl = playerCurrentObject.lvl;
-            playerNewObject.subLevel = playerCurrentObject.subLevel;
-            playerNewObject.currentProblemPieces = playerCurrentObject.currentProblemPieces;
-            playerNewObject.currentProblemResult = playerCurrentObject.currentProblemResult;
-            playerNewObject.numEntries = playerCurrentObject.numEntries;
-            playerNewObject.life = playerCurrentObject.life - 1;
-            playerNewObject.timer = Math.ceil(new Date() / 1000);
-            if (playerNewObject.life < 1) {
-                updateRanking(playerCurrentObject);
-                playerNewObject.correctAnswer = false;
-                deleteCurrentPlayer(playerNewObject.id);
+        } else {
+            playerToBeUpdated.lvl = currentPlayerObject.lvl;
+            playerToBeUpdated.subLevel = currentPlayerObject.subLevel;
+            playerToBeUpdated.currentProblemPieces = currentPlayerObject.currentProblemPieces;
+            playerToBeUpdated.currentProblemResult = currentPlayerObject.currentProblemResult;
+            playerToBeUpdated.numEntries = currentPlayerObject.numEntries;
+            playerToBeUpdated.life = currentPlayerObject.life - 1;
+            playerToBeUpdated.timer = Math.ceil(new Date() / 1000);
+
+            if (playerToBeUpdated.life < 1) {
+                updateRanking(currentPlayerObject);
+                playerToBeUpdated.correctAnswer = false;
+                deleteCurrentPlayer(playerToBeUpdated.id);
             } else {
-                updateData(playerNewObject);
-                playerNewObject.correctAnswer = false;
+                updateData(playerToBeUpdated);
+                playerToBeUpdated.correctAnswer = false;
             }
-            res.json(playerNewObject);
+
+            try {
+                res.json(playerToBeUpdated);
+            } catch (error) {
+                console.log(error);
+            }
         }
     }
 });
 
 router.get("/updateData", function (req, res) {
-    const currentPlayers = JSON.parse(fs.readFileSync("data/current-players.json"));
     const playerID = req.query.id;
-    const currentPlayer = currentPlayers.find(el => playerID === el.id);
+    const currentPlayersJson = JSON.parse(fs.readFileSync("data/current-players.json"));
+    const currentPlayer = currentPlayersJson.find((el) => el.id === playerID);
     const problems = currentPlayer.currentProblemPieces;
     const solution = currentPlayer.currentProblemResult;
     const numEntries = currentPlayer.numEntries;
     const arr = [problems, solution, numEntries];
 
-    res.json(arr);
+    try {
+        res.json(arr);
+    } catch (error) {
+        console.log(error);
+    }
 })
 
 module.exports = router;
-
-// function newTimer(_id) {
-//     const actualDate = new Date();
-//     let playerNewObject = {id: _id, timer: actualDate}
-//     updateData(playerNewObject);
-// }
-// function verifyTimer(_id) {
-//     const currentPlayers = JSON.parse(fs.readFileSync("data/current-players.json"));
-//     const currentPlayer = currentPlayers.filter(el => playerID === _id)[0];
-//     const actualDate = new Date();
-//     if () {
-//         return true
-//     } else {
-//         return false
-//     }
-// }
