@@ -55,7 +55,7 @@ function sendData() {
             const scoreItem = $('#score h2');
             const score = parseInt(scoreItem.text()) + data.score;
             const timeLine = $('.desafio-number')
-            if (parseInt(data.life) !== actualLife) { life(); $("#math-div").click(function () { audioError.play() }); };
+            if (parseInt(data.life) !== actualLife) { audioError.play(); life(); };
             //gera bugs, troque.
             $('#match-current').text(data.subLevel + '/3');
             if (data.correctAnswer) { timeLine.eq(parseInt(data.subLevel) - 2).css('backgroundColor', '#68FF74'); audioMatch.play(); }
