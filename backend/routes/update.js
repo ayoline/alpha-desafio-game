@@ -15,9 +15,7 @@ const scoreCal = require("../modules/updateScore");
 // routes
 router.put("/updateData", function (req, res) {
     const playerToBeUpdated = req.body;
-    const playersJson = JSON.parse(
-        fs.readFileSync("data/current-players.json", "utf8")
-    );
+    const playersJson = JSON.parse(fs.readFileSync("data/current-players.json", "utf8"));
 
     if (playerToBeUpdated.problemString) {
         const currentPlayerObject = playersJson.find((el) => el.id === playerToBeUpdated.id);
@@ -43,11 +41,16 @@ router.put("/updateData", function (req, res) {
             playerToBeUpdated.correctAnswer = true;
 
             if (playerToBeUpdated.lvl > 10) {
-                const finalScore = playerToBeUpdated.score;
+                const finalScore = playerToBeUpdated.score + currentPlayerObject.score;
+                playerToBeUpdated.score = finalScore;
                 playerToBeUpdated.endGame = true;
                 playerToBeUpdated.player = currentPlayerObject.player;
                 playerToBeUpdated.lvl--;
                 updateRanking(playerToBeUpdated);
+
+                setTimeout(function () {
+                    deleteCurrentPlayer(playerToBeUpdated.id);
+                }, 1000);
 
                 try {
                     res.json({ endGame: true, finalScore: finalScore });

@@ -41,7 +41,7 @@ function updateData(_playerData) {
 
             fs.writeFile("data/current-players.json", JSON.stringify(playersJson), function (err) {
                 if (!err) {
-                    return playerToBeUpdated;
+                    return playersJson[playerToBeUpdatedIndex];
                 } else {
                     console.log("Error: " + err);
                     return err;
