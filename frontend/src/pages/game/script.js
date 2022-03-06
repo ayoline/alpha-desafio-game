@@ -49,16 +49,16 @@ function sendData() {
             }
         }).done((data) => {
             if (data.endGame) {
-                const finalScore = data.score
-                window.location.href = 'http://localhost:3001/pages/win-page/?score=' + $('#score h2').text();
+                const finalScore = data.finalScore - 1;
+                window.location.href = 'http://localhost:3001/pages/win-page/?score=' + finalScore;
             }
             const scoreItem = $('#score h2');
             const score = parseInt(scoreItem.text()) + data.score;
             const timeLine = $('.desafio-number')
-            if (parseInt(data.life) !== actualLife) {life(); $("#math-div").click(function() {audioError.play()});};
+            if (parseInt(data.life) !== actualLife) { life(); $("#math-div").click(function () { audioError.play() }); };
             //gera bugs, troque.
             $('#match-current').text(data.subLevel + '/3');
-            if (data.correctAnswer) {timeLine.eq(parseInt(data.subLevel) - 2).css('backgroundColor', '#68FF74'); audioMatch.play();}
+            if (data.correctAnswer) { timeLine.eq(parseInt(data.subLevel) - 2).css('backgroundColor', '#68FF74'); audioMatch.play(); }
             if (parseInt(data.lvl) !== parseInt($('#lvl-number-externo h2').text())) {
                 timeLine.css('backgroundColor', '#313640');
                 modalPassLvl();
@@ -328,7 +328,7 @@ function modalDeath() {
     $('.modal').removeClass('background-verde')
     $('.modal').addClass('background-rosa');
 
-    $(function() {
+    $(function () {
         audio.pause();
         audio.loop = false;
         audioGameOver.play();
@@ -398,7 +398,7 @@ function modalPassLvl() {
     });
 }
 
-$(function() {
+$(function () {
     audio.play();
     audio.loop = true;
 });

@@ -5,7 +5,7 @@ function updateRanking(_player) {
     const playerData = {};
     playerData.player = _player.player;
     playerData.lvl = _player.lvl;
-    playerData.score = _player.score;
+    playerData.score = _player.score - 1;
 
     if (playerData.player && playerData.lvl && playerData.score) {
         rankingToBeOrdered.push(playerData);
