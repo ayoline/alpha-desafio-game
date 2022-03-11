@@ -4,6 +4,8 @@ let resetTimeRun;
 let setTimeRun;
 const audio = $("#background-music")[0];
 const audioClick = $("#click")[0];
+const audioClickOn = $("#click-on")[0];
+const audioClickOff = $("#click-off")[0];
 const audioError = $("#error")[0];
 const audioMatch = $("#match")[0];
 const audioGameOver = $("#game-over")[0];
@@ -401,6 +403,22 @@ function modalPassLvl() {
 $(function () {
     audio.play();
     audio.loop = true;
+});
+
+$("#operations").mousedown(function() {
+    audioClickOn.play();
+});
+
+$("#number").mousedown(function() {
+    audioClickOn.play();
+});
+
+$("#operations").mouseup(function() {
+    audioClickOff.play();
+});
+
+$("#number").mouseup(function() {
+    audioClickOff.play();
 });
 
 timeRun(180);
