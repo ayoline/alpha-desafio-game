@@ -403,4 +403,25 @@ $(function () {
     audio.loop = true;
 });
 
+// To mute or play all audios in the page
+$('#on-off-audio').click(function () {
+    if ($('audio').prop('muted')) {
+        $('audio').prop('muted', false);
+    } else {
+        $('audio').prop('muted', true);
+    }
+});
+
+$('#high-volume').click(function () {
+    let volume = $('audio').prop('volume');
+    if (volume < 1) volume += 0.1;
+    $('audio').prop('volume', volume.toFixed(1));
+});
+
+$('#low-volume').click(function () {
+    let volume = $('audio').prop('volume');
+    if (volume > 0.1) volume -= 0.1;
+    $('audio').prop('volume', volume.toFixed(1));
+});
+
 timeRun(180);
