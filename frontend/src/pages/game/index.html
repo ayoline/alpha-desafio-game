@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,22 +9,28 @@
     <link rel="stylesheet" href="modal-style.css" type="text/css" />
     <title>NUMBER - Jogo de matemática</title>
 </head>
+
 <body>
     <main>
         <audio id="background-music" preload="auto">
-            <source src="./assets/sounds/background.mp3"></source>
+            <source src="./assets/sounds/background.mp3">
+            </source>
         </audio>
         <audio id="click" preload="auto">
-            <source src="./assets/sounds/click.mp3"></source>
+            <source src="./assets/sounds/click.mp3">
+            </source>
         </audio>
         <audio id="error" preload="auto">
-            <source src="./assets/sounds/error.wav"></source>
+            <source src="./assets/sounds/error.wav">
+            </source>
         </audio>
         <audio id="match" preload="auto">
-            <source src="./assets/sounds/match.mp3"></source>
+            <source src="./assets/sounds/match.mp3">
+            </source>
         </audio>
         <audio id="game-over" preload="auto">
-            <source src="./assets/sounds/game-over-page.mp3"></source>
+            <source src="./assets/sounds/game-over-page.mp3">
+            </source>
         </audio>
         <!-- PRIMEIRA PARTE -->
         <section id="sec-one">
@@ -32,7 +39,7 @@
                     <li class="time-score">
                         <span>SCORE DO JOGADOR</span>
                         <h2 class="lvl-number">0000</h2>
-                    </li>    
+                    </li>
                 </ul>
             </div>
             <div id="time">
@@ -52,7 +59,7 @@
                             <img class="heart-icon" src="assets/img/full-heart.svg" />
                             <img class="heart-icon" src="assets/img/full-heart.svg" />
                         </span>
-                    </li> 
+                    </li>
                     <li id="lvl-number-externo">
                         <span>LEVEL</span>
                         <h2 class="lvl-number">1</h2>
@@ -110,7 +117,18 @@
             <i>=</i>
             <span id="result"></span>
             <div id="button-container">
-                <button id="math-div"><div lang="en">VAMOS!</div></button>
+                <button id="math-div">
+                    <div lang="en">VAMOS!</div>
+                </button>
+                <button id="low-volume">
+                    <div>-</div>
+                </button>
+                <button id="high-volume">
+                    <div>+</div>
+                </button>
+                <button id="on-off-audio">
+                    <div>On/Off - volume</div>
+                </button>
             </div>
         </section>
     </main>
@@ -133,4 +151,5 @@
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
