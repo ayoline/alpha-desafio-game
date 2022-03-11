@@ -28,6 +28,7 @@ span{
 
 h2{
     color: white;
+    text-transform: uppercase;
 }
 
 h3{
@@ -81,6 +82,7 @@ section{
         rgb(22 20 85) 3px 2px 0px, 
         rgb(22 20 85) 3px 4px 0px, 
         rgb(22 20 85) 3px 6px 0px;
+    text-transform: uppercase;
 }
 
 .innerText{
@@ -108,6 +110,7 @@ section{
     -webkit-text-stroke: 2px #0e112e;
     text-align: center;
     width: 100%;
+    text-transform: uppercase;
 }
 
 .container{
@@ -117,6 +120,7 @@ section{
     padding: 100px;
     color: #fff;
     text-align: center;
+    text-transform: uppercase;
 }
 
 
@@ -124,7 +128,7 @@ section{
     font-size: 2.5em;
     margin-bottom: 20px;
     color: #F6A407;
-
+    text-transform: uppercase;
 }
 
 button{
