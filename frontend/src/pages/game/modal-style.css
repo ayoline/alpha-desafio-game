@@ -222,10 +222,12 @@
 
 .color-white {
     color: white;
+    text-transform: uppercase;
 }
 
 .color-azul {
     color: rgb(22 20 85);
+    text-transform: uppercase;
 }
 
 .color-laranja {
