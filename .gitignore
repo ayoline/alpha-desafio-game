@@ -1,5 +1,6 @@
 # Miscellaneous
 node_modules
 backend/data/current-players.json
+backend/data/ranking.json
 backend/package-lock.json
 frontend/package-lock.json
