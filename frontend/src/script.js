@@ -1,5 +1,5 @@
 const apiURL = "http://localhost:3000/";
-const audio = $("#click-sound")[0];
+const audioClick = $("#click-sound")[0];
 
 $(document).ready(function () {
     $.ajax({
@@ -43,5 +43,5 @@ $("#play-button").on("click", function () {
 });
 
 $("#play-button").click(function() {
-    audio.play();
+    audioClick.play();
 });
