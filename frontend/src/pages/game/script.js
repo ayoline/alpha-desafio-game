@@ -405,20 +405,25 @@ $(function () {
     audio.loop = true;
 });
 
-$("#operations").mousedown(function() {
-    audioClickOn.play();
+// To mute or play all audios in the page
+$('#on-off-audio').click(function () {
+    if ($('audio').prop('muted')) {
+        $('audio').prop('muted', false);
+    } else {
+        $('audio').prop('muted', true);
+    }
 });
 
-$("#number").mousedown(function() {
-    audioClickOn.play();
+$('#high-volume').click(function () {
+    let volume = $('audio').prop('volume');
+    if (volume < 1) volume += 0.1;
+    $('audio').prop('volume', volume.toFixed(1));
 });
 
-$("#operations").mouseup(function() {
-    audioClickOff.play();
-});
-
-$("#number").mouseup(function() {
-    audioClickOff.play();
+$('#low-volume').click(function () {
+    let volume = $('audio').prop('volume');
+    if (volume > 0.1) volume -= 0.1;
+    $('audio').prop('volume', volume.toFixed(1));
 });
 
 timeRun(180);
