@@ -405,6 +405,26 @@ $(function () {
     audio.loop = true;
 });
 
+$('#operations').mousedown(function() {
+    audioClickOn.play();
+    console.log('down');
+});
+
+$('#operations').mouseup(function() {
+    audioClickOff.play();
+    console.log('up');
+});
+
+$('#number-div-two').mousedown(function() {
+    audioClickOn.play();
+    console.log('down');
+});
+
+$('#number-div-two').mouseup(function() {
+    audioClickOff.play();
+    console.log('up');
+});
+
 // To mute or play all audios in the page
 $('#on-off-audio').click(function () {
     if ($('audio').prop('muted')) {
