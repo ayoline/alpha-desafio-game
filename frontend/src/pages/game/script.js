@@ -264,10 +264,12 @@ function start() {
                         return true;
                     }else if(!verifyMap){
                         activesItems.set(dropItem.id,this);
+                        verify(this);
                         return false;
                     }else{
                         const actual_draggable = activesItems.get(dropItem.id);
                         if($(this).text() === $(actual_draggable).text()){
+                            verify(this);
                             return false;
                         }else{
                             $(actual_draggable).animate({
@@ -275,10 +277,19 @@ function start() {
                                 left:'0px'
                             });
                             activesItems.set(dropItem.id,this);
+                            verify(this);
                             return false;
                         }
                     }
                 }
+                function verify(element){
+                    activesItems.forEach((value,id)=>{
+                        const dropItem = actual_droppable[0];
+                        if(value.text() === $(element).text() && id !== dropItem.id){
+                            activesItems.delete(id);
+                        }
+                    });
+                };
             },
             scroll: false,
             snap: '.req-item' });
