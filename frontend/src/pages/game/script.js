@@ -1,4 +1,5 @@
 let arrCalculate = new Array(...$(".req-item").addClass());
+let activesItems = new Map();
 let actualLife = 3;
 let resetTimeRun;
 let setTimeRun;
@@ -251,7 +252,36 @@ function start() {
         [".ope", ".operations-item"],
     ];
     for (let i of arrDrag)
-        $(i).draggable({ cancel: false, revert: "invalid", scroll: false, snap: '.req-item' });
+        $(i).draggable({ cancel: false,
+            revert: 
+            function(actual_droppable){
+                if(!actual_droppable){
+                    return true;
+                }else{
+                    const dropItem = actual_droppable[0];
+                    const verifyMap = activesItems.has(dropItem.id);
+                    if(!dropItem.className.includes('ui-droppable')){
+                        return true;
+                    }else if(!verifyMap){
+                        activesItems.set(dropItem.id,this);
+                        return false;
+                    }else{
+                        const actual_draggable = activesItems.get(dropItem.id);
+                        if($(this).text() === $(actual_draggable).text()){
+                            return false;
+                        }else{
+                            $(actual_draggable).animate({
+                                top: '0px',
+                                left:'0px'
+                            });
+                            activesItems.set(dropItem.id,this);
+                            return false;
+                        }
+                    }
+                }
+            },
+            scroll: false,
+            snap: '.req-item' });
     for (let i of arrDrop)
         $(i[0]).droppable({
             accept: i[1],
