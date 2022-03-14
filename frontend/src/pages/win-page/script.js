@@ -16,7 +16,6 @@ window.addEventListener('scroll', function () {
 $(function () {
     let scoreNumber = window.location.search.split("=")[1];
     let posicaoPlacar = $('button').offset().top;
-    console.log('teste')
     $('html, body').animate(
         {
             scrollTop: posicaoPlacar + 'px'
@@ -28,7 +27,9 @@ $('#home-btn').on('click', function () {
     window.location.href = 'http://localhost:3001';
 });
 
-$(function() {
+$(function () {
     audioCongrats.play();
     audioCongrats.loop = true;
 });
+
+$('audio').prop('volume', 0.1);
