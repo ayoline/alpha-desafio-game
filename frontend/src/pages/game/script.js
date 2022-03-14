@@ -477,10 +477,8 @@ $('#number-div-two').mouseup(function () {
 $('#on-off-audio').click(function () {
     if ($('audio').prop('volume') === 0) {
         $('audio').prop('volume', volume.toFixed(1));
-        console.log($('audio').prop('volume'));
     } else {
         $('audio').prop('volume', 0);
-        console.log($('audio').prop('volume'));
     }
 });
 
