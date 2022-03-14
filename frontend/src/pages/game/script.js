@@ -258,6 +258,7 @@ function start() {
     ];
     for (let i of arrDrag)
         $(i).draggable({
+            zIndex: 2500,
             cancel: false,
             revert:
                 function (actual_droppable) {
