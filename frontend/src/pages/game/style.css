@@ -228,6 +228,7 @@ img {
 }
 
 #number button {
+    z-index: 5;
     width: clamp(2.2em, 6vw, 8em);
     height: clamp(2.4em, 6vw, 8.2em);
     border-radius: clamp(0.6em, 1.7vw, 1.8em);

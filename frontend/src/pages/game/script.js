@@ -51,6 +51,7 @@ function sendData() {
                 window.location.href = "http://localhost:3001/";
             }
         }).done((data) => {
+            console.log(data);
             if (data.endGame) {
                 const finalScore = data.finalScore - 1;
                 window.location.href = 'http://localhost:3001/pages/win-page/?score=' + finalScore;
@@ -65,6 +66,7 @@ function sendData() {
             if (parseInt(data.lvl) !== parseInt($('#lvl-number-externo h2').text())) {
                 timeLine.css('backgroundColor', '#313640');
                 modalPassLvl();
+                $('.operations-item').draggable('destroy');
                 operarionsUsed(data.lvl);
             }
             $('#lvl-number-externo h2').text(data.lvl);
@@ -124,15 +126,16 @@ const entries = (num) => {
 const operarionsUsed = (() => {
     const arr = [['+'], ['+'], ['-'], ['-'], ['+', '-'], ['+', '-'], ['x'], ['/'], ['x', '/'], ['x', '/']];
     return function (lvl) {
-        const itemsDiv = $('.operations-item');
-        const itemsSpan = $('.operations-item > span');
+        const itemsDiv = $('#operations div');
+        const itemsSpan = $('#operations div > span');
         let position;
+        itemsDiv.removeClass('operations-item');
+        console.log(itemsDiv);
         for (let i of arr[lvl - 1]) {
-            console.log(i);
+            
             console.log(position);
             itemsSpan.each(function () {
                 if ((position == undefined) || arr[lvl - 1].length === 1) {
-                    console.log(123);
                     $(this).parent().css('backgroundColor', '#2f2f2f');
                     $(this).css({
                         "backgroundColor": "#313640",
@@ -143,6 +146,7 @@ const operarionsUsed = (() => {
                 else return;
             });
             itemsDiv.eq(position).css('backgroundColor', '#F54460');
+            itemsDiv.eq(position).addClass('operations-item');
             itemsSpan.eq(position).css({
                 "backgroundColor": "#AD0025",
                 "color": "white"
@@ -226,6 +230,7 @@ function loadGame(id) {
             }
         })
         .then((data) => {
+            console.log(data);
             const dataElements = data[0];
             for (let i of dataElements) {
                 const spanInfo = $('<span>').text(i);
@@ -235,7 +240,6 @@ function loadGame(id) {
                 $("#number-div-two").append(numPieces);
             }
             $("#result").text(data[1]);
-            console.log(operarionsUsed);
             operarionsUsed(1);
             start();
         });
@@ -264,6 +268,7 @@ function start() {
                         return true;
                     }else if(!verifyMap){
                         activesItems.set(dropItem.id,this);
+                        $(this).animate({'z-index':'4'});
                         verify(this);
                         return false;
                     }else{
@@ -274,8 +279,10 @@ function start() {
                         }else{
                             $(actual_draggable).animate({
                                 top: '0px',
-                                left:'0px'
+                                left:'0px',
+                                'z-index':'5'
                             });
+                            $(this).animate({'z-index':'4'});
                             activesItems.set(dropItem.id,this);
                             verify(this);
                             return false;
