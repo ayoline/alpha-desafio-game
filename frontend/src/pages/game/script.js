@@ -3,6 +3,11 @@ let activesItems = new Map();
 let actualLife = 3;
 let resetTimeRun;
 let setTimeRun;
+
+// To start the game with lowest audio
+let volume = 0.1;
+$('audio').prop('volume', volume);
+
 const audio = $("#background-music")[0];
 const audioClick = $("#click")[0];
 const audioClickOn = $("#click-on")[0];
@@ -256,50 +261,50 @@ function start() {
         [".ope", ".operations-item"],
     ];
     for (let i of arrDrag)
-        $(i).draggable({ cancel: false,
-            revert: 
-            function(actual_droppable){
-                if(!actual_droppable){
-                    return true;
-                }else{
-                    const dropItem = actual_droppable[0];
-                    const verifyMap = activesItems.has(dropItem.id);
-                    if(!dropItem.className.includes('ui-droppable')){
+        $(i).draggable({
+            zIndex: 2500,
+            cancel: false,
+            revert:
+                function (actual_droppable) {
+                    if (!actual_droppable) {
                         return true;
-                    }else if(!verifyMap){
-                        activesItems.set(dropItem.id,this);
-                        $(this).animate({'z-index':'4'});
-                        verify(this);
-                        return false;
-                    }else{
-                        const actual_draggable = activesItems.get(dropItem.id);
-                        if($(this).text() === $(actual_draggable).text()){
+                    } else {
+                        const dropItem = actual_droppable[0];
+                        const verifyMap = activesItems.has(dropItem.id);
+                        if (!dropItem.className.includes('ui-droppable')) {
+                            return true;
+                        } else if (!verifyMap) {
+                            activesItems.set(dropItem.id, this);
                             verify(this);
                             return false;
-                        }else{
-                            $(actual_draggable).animate({
-                                top: '0px',
-                                left:'0px',
-                                'z-index':'5'
-                            });
-                            $(this).animate({'z-index':'4'});
-                            activesItems.set(dropItem.id,this);
-                            verify(this);
-                            return false;
+                        } else {
+                            const actual_draggable = activesItems.get(dropItem.id);
+                            if ($(this).text() === $(actual_draggable).text()) {
+                                verify(this);
+                                return false;
+                            } else {
+                                $(actual_draggable).animate({
+                                    top: '0px',
+                                    left: '0px'
+                                });
+                                activesItems.set(dropItem.id, this);
+                                verify(this);
+                                return false;
+                            }
                         }
                     }
-                }
-                function verify(element){
-                    activesItems.forEach((value,id)=>{
-                        const dropItem = actual_droppable[0];
-                        if(value.text() === $(element).text() && id !== dropItem.id){
-                            activesItems.delete(id);
-                        }
-                    });
-                };
-            },
+                    function verify(element) {
+                        activesItems.forEach((value, id) => {
+                            const dropItem = actual_droppable[0];
+                            if (value.text() === $(element).text() && id !== dropItem.id) {
+                                activesItems.delete(id);
+                            }
+                        });
+                    };
+                },
             scroll: false,
-            snap: '.req-item' });
+            snap: '.req-item'
+        });
     for (let i of arrDrop)
         $(i[0]).droppable({
             accept: i[1],
@@ -453,44 +458,42 @@ $(function () {
     audio.loop = true;
 });
 
-$('#operations').mousedown(function() {
+$('#operations').mousedown(function () {
     audioClickOn.play();
     console.log('down');
 });
 
-$('#operations').mouseup(function() {
+$('#operations').mouseup(function () {
     audioClickOff.play();
     console.log('up');
 });
 
-$('#number-div-two').mousedown(function() {
+$('#number-div-two').mousedown(function () {
     audioClickOn.play();
     console.log('down');
 });
 
-$('#number-div-two').mouseup(function() {
+$('#number-div-two').mouseup(function () {
     audioClickOff.play();
     console.log('up');
 });
 
 // To mute or play all audios in the page
 $('#on-off-audio').click(function () {
-    if ($('audio').prop('muted')) {
-        $('audio').prop('muted', false);
+    if ($('audio').prop('volume') === 0) {
+        $('audio').prop('volume', volume.toFixed(1));
     } else {
-        $('audio').prop('muted', true);
+        $('audio').prop('volume', 0);
     }
 });
 
 $('#high-volume').click(function () {
-    let volume = $('audio').prop('volume');
     if (volume < 1) volume += 0.1;
     $('audio').prop('volume', volume.toFixed(1));
 });
 
 $('#low-volume').click(function () {
-    let volume = $('audio').prop('volume');
-    if (volume > 0.1) volume -= 0.1;
+    if (volume.toFixed(1) > 0.1) volume -= 0.1;
     $('audio').prop('volume', volume.toFixed(1));
 });
 
