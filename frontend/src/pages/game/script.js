@@ -338,6 +338,15 @@ function start() {
                 } else {
                     arrCalculate[parseInt(dropItem.id) - 1] =
                         dragItem.textContent;
+                        var $this = $(this);
+                    ui.draggable.position({
+                        my: "center",
+                        at: "center",
+                        of: $this,
+                        using: function(pos) {
+                            $(this).animate(pos, 200, "linear");
+                        }
+                    })
                 }
             },
         });
