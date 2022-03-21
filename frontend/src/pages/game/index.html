@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" type="text/css" />
     <link rel="stylesheet" href="modal-style.css" type="text/css" />
-    <title>NUMBER - Jogo de matemática</title>
+    <title>NUMBERs - Jogo de matemática</title>
 </head>
 
 <body>
@@ -42,9 +42,17 @@
         <section id="sec-one">
             <div id="score">
                 <ul>
-                    <li class="time-score">
+                    <li class="time-score" >
                         <span>SCORE DO JOGADOR</span>
                         <h2 class="lvl-number">0000</h2>
+                    </li>
+                    <li class="time-score" id="id">
+                        <span>DESAFIO</span>
+                        <span id="teste">
+                            <div class="desafio-number"></div>
+                            <div class="desafio-number"></div>
+                            <div class="desafio-number"></div>
+                        </span>
                     </li>
                 </ul>
             </div>
@@ -80,12 +88,74 @@
         <!-- SEGUNDA PARTE -->
         <section id="sec-two">
             <section id="buttons">
-                <h4>DESAFIO 1</h4>
-                <div class="desafio-number"></div>
-                <h4>DESAFIO 2</h4>
-                <div class="desafio-number"></div>
-                <h4>DESAFIO 3</h4>
-                <div class="desafio-number"></div>
+                <!-- <div class="menu">
+                    <div class="toggle"><ion-icon name="add-outline"></ion-icon> </div>
+                    <li style="--i:0">
+                        <a href="#"><ion-icon name="play-circle-outline"></ion-icon></a>
+                    </li>
+                    <li style="--i:1">
+                        <a href="#"><ion-icon name="play-circle-outline"></ion-icon></a>
+                    </li>
+                    <li style="--i:2">
+                        <a href="#"><ion-icon name="play-circle-outline"></ion-icon></a>
+                    </li>
+                    <li style="--i:3">
+                        <a href="#"><ion-icon name="play-circle-outline"></ion-icon></a>
+                    </li>
+                    <li style="--i:4">
+                        <a href="#"><ion-icon name="play-circle-outline"></ion-icon></a>
+                    </li>
+                    <li style="--i:5">
+                        <a href="#"><ion-icon name="play-circle-outline"></ion-icon></a>
+                    </li>
+                    <li style="--i:6">
+                        <a href="#"><ion-icon name="play-circle-outline"></ion-icon></a>
+                    </li>
+                    <li style="--i:7">
+                        <a href="#"><ion-icon name="play-circle-outline"></ion-icon></a>
+                    </li>
+                </div> -->
+                <!-- <div id="navigation-exter"> -->
+                    <div class="navigation">
+                        <h1 class="nav-name">VOLUMES</h1>
+                        <!--4-->
+                        <span style="--i:0;--x:-1;--y:0" class="nav-info">
+                            <ion-icon name="volume-high-outline"></ion-icon>
+                        </span>
+                        <!--6-->
+                        <span style="--i:1;--x:1;--y:0" class="nav-select-color">
+                            <ion-icon name="play-outline"></ion-icon>
+                        </span>
+                        <!--2-->
+                        <span style="--i:2;--x:0;--y:-1">
+                            <ion-icon name="pause-outline"></ion-icon>
+                        </span>
+                        <!--8-->
+                        <span style="--i:3;--x:0;--y:1" id="low-volume">
+                            <ion-icon name="remove-outline"></ion-icon>
+                        </span>
+                        <!--9-->
+                        <span style="--i:4;--x:1;--y:1" id="high-volume" >
+                            <ion-icon name="add-outline"></ion-icon>
+                        </span>
+                        <!--1-->
+                        <span style="--i:5;--x:-1;--y:-1" class="nav-info">
+                            <ion-icon name="musical-notes-outline"></ion-icon>
+                        </span>
+                        <!--7-->
+                        <span style="--i:6;--x:0;--y:0">
+                            <ion-icon name="pause-outline"></ion-icon>
+                        </span>
+                        <!--7-->
+                        <span style="--i:7;--x:-1;--y:1" class="nav-info">
+                            <ion-icon name="cellular-outline"></ion-icon>
+                        </span>
+                        <!--3-->
+                        <span style="--i:8;--x:1;--y:-1" class="nav-select-color">
+                            <ion-icon name="play-outline"></ion-icon>
+                        </span>
+                    </div>
+                <!-- </div> -->
             </section>
             <section id="number">
                 <div id="number-div-one">
@@ -111,6 +181,10 @@
         </section>
         <!-- TERCEIRA PARTE -->
         <section id="sec-three">
+            <button id="math-div">
+                <div lang="en">VAMOS!</div>
+            </button>
+            <div id="button-container">
             <div id="calc">
                 <ul>
                     <div id="1" class="req-item num"></div>
@@ -122,11 +196,10 @@
             </div>
             <i>=</i>
             <span id="result"></span>
-            <div id="button-container">
-                <button id="math-div">
-                    <div lang="en">VAMOS!</div>
-                </button>
-                <button id="low-volume">
+            </div>
+            <!-- <div id="button-container"> -->
+
+                <!-- <button id="low-volume">
                     <div>-</div>
                 </button>
                 <button id="high-volume">
@@ -134,8 +207,8 @@
                 </button>
                 <button id="on-off-audio">
                     <div>On/Off - volume</div>
-                </button>
-            </div>
+                </button> -->
+            <!-- </div> -->
         </section>
     </main>
 
@@ -153,6 +226,8 @@
         </div>
     </div>
 
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script src="script.js"></script>
