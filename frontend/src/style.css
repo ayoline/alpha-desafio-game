@@ -1,83 +1,226 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Solway:wght@300;400;500;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap");
-:root {
-    --zcool: "ZCOOL QingKe HuangYou", cursive;
-}
 
-body {
+body{
+    background-image: url('./pages/game/assets/img/tela-inicial-img.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: hidden;
+    padding: 0;
+    font-family: "ZCOOL QingKe HuangYou", cursive;
     margin: 0;
-    background-color: #034abc;
-    color: white;
-    font-family: var(--zcool);
-}
-
-#top-container {
-    width: 500px;
-    text-align: center;
-    margin: 0 auto 10px;
     display: flex;
     flex-direction: column;
+}
+
+main{
+    display: flex;
+    height: 92vh;
+}
+
+/* .img-1{
+    background-image: url('img.svg');
+} */
+
+.img-1{
+    background-image:  url('./pages/game/assets/img/tela-inicial-img2.svg');
+}
+
+h1{
+    font-size: 5.3em;
+    color: #F6A407;
+    font-weight: 1000;
+    letter-spacing: 0.08em;
+    margin-top: 0;
+    margin-bottom: 25px;
+
+    text-shadow: rgb(22 20 85) 3px 0px 0px,
+                 rgb(22 20 85) 2.83487px 0.981584px 0px,
+                 rgb(22 20 85) 2.35766px 1.85511px 0px,
+                 rgb(22 20 85) 1.62091px 2.52441px 0px,
+                 rgb(22 20 85) 0.705713px 2.91581px 0px,
+                 rgb(22 20 85) -0.287171px 2.98622px 0px,
+                 rgb(22 20 85) -1.24844px 2.72789px 0px,
+                 rgb(22 20 85) -2.07227px 2.16926px 0px,
+                 rgb(22 20 85) -2.66798px 1.37182px 0px,
+                 rgb(22 20 85) -2.96998px 0.42336px 0px,
+                 rgb(22 20 85) -2.94502px -0.571704px 0px,
+                 rgb(22 20 85) -2.59586px -1.50383px 0px,
+                 rgb(22 20 85) -1.96093px -2.27041px 0px,
+                 rgb(22 20 85) -1.11013px -2.78704px 0px,
+                 rgb(22 20 85) -0.137119px -2.99686px 0px,
+                 rgb(22 20 85) 0.850987px -2.87677px 0px,
+                 rgb(22 20 85) 1.74541px -2.43999px 0px,
+                 rgb(22 20 85) 2.44769px -1.73459px 0px,
+                 rgb(22 20 85) 2.88051px -0.838247px 0px, 
+                 rgb(22 20 85) -3px 2px 0px,
+                 rgb(22 20 85) -3px 4px 0px, 
+                 rgb(22 20 85) -3px 6px 0px,
+                 rgb(22 20 85) 3px 2px 0px, 
+                 rgb(22 20 85) 3px 4px 0px,
+                 rgb(22 20 85) 3px 6px 0px;
+        /* border: 2px solid red;          */
+}
+
+h2{
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+p{
+    font-style: normal;
+    font-weight: 800;
+    font-size: 38px;
+    line-height: 60px;
+    margin: 0;
+}
+
+span{
+    color: #E91F64;
+    /* border: 2px solid red; */
+}
+
+#one{
+    /* border: 2px solid blue; */
+    width: 45vw;
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#name{
+    font-family: "Solway", serif;
+}
+
+input{
+    background-color: #242B38;
+    border: 2px solid black;
+    width: 13em;
+    height: 2.6em;
+    border-radius: 20px;
+    box-shadow: -2px 5px #000000;
+    padding-left: 30px;
+      /*  padding-top: 0.8em; */
+    color: white;
+    font-family: "ZCOOL QingKe HuangYou", cursive;
+    font-size: 32px;
+    margin-bottom: 25px;
+
+
+}
+
+input::placeholder{
+    /* font-family: "ZCOOL QingKe HuangYou", cursive; */
+    color: white;
+}
+
+button{
+    width: 15em;
+    height: 73px;
+    /* margin-bottom: 57px; */
+    font-family: "ZCOOL QingKe HuangYou", cursive;
+    border-radius: 20px;
+    background-color: #E54AD4;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    box-shadow: -1px 3px #000000;
+}
+
+button div{
+    width: 95%;
+    height: 85%;
+    background-color: #931EAA;
+    color: white;
+    font-size: 32px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#two{
+    width: 55vw;
+    /* border: 3px solid blue; */
+    /* display: none; */
     align-items: center;
     justify-content: center;
-    padding-top: 5%;
 }
 
-#initial-page-logo{
-    width: 100%;
-}
-
-#top-container span:nth-child(1) {
-    color: #d55a5a;
-    text-shadow: 0 4px 0 #f49138;
-}
-
-#top-container span:nth-child(2) {
-    color: #f49138;
-    text-shadow: 0 4px 0 #d55a5a;
-}
-
-main {
-    margin: 0 auto;
-    width: 600px;
+#two #div-score-external{
+    width: 30em;
+    height: 30em;
+    background-color: #343C4F;
+    border: 2px solid black;
+    border-radius: 30px;
+    padding: 0;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    box-shadow: -2px 4px #000000;
 }
 
-#name-input {
-    height: 3rem;
-    width: 15rem;
-    border-radius: 8px;
-    border: 0;
-    padding: 4px 12px;
-    font-size: 30px;
-    font-family: var(--zcool);
-    text-transform: uppercase;
+#two #div-score {
+    width: 95%;
+    height: 95%;
+    border-radius: 20px;
+    background-color: #242B38;
     text-align: center;
+    color: #E5E5E5;
 }
 
-#play-button {
-    margin: 20px;
-    background-color: #4190ff;
-    border: 0;
-    font-family: var(--zcool);
-    color: white;
-    font-size: 36px;
-    padding: 8px 14px;
-    height: 60px;
-    width: 300px;
-    border-radius: 16px;
-    box-shadow: 0 8px 0 0 #5c6391;
-    cursor: pointer;
-    transition: 100ms;
-    text-transform: uppercase;
+#highscores-table{
+    /* border: 2px solid blue; */
+    width: 96%;
+    margin-left: 2%;
+    font-size: 30px;
 }
 
-#error-message{
-    font-size: 1.1rem;
-    color: #ff4a4a;
+td{
+/* border: 2px solid red; */
+    padding: 10px;
 }
 
-#play-button:hover {
+#highscores-tbody{
+    border: 2px solid red;
+}
+
+footer{
+    /* border: 3px solid red; */
+    height: 4em;
+}
+
+footer button{
+    width: 9.7em;
+    height: 3.2em;
+    border-radius: 0.8em;
+    margin-left: 1.8em;
+    box-shadow: none;
+    background-color: #343C4F;
+    font-family: "ZCOOL QingKe HuangYou", cursive;
+}
+
+footer div{
+    background-color: #242B38;
+    font-size: 18px;
+    border-radius: 0.5em;
+
+}
+
+.flex{
+    display: flex;
+}
+
+.none{
+    display: none;
+}
+
+/* #play-button:hover {
     margin-top: 22px;
     margin-bottom: 18px;
     background-color: #257ffe;
@@ -91,109 +234,4 @@ main {
     background-color: #d4d1f0;
     box-shadow: 0 4px 0 0 #797faf;
     transition: 20ms;
-}
-
-#highscores-container {
-    margin-top: 20px;
-    background-color: #257ffe;
-    border-radius: 10px;
-    padding: 10px;
-    width: 400px;
-}
-
-#highscores-container h2 {
-    margin-top: 2px;
-    text-align: center;
-    font-size: 28px;
-}
-
-#highscores-table {
-    width: 80%;
-    margin: 0 auto;
-    text-transform: uppercase;
-}
-
-#highscores-tbody {
-    width: 80%;
-    max-height: 500px;
-    height: auto;
-    margin: 0 auto;
-    text-transform: uppercase;
-}
-
-#highscores-tbody td {
-    width: 33%;
-    font-size: 22px;
-    padding: 4px 14px;
-    text-transform: uppercase;
-}
-
-#highscores-tbody tr td:nth-child(2) {
-    text-align: center;
-}
-
-#highscores-tbody tr td:nth-child(3) {
-    text-align: end;
-}
-
-@media (max-width: 1500px) {
-    #top-container {
-        margin: 0 auto;
-    }
-
-    #top-container h1 {
-        margin: 0;
-    }
-
-    #highscores-tbody td {
-        width: 33%;
-        font-size: 22px;
-        padding: 2px 14px;
-    }
-}
-
-@media (max-width: 1300px) {
-    * {
-        border-radius: 4px;
-    }
-    main {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-    }
-
-    #top-container {
-        margin: 0;
-    }
-
-    #top-container h1 {
-        margin: 0;
-        font-size: 80px;
-    }
-
-    #highscores-tbody td {
-        width: 33%;
-        font-size: 20px;
-        padding: 2px 14px;
-    }
-
-    #name-input {
-        margin-top: 14px;
-        height: 2.5rem;
-        padding: 0 12px;
-        font-size: 20px;
-    }
-
-    #play-button {
-        font-size: 28px;
-        padding: 0px 14px;
-        height: 40px;
-        width: 240px;
-    }
-    
-    #highscores-container {
-        margin: 0 40px;
-    }
-}
+} */

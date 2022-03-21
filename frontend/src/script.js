@@ -13,9 +13,9 @@ function renderRanking(data) {
     data.forEach((element) => {
         $("#highscores-tbody").append(`
             <tr>
-                <td>lvl${element.lvl}</td>
+                <td>lvl ${element.lvl}</td>
                 <td>${element.player}</td>
-                <td>${element.score}</td>
+                <td>${element.score} pts</td>
             </tr>
         `);
     });
@@ -45,3 +45,10 @@ $("#play-button").on("click", function () {
 $("#play-button").click(function() {
     audioClick.play();
 });
+
+$("#add-rank").click(function() {
+    $("#two").toggleClass('none');
+    $("#two").toggleClass('flex');
+    $('body').toggleClass('img-1');
+});
+
