@@ -19,13 +19,15 @@ function deliveryOperation(_qtt, _lvl) {
 
 	while (validResponse === false) {
 		if (response[1] > 0 && (response[1] % 2) === 0) {
-			//===================DEBUGGING========================
-			console.log('===========================');
-			console.log(`Resposta tratada: ${response[1]}`);
-			console.log('===========================');
-			console.log(arr[2]);
-			//===================DEBUGGING========================
-			validResponse = true;
+			if(!arr[2].includes(undefined) && !arr[2].includes(null)) {
+				//===================DEBUGGING========================
+				console.log('===========================');
+				console.log(`Resposta tratada: ${response[1]}`);
+				console.log('===========================');
+				console.log(arr[2]);
+				//===================DEBUGGING========================
+				validResponse = true;
+			}
 		} else {
 			response = [];
 			arr = generateOperations(qtt, lvl);
