@@ -143,7 +143,7 @@ function generateOperations(_qtt, _lvl) {
 			} else if (fOp[0] === '*') {
 				tmpRes = +(fO[0] * sO[0]);
 			} else if (fOp[0] === '/') {
-				tmpRes = +(Math.floor(fO[0] / sO[0]));
+				tmpRes = +(fO[0] / sO[0]);
 				// if (Number.isInteger(fO[0] / sO[0])) {
 				// 	tmpRes = +(fO[0] / sO[0]);
 				// } else {
