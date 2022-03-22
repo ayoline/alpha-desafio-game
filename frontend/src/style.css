@@ -12,6 +12,11 @@ body{
     margin: 0;
     display: flex;
     flex-direction: column;
+    
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
 }
 
 main{
@@ -108,8 +113,7 @@ input{
     font-family: "ZCOOL QingKe HuangYou", cursive;
     font-size: 32px;
     margin-bottom: 25px;
-
-
+    text-transform: uppercase;
 }
 
 input::placeholder{
@@ -188,6 +192,7 @@ td{
 
 #highscores-tbody{
     border: 2px solid red;
+    text-transform: uppercase;
 }
 
 footer{
@@ -209,7 +214,7 @@ footer div{
     background-color: #242B38;
     font-size: 18px;
     border-radius: 0.5em;
-
+    cursor: pointer;
 }
 
 .flex{
@@ -218,6 +223,10 @@ footer div{
 
 .none{
     display: none;
+}
+
+#play-button {
+    cursor: pointer;
 }
 
 /* #play-button:hover {
