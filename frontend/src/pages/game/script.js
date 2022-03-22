@@ -364,7 +364,7 @@ function deletePlayer(playerId) {
             id: playerId
         }),
         complete: function () {
-            if (window.confirm('Sessão encerrada, retornara para pagina inicial.')) {
+            if (window.confirm('SESSÃO ENCERRADA. VOLTARÁ PARA A PÁGINA INICIAL.')) {
                 window.location.href = "http://localhost:3001/"
             }
             window.location.href = "http://localhost:3001/"
