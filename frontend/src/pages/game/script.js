@@ -5,7 +5,7 @@ let resetTimeRun;
 let setTimeRun;
 
 // To start the game with lowest audio
-let volume = 0.1;
+let volume = 1;
 $('audio').prop('volume', volume);
 
 const audio = $("#background-music")[0];
@@ -488,23 +488,40 @@ $('#number-div-two').mouseup(function () {
 });
 
 // To mute or play all audios in the page
-$('#on-off-audio').click(function () {
-    if ($('audio').prop('volume') === 0) {
-        $('audio').prop('volume', volume.toFixed(1));
-    } else {
-        $('audio').prop('volume', 0);
-    }
-});
+
+// $('#on-off-audio').click(function () {
+//     if ($('audio').prop('volume') === 0) {
+//         $('audio').prop('volume', volume.toFixed(1));
+//     } else {
+//         $('audio').prop('volume', 0);
+//     }
+// });
 
 $('#high-volume').click(function () {
-    if (volume < 1) volume += 0.1;
+    console.log(volume);
+    if (volume.toFixed(1) < 1) volume += 0.1;
     $('audio').prop('volume', volume.toFixed(1));
 });
 
 $('#low-volume').click(function () {
-    if (volume.toFixed(1) > 0.1) volume -= 0.1;
+    console.log(volume);
+    if (volume.toFixed(1) > 0) volume -= 0.1;
     $('audio').prop('volume', volume.toFixed(1));
 });
+
+$('#music-stop').click(function(){
+    if(audio.volume !== 0)audio.volume = 0;
+});
+$('#music-play').click(function(){
+    if(audio.volume === 0)audio.volume = volume;
+});
+
+$('#effects-stop').click(function(){
+    $('audio:gt(0)').prop('volume', 0);
+});
+$('#effects-play').click(function(){
+    $('audio:gt(0)').prop('volume', volume);
+})
 
 timeRun(180);
 
