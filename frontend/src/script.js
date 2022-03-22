@@ -27,8 +27,8 @@ $("#play-button").on("click", function () {
         $("#error-message").text('');
         $.post({
             url: apiURL + "save/saveNewUser",
-            headers: {Accepts: "application/json"},
-            contentType : 'application/json',
+            headers: { Accepts: "application/json" },
+            contentType: 'application/json',
             dataType: "json",
             data: JSON.stringify({
                 name: newUsername,
@@ -42,13 +42,30 @@ $("#play-button").on("click", function () {
     }
 });
 
-$("#play-button").click(function() {
+$("#play-button").click(function () {
     audioClick.play();
 });
 
-$("#add-rank").click(function() {
+$("#add-rank").click(function () {
     $("#two").toggleClass('none');
     $("#two").toggleClass('flex');
     $('body').toggleClass('img-1');
 });
 
+$('#btn-tutorial').click(function () {
+    const modalTutorial = $('#modal-tutorial');
+    modalTutorial.css("visibility", "visible");
+    modalTutorial.css("opacity", "1");
+    $('body').css("overflow", "auto");
+});
+
+// close tutorial if its open
+$(document).click(function (e) {
+    if ($(e.target).closest('#modal-tutorial').length != 0 ||
+        $(e.target).closest('#btn-tutorial').length > 0) return false;
+    const modalTutorial = $('#modal-tutorial');
+    modalTutorial.css("visibility", "hidden");
+    modalTutorial.css("opacity", "0");
+    $('body').css("overflow", "hidden");
+    $('html,body').scrollTop(0);
+});
