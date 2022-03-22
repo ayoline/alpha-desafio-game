@@ -229,6 +229,51 @@ footer div{
     cursor: pointer;
 }
 
+#btn-tutorial{
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    background-color: transparent;
+    border-color: transparent;
+    cursor: pointer;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+    box-sizing: border-box;
+    top: 2%;
+    right: 1%;
+}
+
+#modal-tutorial{
+    width: 70vw;
+    height: 90vh;
+    background-color: white;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    overflow: auto;
+    visibility: hidden;
+    opacity: 0;
+    top: 5%;
+    left: 15vw;
+    transition: all 0.8s ease;
+    border-radius: 20px;
+}
+
+#modal-tutorial::-webkit-scrollbar {
+    display: none;
+}
+
+#modal-tutorial img{
+    width: 100%;
+    height: fit-content;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
 /* #play-button:hover {
     margin-top: 22px;
     margin-bottom: 18px;

@@ -137,7 +137,7 @@ const operarionsUsed = (() => {
         itemsDiv.removeClass('operations-item');
         console.log(itemsDiv);
         for (let i of arr[lvl - 1]) {
-            
+
             console.log(position);
             itemsSpan.each(function () {
                 if ((position == undefined) || arr[lvl - 1].length === 1) {
@@ -338,12 +338,12 @@ function start() {
                 } else {
                     arrCalculate[parseInt(dropItem.id) - 1] =
                         dragItem.textContent;
-                        var $this = $(this);
+                    var $this = $(this);
                     ui.draggable.position({
                         my: "center",
                         at: "center",
                         of: $this,
-                        using: function(pos) {
+                        using: function (pos) {
                             $(this).animate(pos, 200, "linear");
                         }
                     })
@@ -488,29 +488,46 @@ $('#number-div-two').mouseup(function () {
 });
 
 // To mute or play all audios in the page
-$('#on-off-audio').click(function () {
-    if ($('audio').prop('volume') === 0) {
-        $('audio').prop('volume', volume.toFixed(1));
-    } else {
-        $('audio').prop('volume', 0);
-    }
-});
+
+// $('#on-off-audio').click(function () {
+//     if ($('audio').prop('volume') === 0) {
+//         $('audio').prop('volume', volume.toFixed(1));
+//     } else {
+//         $('audio').prop('volume', 0);
+//     }
+// });
 
 $('#high-volume').click(function () {
-    if (volume < 1) volume += 0.1;
+    console.log(volume);
+    if (volume.toFixed(1) < 1) volume += 0.1;
     $('audio').prop('volume', volume.toFixed(1));
 });
 
 $('#low-volume').click(function () {
-    if (volume.toFixed(1) > 0.1) volume -= 0.1;
+    console.log(volume);
+    if (volume.toFixed(1) > 0) volume -= 0.1;
     $('audio').prop('volume', volume.toFixed(1));
 });
+
+$('#music-stop').click(function () {
+    if (audio.volume !== 0) audio.volume = 0;
+});
+$('#music-play').click(function () {
+    if (audio.volume === 0) audio.volume = volume;
+});
+
+$('#effects-stop').click(function () {
+    $('audio:gt(0)').prop('volume', 0);
+});
+$('#effects-play').click(function () {
+    $('audio:gt(0)').prop('volume', volume);
+})
 
 timeRun(180);
 
 
-$('.navigation').click(function() {
-    $('.navigation').addClass('active');  
+$('.navigation').click(function () {
+    $('.navigation').addClass('active');
     // $('.nav-name').removeClass('display-none'); 
 });
 
@@ -520,7 +537,7 @@ $(document).on('click', (event) => {
     if (!isClickInsideElement && $('.navigation').hasClass('active')) {
         $(".navigation").removeClass("active")
         // $('.nav-name').addClass('display-none'); 
-    } 
+    }
 });
 
 
