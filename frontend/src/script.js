@@ -56,7 +56,8 @@ $('#btn-tutorial').click(function () {
     const modalTutorial = $('#modal-tutorial');
     modalTutorial.css("visibility", "visible");
     modalTutorial.css("opacity", "1");
-    $('body').css("overflow", "auto");
+    //$('body').css("overflow", "auto");
+    //$('html,body').css("filter", "blur(4px)");
 });
 
 // close tutorial if its open
