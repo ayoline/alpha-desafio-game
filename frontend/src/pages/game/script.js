@@ -5,7 +5,7 @@ let resetTimeRun;
 let setTimeRun;
 
 // To start the game with lowest audio
-let volume = 1;
+let volume = 0.1;
 $('audio').prop('volume', volume);
 
 const audio = $("#background-music")[0];
@@ -137,7 +137,7 @@ const operarionsUsed = (() => {
         itemsDiv.removeClass('operations-item');
         console.log(itemsDiv);
         for (let i of arr[lvl - 1]) {
-            
+
             console.log(position);
             itemsSpan.each(function () {
                 if ((position == undefined) || arr[lvl - 1].length === 1) {
@@ -338,12 +338,12 @@ function start() {
                 } else {
                     arrCalculate[parseInt(dropItem.id) - 1] =
                         dragItem.textContent;
-                        var $this = $(this);
+                    var $this = $(this);
                     ui.draggable.position({
                         my: "center",
                         at: "center",
                         of: $this,
-                        using: function(pos) {
+                        using: function (pos) {
                             $(this).animate(pos, 200, "linear");
                         }
                     })
@@ -509,25 +509,25 @@ $('#low-volume').click(function () {
     $('audio').prop('volume', volume.toFixed(1));
 });
 
-$('#music-stop').click(function(){
-    if(audio.volume !== 0)audio.volume = 0;
+$('#music-stop').click(function () {
+    if (audio.volume !== 0) audio.volume = 0;
 });
-$('#music-play').click(function(){
-    if(audio.volume === 0)audio.volume = volume;
+$('#music-play').click(function () {
+    if (audio.volume === 0) audio.volume = volume;
 });
 
-$('#effects-stop').click(function(){
+$('#effects-stop').click(function () {
     $('audio:gt(0)').prop('volume', 0);
 });
-$('#effects-play').click(function(){
+$('#effects-play').click(function () {
     $('audio:gt(0)').prop('volume', volume);
 })
 
 timeRun(180);
 
 
-$('.navigation').click(function() {
-    $('.navigation').addClass('active');  
+$('.navigation').click(function () {
+    $('.navigation').addClass('active');
     // $('.nav-name').removeClass('display-none'); 
 });
 
@@ -537,7 +537,7 @@ $(document).on('click', (event) => {
     if (!isClickInsideElement && $('.navigation').hasClass('active')) {
         $(".navigation").removeClass("active")
         // $('.nav-name').addClass('display-none'); 
-    } 
+    }
 });
 
 
