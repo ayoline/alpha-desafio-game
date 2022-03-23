@@ -9,16 +9,27 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <title>PARABÉNS</title>
-    <canvas id="my-canvas"></canvas>
+    <!-- <canvas id="my-canvas"></canvas> -->
 </head>
 
 <body>
     <audio id="congrats" preload="auto">
         <source src="../game/assets/sounds/win-page.mp3"></source>
     </audio>
-    <h3>PARABÉNS</h3>
-    <h2 class="text">Você Venceu a Fase Final</h2>
+    <img src="../game/assets/img/final.svg" />
     <section>
+        <div id="win-one">
+            <h1><span id="number-score"></span> pts</h1>
+        </div>
+        <div id="win-two">
+            <h2></h2>
+            <button id="home-btn">VOLTAR AO INICIO</button>
+        </div>
+    </section>
+    <!-- <img src="../game/assets/img/final-2.svg" /> -->
+    <!-- <h3>PARABÉNS</h3> -->
+    <!-- <h2 class="text">Você Venceu a Fase Final</h2> -->
+    <!-- <section>
         <h2 class="innerText">Você Venceu a Fase Final</h2>
     </section>
     <div class="container">
@@ -32,8 +43,8 @@
         <button id="home-btn">VOLTAR AO INICIO</button>
 
 
-    </div>
-    <script src="index.min.js"></script>
+    </div> -->
+    <!-- <script src="index.min.js"></script> -->
     <script src="script.js"></script>
 </body>
 
