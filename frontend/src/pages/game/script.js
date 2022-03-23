@@ -511,16 +511,24 @@ $('#low-volume').click(function () {
 
 $('#music-stop').click(function () {
     if (audio.volume !== 0) audio.volume = 0;
+    $('#music-play').removeClass('nav-select-color');
+    $('#music-stop').addClass('nav-select-color');
 });
 $('#music-play').click(function () {
     if (audio.volume === 0) audio.volume = volume;
+    $('#music-play').addClass('nav-select-color');
+    $('#music-stop').removeClass('nav-select-color');
 });
 
 $('#effects-stop').click(function () {
     $('audio:gt(0)').prop('volume', 0);
+    $('#effects-play').removeClass('nav-select-color');
+    $('#effects-stop').addClass('nav-select-color');
 });
 $('#effects-play').click(function () {
     $('audio:gt(0)').prop('volume', volume);
+    $('#effects-play').addClass('nav-select-color');
+    $('#effects-stop').removeClass('nav-select-color');
 })
 
 timeRun(180);

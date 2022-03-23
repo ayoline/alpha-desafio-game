@@ -3,7 +3,7 @@
 
 body{
     background-image: url('./pages/game/assets/img/tela-inicial-img.svg');
-    background-size: cover;
+    background-size: 100%;
     background-repeat: no-repeat;
     height: 100vh;
     overflow: hidden;
@@ -22,6 +22,7 @@ body{
 main{
     display: flex;
     height: 92vh;
+    /* height: clamp(15em, 0.1vw, 50em); */
 }
 
 /* .img-1{
@@ -33,7 +34,7 @@ main{
 }
 
 h1{
-    font-size: 5.3em;
+    font-size: clamp(2.2em, 6vw, 7em);
     color: #F6A407;
     font-weight: 1000;
     letter-spacing: 0.08em;
@@ -87,7 +88,7 @@ span{
 }
 
 #one{
-    /* border: 2px solid blue; */
+    border: 2px solid blue;
     width: 45vw;
     /* height: 100vh; */
     display: flex;
@@ -103,8 +104,8 @@ span{
 input{
     background-color: #242B38;
     border: 2px solid black;
-    width: 13em;
-    height: 2.6em;
+    width: clamp(4em, 32vw, 15em);
+    height: clamp(1em, 7vw, 3em);
     border-radius: 20px;
     box-shadow: -2px 5px #000000;
     padding-left: 30px;
@@ -198,6 +199,7 @@ td{
 footer{
     /* border: 3px solid red; */
     height: 4em;
+    display: flex;
 }
 
 footer button{
