@@ -498,15 +498,15 @@ $('#number-div-two').mouseup(function () {
 // });
 
 $('#high-volume').click(function () {
-    console.log(volume);
     if (volume.toFixed(1) < 1) volume += 0.1;
-    $('audio').prop('volume', volume.toFixed(1));
+    if (audio.volume !== 0) audio.volume = volume.toFixed(1);
+    if ($('audio:gt(0)').prop('volume') !== 0) $('audio:gt(0)').prop('volume', volume.toFixed(1));
 });
 
 $('#low-volume').click(function () {
-    console.log(volume);
-    if (volume.toFixed(1) > 0) volume -= 0.1;
-    $('audio').prop('volume', volume.toFixed(1));
+    if (volume.toFixed(1) > 0.1) volume -= 0.1;
+    if (audio.volume !== 0) audio.volume = volume.toFixed(1);
+    if ($('audio:gt(0)').prop('volume') !== 0) $('audio:gt(0)').prop('volume', volume.toFixed(1));
 });
 
 $('#music-stop').click(function () {
