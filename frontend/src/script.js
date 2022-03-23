@@ -47,6 +47,10 @@ $("#play-button").click(function () {
 });
 
 $("#add-rank").click(function () {
+    audioClick.play();
+});
+
+$("#add-rank").click(function () {
     $("#two").toggleClass('none');
     $("#two").toggleClass('flex');
     $('body').toggleClass('img-1');
