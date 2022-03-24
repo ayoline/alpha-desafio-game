@@ -229,20 +229,6 @@ footer div{
     cursor: pointer;
 }
 
-#btn-tutorial{
-    width: 80px;
-    height: 80px;
-    position: fixed;
-    background-color: transparent;
-    border-color: transparent;
-    cursor: pointer;
-    border-radius: 10px;
-    transition-duration: 0.4s;
-    box-sizing: border-box;
-    top: 2%;
-    right: 1%;
-}
-
 #modal-tutorial{
     width: 70vw;
     height: 90vh;
