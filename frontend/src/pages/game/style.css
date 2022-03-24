@@ -420,7 +420,7 @@ img {
     height: clamp(2.4em, 6vw, 8.2em);
     border-radius: clamp(0.6em, 1.7vw, 1.8em);
     border: clamp(0.12em, 0.2vw, 0.23em) solid black;
-    margin-left: clamp(1em, 2.7vw, 2.5em);
+    margin: 0 clamp(1em, 1.35vw, 2.5em);
     background-color: #bfa6a3;
     box-shadow: 0px clamp(0.2em, 0.3vw, 0.35em) #000000;
     padding: 0;
