@@ -56,7 +56,6 @@ function sendData() {
                 window.location.href = "http://localhost:3001/";
             }
         }).done((data) => {
-            console.log(data);
             if (data.endGame) {
                 const finalScore = data.finalScore - 1;
                 const player = data.player;

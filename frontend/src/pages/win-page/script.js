@@ -15,9 +15,9 @@ const audioCongrats = $("#congrats")[0];
 
 $(function () {
     let scoreNumber = window.location.search.split("=")[1];
+    scoreNumber = scoreNumber.split('?')[0];
     let playerName = window.location.search.split("=")[2];
-    let teste = window.location.search.split(['=', '?'])[4];
-    alert(teste);
+
     setTimeout(() => {
         let posicaoPlacar = $('button').offset().top;
         $('html, body').animate(
