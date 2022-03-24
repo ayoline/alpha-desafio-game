@@ -88,7 +88,6 @@ span{
 }
 
 #one{
-    border: 2px solid blue;
     width: 45vw;
     /* height: 100vh; */
     display: flex;
@@ -159,7 +158,7 @@ button div{
 
 #two #div-score-external{
     width: 30em;
-    height: 30em;
+    height: 25em;
     background-color: #343C4F;
     border: 2px solid black;
     border-radius: 30px;
@@ -180,7 +179,6 @@ button div{
 }
 
 #highscores-table{
-    /* border: 2px solid blue; */
     width: 96%;
     margin-left: 2%;
     font-size: 30px;

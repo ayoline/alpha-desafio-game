@@ -26,7 +26,7 @@ function updateRanking(_player) {
 }
 
 function removeLowerPositions(_array) {
-    while (_array.length > 10) {
+    while (_array.length > 5) {
         _array.pop();
     }
 }
