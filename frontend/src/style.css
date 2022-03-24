@@ -238,8 +238,8 @@ footer div{
     margin-right: auto;
     text-align: center;
     display: flex;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    /* -ms-overflow-style: none;  
+    scrollbar-width: none;   */
     overflow: auto;
     visibility: hidden;
     opacity: 0;
@@ -249,15 +249,33 @@ footer div{
     border-radius: 20px;
 }
 
+#modal-tutorial {
+    scrollbar-width: auto;
+    scrollbar-color: #ffff #282b35;
+    border-radius: 14px;
+}
+
+/* Chrome, Edge, and Safari */
 #modal-tutorial::-webkit-scrollbar {
-    display: none;
+    width: 16px;
+}
+
+#modal-tutorial::-webkit-scrollbar-track {
+    background: #282b35;
+    border-radius: 0 14px 14px 0;
+}
+
+#modal-tutorial::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border-radius: 10px;
+    border: 3px solid #282b35;
 }
 
 #modal-tutorial img{
     width: 100%;
     height: fit-content;
     box-sizing: border-box;
-    border-radius: 20px;
+    border-radius: 14px 0 0 14px;
 }
 
 /* #play-button:hover {
