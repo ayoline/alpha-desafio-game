@@ -56,10 +56,10 @@ function sendData() {
                 window.location.href = "http://localhost:3001/";
             }
         }).done((data) => {
-            console.log(data);
             if (data.endGame) {
                 const finalScore = data.finalScore - 1;
-                window.location.href = 'http://localhost:3001/pages/win-page/?score=' + finalScore;
+                const player = data.player;
+                window.location.href = 'http://localhost:3001/pages/win-page/?score=' + finalScore + '?player=' + player;
             }
             const scoreItem = $('#score h2');
             const score = parseInt(scoreItem.text()) + data.score;

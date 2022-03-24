@@ -42,6 +42,7 @@ router.put("/updateData", function (req, res) {
 
             if (playerToBeUpdated.lvl > 10) {
                 const finalScore = playerToBeUpdated.score + currentPlayerObject.score;
+                const playerName = currentPlayerObject.player;
                 playerToBeUpdated.score = finalScore;
                 playerToBeUpdated.endGame = true;
                 playerToBeUpdated.player = currentPlayerObject.player;
@@ -53,7 +54,11 @@ router.put("/updateData", function (req, res) {
                 }, 1000);
 
                 try {
-                    res.json({ endGame: true, finalScore: finalScore });
+                    res.json({
+                        endGame: true,
+                        finalScore: finalScore,
+                        player: playerName
+                    });
                 } catch (error) {
                     console.log('Endgame error: ' + error);
                 }
