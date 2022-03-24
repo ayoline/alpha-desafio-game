@@ -61,19 +61,26 @@ function sendData() {
                 const player = data.player;
                 window.location.href = 'http://localhost:3001/pages/win-page/?score=' + finalScore + '?player=' + player;
             }
+
             const scoreItem = $('#score h2');
             const score = parseInt(scoreItem.text()) + data.score;
-            const timeLine = $('.desafio-number')
+            const timeLine = $('.desafio-number');
+
             if (parseInt(data.life) !== actualLife) { audioError.play(); life(); };
             //gera bugs, troque.
             $('#match-current').text(data.subLevel + '/3');
-            if (data.correctAnswer) { timeLine.eq(parseInt(data.subLevel) - 2).css('backgroundColor', '#68FF74'); audioMatch.play(); }
+
+            if (data.correctAnswer) {
+                timeLine.eq(parseInt(data.subLevel) - 2).css('backgroundColor', '#68FF74'); audioMatch.play();
+            }
+
             if (parseInt(data.lvl) !== parseInt($('#lvl-number-externo h2').text())) {
                 timeLine.css('backgroundColor', '#313640');
                 modalPassLvl();
                 $('.operations-item').draggable('destroy');
                 operarionsUsed(data.lvl);
             }
+
             $('#lvl-number-externo h2').text(data.lvl);
             if (data.score) scoreItem.text(score);
             resetProblem(data.currentProblemPieces, data.currentProblemResult, data.numEntries);
@@ -81,15 +88,13 @@ function sendData() {
             else resetTimeRun = true;
         });
     } else {
-        //not-fetch
         console.log("invalid");
     }
 };
 
-//---------------
-
 function resetProblem(pieces, result, numEntries) {
     $("#number-div-two").html('');
+
     for (let i of pieces) {
         const spanInfo = $('<span>').text(i);
         const numPieces = $("<button>")
@@ -97,6 +102,7 @@ function resetProblem(pieces, result, numEntries) {
             .append(spanInfo);
         $("#number-div-two").append(numPieces);
     }
+
     $("#result").text(result);
 
     entries(numEntries);
@@ -117,28 +123,28 @@ const life = (() => {
 })();
 
 const entries = (num) => {
-    console.log('entries played');
     $('#calc ul').text('');
+
     for (let i = 0; i < num * 2 - 1; i++) {
         const elementDiv = $('<div>').attr('id', String(i + 1))
             .addClass('req-item');
         (i % 2 === 0) ? elementDiv.addClass('num') : elementDiv.addClass('ope');
         $('#calc ul').append(elementDiv);
     }
+
     arrCalculate = new Array(...$(".req-item").addClass());
 };
 
 const operarionsUsed = (() => {
     const arr = [['+'], ['+'], ['-'], ['-'], ['+', '-'], ['+', '-'], ['x'], ['/'], ['x', '/'], ['x', '/']];
+
     return function (lvl) {
         const itemsDiv = $('#operations div');
         const itemsSpan = $('#operations div > span');
         let position;
         itemsDiv.removeClass('operations-item');
-        console.log(itemsDiv);
-        for (let i of arr[lvl - 1]) {
 
-            console.log(position);
+        for (let i of arr[lvl - 1]) {
             itemsSpan.each(function () {
                 if ((position == undefined) || arr[lvl - 1].length === 1) {
                     $(this).parent().css('backgroundColor', '#2f2f2f');
@@ -147,21 +153,24 @@ const operarionsUsed = (() => {
                         "color": "#272727"
                     });
                 }
+
                 if (i === $(this).text()) position = $(itemsSpan).index(this);
                 else return;
             });
+
             itemsDiv.eq(position).css('backgroundColor', '#F54460');
             itemsDiv.eq(position).addClass('operations-item');
             itemsSpan.eq(position).css({
                 "backgroundColor": "#AD0025",
                 "color": "white"
-            })
+            });
         }
     }
 })();
 
 function timeRun(defaultTime) {
     let timer = 0;
+
     const intervalTimer = setInterval(() => {
         if (defaultTime - timer === -1) {
             modalTimeOut();
@@ -182,6 +191,7 @@ function timeRun(defaultTime) {
             const str = defaultMinutes + ":" + defaultSeconds;
             $("#time h2").text(str);
         }
+
         timer++;
     }, 1000);
 }
@@ -193,6 +203,7 @@ function cloneOpItem(_cloneItem, _overwriteOp) {
     const cloneItem = _cloneItem;
     const contentItem = cloneItem.textContent.match(/[+-/x]/)[0];
     let idRef;
+
     switch (contentItem) {
         case '+':
             idRef = '#reference-plus-clone';
@@ -211,12 +222,13 @@ function cloneOpItem(_cloneItem, _overwriteOp) {
             newItem.append('<span>/</span>');
             break;
     }
+
     newItem.children().css({
         "backgroundColor": "#AD0025",
         "color": "white"
-    })
+    });
     $(idRef).before(newItem);
-    $(newItem).draggable({ cancel: false, revert: "invalid", scroll: false, snap: '.req-item' })
+    $(newItem).draggable({ cancel: false, revert: "invalid", scroll: false, snap: '.req-item' });
     opWrite.textContent = contentItem;
     opWrite.style.backgroundColor = '#ad0025';
     cloneItem.parentElement.parentNode.removeChild(cloneItem.parentElement);
@@ -225,6 +237,7 @@ function cloneOpItem(_cloneItem, _overwriteOp) {
 
 function loadGame(id) {
     const apiUrl = "http://localhost:3000/";
+
     fetch(apiUrl + `update/updateData/?id=${id}`)
         .then((res) => {
             if (res.status !== 200) {
@@ -235,8 +248,8 @@ function loadGame(id) {
             }
         })
         .then((data) => {
-            console.log(data);
             const dataElements = data[0];
+
             for (let i of dataElements) {
                 const spanInfo = $('<span>').text(i);
                 const numPieces = $("<button>")
@@ -244,6 +257,7 @@ function loadGame(id) {
                     .append(spanInfo);
                 $("#number-div-two").append(numPieces);
             }
+
             $("#result").text(data[1]);
             operarionsUsed(1);
             start();
@@ -260,6 +274,7 @@ function start() {
         [".num", ".block-num"],
         [".ope", ".operations-item"],
     ];
+
     for (let i of arrDrag)
         $(i).draggable({
             zIndex: 2500,
@@ -279,6 +294,7 @@ function start() {
                             return false;
                         } else {
                             const actual_draggable = activesItems.get(dropItem.id);
+
                             if ($(this).text() === $(actual_draggable).text()) {
                                 verify(this);
                                 return false;
@@ -293,18 +309,22 @@ function start() {
                             }
                         }
                     }
+
                     function verify(element) {
                         activesItems.forEach((value, id) => {
                             const dropItem = actual_droppable[0];
+
                             if (value.text() === $(element).text() && id !== dropItem.id) {
                                 activesItems.delete(id);
                             }
                         });
                     };
                 },
+
             scroll: false,
             snap: '.req-item'
         });
+
     for (let i of arrDrop)
         $(i[0]).droppable({
             accept: i[1],
@@ -312,8 +332,8 @@ function start() {
                 "ui-droppable-active": "ui-state-active",
                 "ui-droppable-hover": "ui-state-hover",
             },
-            // drop: function()
         });
+
     for (let i of arrResDrop)
         $(i[0]).droppable({
             accept: i[1],
@@ -324,7 +344,9 @@ function start() {
             drop: function (event, ui) {
                 const dragItem = ui.draggable[0].firstChild;
                 const dropItem = event.target;
+
                 if (dragItem.parentElement.className.includes('operations-item')) cloneOpItem(dragItem, dropItem);
+
                 if (
                     dropItem.className.includes("ope") &&
                     dragItem.className.includes("block-num")
@@ -374,7 +396,7 @@ function deletePlayer(playerId) {
 
 function modalDeath() {
     $('.modal-container').addClass('fundo-black');
-    // $('.modal').addClass('show-modal')
+
     $('.btn').removeClass('btn-tempo');
     $('.btn').removeClass('btn-passou');
     $('.btn').addClass('btn-perdeu');
@@ -426,6 +448,7 @@ function modalTimeOut() {
 
     $('#fechar-modal').click(function () {
         $('.modal-container').removeClass('fundo-black');
+
         for (let i in arrCalculate) {
             if (i % 2 === 0) {
                 arrCalculate[i] = '200';
@@ -433,7 +456,7 @@ function modalTimeOut() {
                 arrCalculate[i] = 'x';
             }
         }
-        console.log(arrCalculate);
+
         sendData();
     });
 }
@@ -469,33 +492,19 @@ $(function () {
 
 $('#operations').mousedown(function () {
     audioClickOn.play();
-    console.log('down');
 });
 
 $('#operations').mouseup(function () {
     audioClickOff.play();
-    console.log('up');
 });
 
 $('#number-div-two').mousedown(function () {
     audioClickOn.play();
-    console.log('down');
 });
 
 $('#number-div-two').mouseup(function () {
     audioClickOff.play();
-    console.log('up');
 });
-
-// To mute or play all audios in the page
-
-// $('#on-off-audio').click(function () {
-//     if ($('audio').prop('volume') === 0) {
-//         $('audio').prop('volume', volume.toFixed(1));
-//     } else {
-//         $('audio').prop('volume', 0);
-//     }
-// });
 
 $('#high-volume').click(function () {
     if (volume.toFixed(1) < 1) volume += 0.1;
@@ -514,6 +523,7 @@ $('#music-stop').click(function () {
     $('#music-play').removeClass('nav-select-color');
     $('#music-stop').addClass('nav-select-color');
 });
+
 $('#music-play').click(function () {
     if (audio.volume === 0) audio.volume = volume;
     $('#music-play').addClass('nav-select-color');
@@ -533,10 +543,8 @@ $('#effects-play').click(function () {
 
 timeRun(180);
 
-
 $('.navigation').click(function () {
     $('.navigation').addClass('active');
-    // $('.nav-name').removeClass('display-none'); 
 });
 
 $(document).on('click', (event) => {
@@ -544,36 +552,5 @@ $(document).on('click', (event) => {
 
     if (!isClickInsideElement && $('.navigation').hasClass('active')) {
         $(".navigation").removeClass("active")
-        // $('.nav-name').addClass('display-none'); 
     }
 });
-
-
-// $(document).click(function(event) { 
-//     const $target = $(event.target);
-//     console.log($target);
-//     if(!$target === 'div.navigation.active') {
-//       $('.navigation').removeClass('active');
-//       console.log('teste')
-//     }        
-//   });
-
-// $('body').click(function() {
-//     // alert('ola')
-
-//     if(active === true) {
-//         $('.navigation').removeClass('active');
-//         setInterval(() => {
-//             active = false;
-//         }, 100);
-//     }
-// }); 
-
-// $('#nav-one').click(function() {
-//     $('.navigation').addClass('active');
-//     alert('ola')
-// });
-
-// $('.toggle').click(function() {
-//     $('.menu').toggleClass('active');
-// });
