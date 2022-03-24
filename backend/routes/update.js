@@ -53,7 +53,11 @@ router.put("/updateData", function (req, res) {
                 }, 1000);
 
                 try {
-                    res.json({ endGame: true, finalScore: finalScore });
+                    res.json({
+                        endGame: true,
+                        finalScore: finalScore,
+                        player: currentPlayerObject.player
+                    });
                 } catch (error) {
                     console.log('Endgame error: ' + error);
                 }

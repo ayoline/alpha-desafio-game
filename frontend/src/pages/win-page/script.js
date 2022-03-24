@@ -15,7 +15,9 @@ const audioCongrats = $("#congrats")[0];
 
 $(function () {
     let scoreNumber = window.location.search.split("=")[1];
-
+    let playerName = window.location.search.split("=")[2];
+    let teste = window.location.search.split(['=', '?'])[4];
+    alert(teste);
     setTimeout(() => {
         let posicaoPlacar = $('button').offset().top;
         $('html, body').animate(
@@ -23,6 +25,7 @@ $(function () {
                 scrollTop: posicaoPlacar + 'px'
             }, 2000);
         $('#number-score').text(scoreNumber);
+        $('#player-name').text(playerName);
     }, 2000);
 
 });
