@@ -3,7 +3,8 @@
 
 body{
     background-image: url('./pages/game/assets/img/tela-inicial-img.svg');
-    background-size: 100%;
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     height: 100vh;
     overflow: hidden;

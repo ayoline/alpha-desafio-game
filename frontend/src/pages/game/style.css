@@ -35,6 +35,7 @@ main {
 /* CÓDIGO RELACIONADO A PRIMEIRA DIV */
 
 #sec-one {
+    margin-left: -36px;
     height: clamp(3.7em, calc(12vw - 55px), 13em);
     justify-content: space-around;
     align-items: center;
@@ -54,8 +55,8 @@ main {
 
 ul {
     list-style: none;
-    border-radius: clamp(0.1em, 2vw, 1.4em);
-    width: clamp(1.3em, 11vw, 13em);
+    border-radius: clamp(0.1em, 1.7vw, 1.4em);
+    width: clamp(1.3em, 10.5vw, 13em);
     justify-content: space-around;
     background-color: #242b38;
     align-items: center;
@@ -91,7 +92,7 @@ ul {
 }
 
 #score ul{
-    width: clamp(7em, 18vw, 21em);
+    width: clamp(7em, 17.7vw, 21em);
 }
 
 #score h2 {
@@ -183,6 +184,7 @@ img {
 /* CÓDIGO RELACIONADO A SEGUNDA DIV */
 
 #sec-two {
+    margin-left: 71px;
     height: clamp(11em, calc(33vw - 60px), 34em);
     justify-content: center;
     align-items: center;
@@ -235,7 +237,10 @@ img {
     width: clamp(2em, 100vw, 15em);
     backdrop-filter: blur(10px);
     transition-delay: 0s;
+    margin-left: -50px;
+    margin-right: 10px;
     border-radius: 2em;
+    margin-top: 39px;
     border: none;
     cursor: auto;
 }
@@ -428,6 +433,7 @@ img {
 /* CÓDIGO RELACIONADO A TERCEIRA SECTION */
 
 #sec-three {
+    margin-left: 19px;
     margin-right: clamp(3em, 11vw, 14em);
     height: clamp(3.3em, 8vw, 9em);
     justify-content: center;
@@ -521,10 +527,10 @@ i {
 }
 
 #math-div div {
-    font-size: clamp(1em, calc(5vw - 30px), 2.5em);
+    font-size: clamp(1em, calc(5vw - 35px), 2.5em);
     border-radius: clamp(0.6em, 1vw, 1.3em);
-    width: clamp(4.3em, 10vw, 5.6em);
-    height: clamp(2em, 5vw, 2.5em);
+    width: clamp(4.3em, 9.5vw, 5.6em);
+    height: clamp(2em, 4.5vw, 2.5em);
     font-family: "Solway", serif;
     background-color: #931eaa;
     justify-content: center;
@@ -557,6 +563,7 @@ i {
 }
 
 #ajust-block {
+    margin-top:28px;
     justify-content: center;
     align-items: center;
     flex-direction: row;
