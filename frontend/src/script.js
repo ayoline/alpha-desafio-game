@@ -50,6 +50,10 @@ $("#add-rank").click(function () {
     audioClick.play();
 });
 
+$("#btn-tutorial").click(function () {
+    audioClick.play();
+});
+
 $("#add-rank").click(function () {
     $("#two").toggleClass('none');
     $("#two").toggleClass('flex');
