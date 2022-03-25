@@ -221,3 +221,7 @@ button{
     box-shadow: 0px 5px black;
     cursor: pointer;
 }  
+
+#player-name {
+    text-transform: uppercase;
+}
